@@ -12,7 +12,6 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
-  scroll-snap-type: y mandatory;
 }
 
 *,
@@ -224,16 +223,6 @@ span.pancratzia:hover {
   margin: 0;
 }
 
-.servicios,
-.navegacion-principal,
-.formulario,
-.sobre-mi,
-.clientes,
-.footer {
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-}
-
 @media only screen and (min-width: 768px) {
   .servicios {
     display: grid;
@@ -302,7 +291,7 @@ span.pancratzia:hover {
   .contenedor-campos {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto 20rem;
+    grid-template-rows: auto auto auto;
     column-gap: 1rem;
   }
 
@@ -434,3 +423,15 @@ section.frase q {
   text-align: center;
   font-style: italic;
 }
+
+p.advertencia{
+  text-align: center;
+  margin: 5rem auto 2rem;
+  font-size: 2rem;
+  color: var(--secundario);
+  font-weight: 700;
+  font-style: italic;
+  opacity: .6;
+  width: min(100%, 60rem);
+}
+
