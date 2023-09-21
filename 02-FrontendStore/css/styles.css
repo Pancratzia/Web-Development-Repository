@@ -81,6 +81,32 @@ h3 {
   margin: 3rem 0;
 }
 
+/**FOOTER**/
+
+.footer{
+    background-color: var(--primarioOscuro);
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+.footer__texto {
+    font-family: var(--fuentePrincipal);
+    text-align: center;
+    font-size: 2.2rem;
+
+}
+
+.footer__enlace{
+    color: var(--blanco);
+    opacity: .8;
+    transition: opacity 0.3s;
+}
+
+.footer__enlace:hover{
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
 /**NAVEGACION**/
 
 .navegacion{
