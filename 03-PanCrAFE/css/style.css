@@ -5,6 +5,7 @@
 
 
     --primario: #784D3C;
+    --gris: #e1e1e1;
     --blanco: #FFFFFF;
     --negro: #000000;
 }
@@ -152,3 +153,33 @@ img{
     }
 }
 
+.entrada{
+    border-bottom: .1rem solid var(--gris);
+    margin-bottom: 2rem;
+}
+
+.entrada:last-of-type{
+    border: none;
+}
+
+.boton{
+    display: block;
+    font-family: var(--fuenteHeading);
+    text-align: center;
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .boton{
+        display: inline-block; 
+    }
+}
+
+.boton--primario{
+    background-color: var(--negro);
+    color: var(--blanco);
+}
