@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,16 +18,17 @@
     <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/normalize.css">
 
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" as="font" crossorigin="crossorigin">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap" as="font"
+        crossorigin="crossorigin">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
 
-    <link rel="preload" href="img/blog1.jpg" as="image">
-    <link rel="preload" href="img/blog2.jpg" as="image">
-    <link rel="preload" href="img/blog3.jpg" as="image">
 </head>
+
 <body>
 
     <header class="header">
@@ -35,7 +37,8 @@
             <div class="barra">
 
                 <a href="index.html" class="logo">
-                    <h1 class="logo__nombre no-margin centrar-texto">Pan<span class="negrita">C</span>r<span class="negrita">AFÉ</span></h1>
+                    <h1 class="logo__nombre no-margin centrar-texto">Pan<span class="negrita">C</span>r<span
+                            class="negrita">AFÉ</span></h1>
                 </a>
 
                 <div class="navegacion">
@@ -49,49 +52,76 @@
 
         <div class="header__texto contenedor">
             <h2 class="no-margin header__texto__titulo">Blog de Café con Consejos y Cursos</h2>
-            <p class="no-margin header__texto__parrafo">Aprende de la experta sus mejores recetas y consejos para hacer el más delicioso Pan<span class="negrita">C</span>r<span class="negrita">AFÉ</span></p>
+            <p class="no-margin header__texto__parrafo">Aprende de la experta sus mejores recetas y consejos para hacer
+                el más delicioso Pan<span class="negrita">C</span>r<span class="negrita">AFÉ</span></p>
         </div>
 
     </header>
 
 
     <div class="contenedor contenido-principal">
-        
+
         <main class="blog">
             <h3>Mi Blog</h3>
 
             <article class="entrada">
                 <div class="entrada__imagen">
-                    <img loading="lazy" src="img/blog1.jpg" alt="Imagen Blog">
+
+                    <picture>
+                        <source loading="lazy" srcset="img/blog1.webp" type="image/webp">
+                        <img loading="lazy" src="img/blog1.jpg" alt="Imagen Blog">
+                    </picture>
+
                 </div>
 
                 <div class="entrada__contenido">
                     <h4 class="no-margin">Tipos de Granos de Café</h4>
-                    <p class="justificar-texto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos ipsa ipsum cupiditate impedit consequatur consectetur adipisci, neque quam voluptatibus magni ut soluta facere quod! Ea voluptatum mollitia impedit modi, corrupti explicabo possimus accusantium tenetur! Vitae cumque quas nemo voluptates quasi tenetur beatae eos voluptatem, eligendi, suscipit, eius nihil architecto id?</p>
+                    <p class="justificar-texto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos ipsa ipsum
+                        cupiditate impedit consequatur consectetur adipisci, neque quam voluptatibus magni ut soluta
+                        facere quod! Ea voluptatum mollitia impedit modi, corrupti explicabo possimus accusantium
+                        tenetur! Vitae cumque quas nemo voluptates quasi tenetur beatae eos voluptatem, eligendi,
+                        suscipit, eius nihil architecto id?</p>
                     <a href="entrada.html" class="boton boton--primario">Leer Entrada</a>
                 </div>
             </article>
 
             <article class="entrada">
                 <div class="entrada__imagen">
-                    <img loading="lazy" src="img/blog2.jpg" alt="Imagen Blog">
+
+                    <picture>
+                        <source loading="lazy" srcset="img/blog2.webp" type="image/webp">
+                        <img loading="lazy" src="img/blog2.jpg" alt="Imagen Blog">
+                    </picture>
+
                 </div>
 
                 <div class="entrada__contenido">
                     <h4 class="no-margin">Tres Deliciosas Recetas de Café</h4>
-                    <p class="justificar-texto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo numquam vel laudantium iure reprehenderit quasi soluta eos, quidem quis unde recusandae, excepturi repellat dolorem enim quam tempora quibusdam provident dolor nesciunt omnis blanditiis a. Consequuntur deserunt ullam sed deleniti dolorem! Aut culpa temporibus harum hic ullam earum magnam quae aliquid officia similique, sint ducimus, laborum dolorem delectus inventore saepe deserunt.</p>
+                    <p class="justificar-texto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo numquam
+                        vel laudantium iure reprehenderit quasi soluta eos, quidem quis unde recusandae, excepturi
+                        repellat dolorem enim quam tempora quibusdam provident dolor nesciunt omnis blanditiis a.
+                        Consequuntur deserunt ullam sed deleniti dolorem! Aut culpa temporibus harum hic ullam earum
+                        magnam quae aliquid officia similique, sint ducimus, laborum dolorem delectus inventore saepe
+                        deserunt.</p>
                     <a href="entrada.html" class="boton boton--primario">Leer Entrada</a>
                 </div>
             </article>
 
             <article class="entrada">
                 <div class="entrada__imagen">
-                    <img loading="lazy" src="img/blog3.jpg" alt="Imagen Blog">
+                    <picture>
+                        <source loading="lazy" srcset="img/blog3.webp" type="image/webp">
+                        <img loading="lazy" src="img/blog3.jpg" alt="Imagen Blog">
+                    </picture>
                 </div>
 
                 <div class="entrada__contenido">
                     <h4 class="no-margin">Beneficios de Tomar Café</h4>
-                    <p class="justificar-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, necessitatibus hic? Fuga nisi sequi consequatur explicabo? Impedit error eum necessitatibus? Optio consequatur consequuntur corporis maiores culpa iste ducimus totam unde, laboriosam voluptatem a enim fugiat dolores minus dolore quaerat in reiciendis veniam similique? Aliquam ex doloremque molestiae consectetur, dolores, temporibus debitis et ut at facere veniam.</p>
+                    <p class="justificar-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
+                        necessitatibus hic? Fuga nisi sequi consequatur explicabo? Impedit error eum necessitatibus?
+                        Optio consequatur consequuntur corporis maiores culpa iste ducimus totam unde, laboriosam
+                        voluptatem a enim fugiat dolores minus dolore quaerat in reiciendis veniam similique? Aliquam ex
+                        doloremque molestiae consectetur, dolores, temporibus debitis et ut at facere veniam.</p>
                     <a href="entrada.html" class="boton boton--primario">Leer Entrada</a>
                 </div>
             </article>
@@ -126,7 +156,8 @@
         <div class="contenedor">
             <div class="barra">
                 <a href="index.html" class="logo">
-                    <h1 class="logo__nombre no-margin centrar-texto">Pan<span class="negrita">C</span>r<span class="negrita">AFÉ</span></h1>
+                    <h1 class="logo__nombre no-margin centrar-texto">Pan<span class="negrita">C</span>r<span
+                            class="negrita">AFÉ</span></h1>
                 </a>
                 <div class="navegacion">
                     <a href="nosotros.html" class="navegacion__enlace">Nosotros</a>
@@ -137,6 +168,7 @@
             </div>
         </div>
     </footer>
-    
+
 </body>
+
 </html>
