@@ -89,6 +89,7 @@ img{
     text-align: justify;
 }
 
+
 /**Header**/
 
 .barra{
@@ -111,8 +112,15 @@ img{
     font-weight: 400;
 }
 
-.header{
+.webp .header{
+    background-image: url(../img/banner.webp);
+}
+
+.no-webp .header{
     background-image: url(../img/banner.jpg);
+}
+
+.header{
     height: 60rem;
     background-size: cover;
     background-repeat: no-repeat;
@@ -288,7 +296,6 @@ img{
 
 
 /**Contacto**/
-
 
 .contacto-bg{
     background-image: url(../img/contacto.jpg);
