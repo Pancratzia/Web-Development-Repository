@@ -245,3 +245,21 @@ img{
     background-color: var(--negro);
     padding-bottom: 3rem;
 }
+
+/*Sobre nosotros**/
+
+@media only screen and (min-width: 1140px) {
+    .sobre-nosotros{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+}
+
+.sobre-nosotros__imagen{
+    text-align: center;
+}
+
+.sobre-nosotros__texto{
+    text-align: justify;
+}
