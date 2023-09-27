@@ -29,8 +29,11 @@ body{
 /** GLOBALES **/
 
 .contenedor{
+    /*****************
     max-width: 120rem;
     width: 90%;
+    *****************/
+    width: min(90%, 120rem);
     margin: 0 auto;
 }
 
@@ -88,6 +91,10 @@ img{
 
 /**Header**/
 
+.barra{
+    padding-top: 4rem;
+}
+
 @media only screen and (min-width: 768px) {
     .barra{
         display: flex;
@@ -141,6 +148,12 @@ img{
     font-size: 2.2rem;
     color: var(--blanco);
     text-align: center;
+    transition: opacity .3s ease;
+}
+
+.navegacion__enlace:hover{
+    opacity: 0.8;
+    transition: opacity .3s ease;
 }
 
 /**Contenido principal**/
@@ -171,6 +184,14 @@ img{
     text-transform: uppercase;
     font-weight: 700;
     margin-bottom: 2rem;
+    border-radius: 1rem 0;
+    transition: opacity .3s ease;
+}
+
+.boton:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity .3s ease;
 }
 
 @media only screen and (min-width: 768px) {
@@ -188,6 +209,7 @@ img{
     background-color: var(--primario);
     color: var(--blanco);
 }
+
 
 .cursos{
     list-style: none;
@@ -214,4 +236,12 @@ img{
 
 .widget-curso__label, .widget-curso__info{
     font-size: 2rem;
+}
+
+/**Footer**/
+
+.footer{
+    margin-top: 4rem;
+    background-color: var(--negro);
+    padding-bottom: 3rem;
 }
