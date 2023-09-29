@@ -1,0 +1,25 @@
+{
+  "name": "04-pankrafest",
+  "version": "1.0.0",
+  "description": "Proyecto con gulp, SASS y HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pancratzia/Web-Development-Repository.git#main"
+  },
+  "keywords": [
+    "SASS",
+    "Gulp",
+    "HTML",
+    "Frontend"
+  ],
+  "author": "Pancratzia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pancratzia/Web-Development-Repository/issues"
+  },
+  "homepage": "https://github.com/Pancratzia/Web-Development-Repository/tree/main#readme"
+}
