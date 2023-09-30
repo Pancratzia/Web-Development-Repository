@@ -28,6 +28,7 @@
   "homepage": "https://github.com/Pancratzia/Web-Development-Repository/tree/main#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
     "gulp-sass": "^5.1.0",
     "sass": "^1.68.0"
   }
