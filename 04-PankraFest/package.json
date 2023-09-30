@@ -4,7 +4,11 @@
   "description": "Proyecto con gulp, SASS y HTML",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch src/scss:build/css",
+    "gulp": "gulp tarea",
+    "css": "gulp css",
+    "dev": "gulp dev"
   },
   "repository": {
     "type": "git",
@@ -21,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/Pancratzia/Web-Development-Repository/issues"
   },
-  "homepage": "https://github.com/Pancratzia/Web-Development-Repository/tree/main#readme"
+  "homepage": "https://github.com/Pancratzia/Web-Development-Repository/tree/main#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.68.0"
+  }
 }
