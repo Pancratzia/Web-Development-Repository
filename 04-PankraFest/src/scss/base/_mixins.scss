@@ -1,0 +1,25 @@
+@use 'variables' as v;
+
+@mixin sm{
+    @media (min-width: v.$telefono){
+        @content;
+    }
+}
+
+@mixin md{
+    @media (min-width: v.$tablet){
+        @content;
+    }
+}
+
+@mixin lg{
+    @media (min-width: v.$desktop){
+        @content;
+    }
+}
+
+@mixin xl{
+    @media (min-width: v.$fullhd){
+        @content;
+    }
+}
