@@ -4,7 +4,7 @@
 .header {
   background-color: v.$verde;
 
-  h1 {
+  h1{
     color: v.$blanco;
     text-align: center;
     @include m.md{
