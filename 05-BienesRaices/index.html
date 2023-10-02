@@ -10,11 +10,11 @@
 </head>
 <body>
 
-    <header class="header">
+    <header class="header inicio">
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="/">
-                    <img width="50" height="50" src="build/img/logo.svg" alt="Logo de Bienes Raices">
+                    <img loading="lazy" width="50" height="50" src="build/img/logo.svg" alt="Logo de Bienes Raices">
                 </a>
 
                 <nav class="navegacion">
@@ -31,8 +31,70 @@
 
 
     <main class="contenedor seccion">
-        <h1>Titulo Página</h1>
+        <h1>Más Sobre Nosotros</h1>
+
+        <div class="iconos-nosotros">
+            <div class="icono">
+                <img height="20" width="20" src="build/img/icono1.svg" alt="Icono Seguridad" loading="lazy">
+                <h3>Seguridad</h3>
+                <p>Ipsum error beatae aut delectus nesciunt sed vero commodi voluptatem ex voluptatum? Perspiciatis, esse voluptatibus nostrum molestiae expedita maiores excepturi totam nulla itaque.</p>
+            </div>
+
+            <div class="icono">
+                <img height="20" width="20" src="build/img/icono2.svg" alt="Icono Precio" loading="lazy">
+                <h3>Precio</h3>
+                <p>Culpa laboriosam nemo fugit, sit commodi quaerat nobis delectus, earum reprehenderit, aperiam corporis doloribus. Dolorum voluptatem consectetur libero repellat velit mollitia porro?</p>
+            </div>
+
+            <div class="icono">
+                <img height="20" width="20" src="build/img/icono3.svg" alt="Icono Tiempo" loading="lazy">
+                <h3>A Tiempo</h3>
+                <p>Dolor tempora delectus placeat iusto saepe ratione dolorum debitis libero illum facere voluptatum ipsa exercitationem amet impedit nesciunt ullam voluptas, maiores corrupti dicta.</p>
+            </div>
+        </div>
     </main>
+
+    <section class="seccion contenedor">
+        <h2>Casas y Departamentos en Venta</h2>
+
+        <div class="contenedor-anuncios">
+            <div class="anuncio">
+                <picture>
+                    <source srcset="build/img/anuncio1.avif" type="image/avif">
+                    <source srcset=build/img/anuncio1.webp" type="image/webp">
+                    <img width="200" height="300" loading="lazy",src="build/img/anuncio1.jpg" alt="Primer Anuncio">
+                </picture>
+
+                <div class="contenido-anuncio">
+                    <h3>Casa de Lujo en el Lago</h3>
+                    <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
+
+                    <p class="precio">150.000$</p>
+
+                    <ul class="iconos-caracteristicas">
+                        <li>
+                            <img width="20" height="20" loading="lazy" src="build/img/icono_wc.svg" alt="Icono WC">
+                            <p>3</p>
+                        </li>
+
+                        <li>
+                            <img width="20" height="20" loading="lazy" src="build/img/icono_estacionamiento.svg" alt="Icono estacionamiento">
+                            <p>2</p>
+                        </li>
+
+                        <li>
+                            <img width="20" height="20" loading="lazy" src="build/img/icono_dormitorio.svg" alt="Icono Habitaciones">
+                            <p>4</p>
+                        </li>
+                    </ul>
+
+                    <a href="anuncio.html" class="boton boton-amarillo">
+                        Ver Propiedad
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="footer seccion">
         <div class="contenedor contenedor-footer">
