@@ -13,15 +13,6 @@
     <link rel="preload" href="build/css/app.css" as="style">
     <link rel="stylesheet" href="build/css/app.css">
 
-
-    <script>
-        //Funcion para obtener el dia de la semana de de cierto año
-        function diaSemana(dia, mes, anno) {
-            var dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-            var fecha = new Date(anno, mes - 1, dia);
-            return dias[fecha.getDay()];
-        }
-    </script>
 </head>
 
 <body>
@@ -43,9 +34,7 @@
         <div class="overlay">
             <div class="contenedor contenido-video">
                 <h2>PankraFEST</h2>
-                <p>Septiembre
-                    <script>document.write(new Date().getFullYear() + 1)</script>, Barquisimeto - Venezuela
-                </p>
+                <p class="fechaGenerada"></p>
             </div>
         </div>
         <video autoplay muted loop>
@@ -67,9 +56,7 @@
 
         <div class="contenido-festival">
             <h2>PankraFEST</h2>
-            <p class="fecha">Septiembre
-                <script>document.write(new Date().getFullYear() + 1)</script>, Barquisimeto - Venezuela
-            </p>
+            <p class="fecha fechaGenerada"></p>
             <p>Possimus modi, iusto illum harum fugit, asperiores distinctio cum earum eveniet, quas animi vitae impedit
                 omnis quod corrupti odio reprehenderit nam quos. Ipsa adipisci autem iure incidunt, repellat,
                 dignissimos nisi sed eius, nihil ea id necessitatibus placeat unde?</p>
@@ -79,9 +66,7 @@
     <section class="lineup">
         <h3>Line Up</h3>
 
-        <p class="dia">
-            <script>document.write(diaSemana(1, 9, new Date().getFullYear() + 1))</script> 1
-        </p>
+        <p class="dia diaGenerado"></p>
 
         <div class="escenarios-contenedor contenedor">
             <div class="escenario rock bg-amarillo">
@@ -136,9 +121,7 @@
             </div><!--.escenario-->
         </div><!--.escenarios-contenedor-->
 
-        <p class="dia">
-            <script>document.write(diaSemana(2, 9, new Date().getFullYear() + 1))</script> 2
-        </p>
+        <p class="dia diaGenerado"></p>
 
         <div class="escenarios-contenedor contenedor">
             <div class="escenario rock bg-verde">
@@ -194,9 +177,13 @@
 
     </section>
 
+    <div class="galeria contenedor">
+        <h3>Galería</h3>
 
+        <ul class="galeria-imagenes"></ul>
+    </div>
 
-
+    <script src="../build/js/app.js"></script>
 </body>
 
 </html>
