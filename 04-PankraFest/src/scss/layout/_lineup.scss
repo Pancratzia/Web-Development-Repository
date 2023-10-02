@@ -61,7 +61,7 @@
 }
 
 .calendario {
-  @include m.resetear-lista();
+  @include m.resetear-lista;
 
   li {
     padding: 2.5rem;
