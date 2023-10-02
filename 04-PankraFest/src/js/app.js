@@ -46,6 +46,7 @@ function crearGaleria() {
   const galeria = document.querySelector(".galeria-imagenes");
 
   for (let i = 1; i <= 12; i++) {
+    const li = document.createElement("li");
     const imagen = document.createElement("picture");
     imagen.innerHTML = `
             <source srcset="build/img/thumb/${i}.avif" type="image/avif">
@@ -56,7 +57,8 @@ function crearGaleria() {
     imagen.onclick = () => {
       mostrarImagen(i);
     };
-    galeria.appendChild(imagen);
+    li.appendChild(imagen);
+    galeria.appendChild(li);
   }
 }
 
