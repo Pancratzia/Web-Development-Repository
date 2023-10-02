@@ -11,8 +11,8 @@
         position: absolute;
         height: 100%;
         width: 100%;
-        background: rgb(165,3,255);
-        background: linear-gradient(0deg, rgba(126,2,195,.5) 0%, rgba(255,0,110,.3) 100%);
+        background: rgb(233,67,51);
+        background: linear-gradient(0deg, rgba(233,67,51,.5) 0%, rgba(104,201,243,.3) 100%);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -46,7 +46,7 @@
     }
     p{
         color: v.$blanco;
-        background-color: v.$rosa;
+        background-color: v.$redVelvet;
         display: inline-block;
         padding: 1rem 2rem;
         font-weight: 700;

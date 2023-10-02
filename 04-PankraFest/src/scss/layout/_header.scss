@@ -2,7 +2,7 @@
 @use "base/variables" as v;
 
 .header {
-  background-color: v.$verde;
+  background-color: v.$azul;
 
   @include m.md {
     
@@ -57,7 +57,7 @@
 
     &:hover {
       cursor: pointer;
-      color: v.$amarillo;
+      color: v.$verde;
       transition: color 0.3s ease;
     }
   }

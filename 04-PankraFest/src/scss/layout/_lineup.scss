@@ -2,7 +2,7 @@
 @use "base/mixins" as m;
 
 .lineup {
-  background-color: v.$rosa;
+  background-color: v.$redVelvet;
   padding: 5rem 0;
 
   h3,
@@ -73,17 +73,17 @@
 }
 
 .bg-amarillo {
-  background-color: v.$amarillo;
+  background-color: v.$verde;
 
   li:nth-child(odd) {
-    background-color: darken(v.$amarillo, 15%);
+    background-color: darken(v.$verde, 15%);
   }
 }
 
 .bg-verde {
-  background-color: v.$verde;
+  background-color: v.$azul;
 
   li:nth-child(odd) {
-    background-color: darken(v.$verde, 10%);
+    background-color: darken(v.$azul, 10%);
   }
 }
