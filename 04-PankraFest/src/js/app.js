@@ -9,6 +9,9 @@ function iniciarApp() {
 
 function iniciarFechas() {
   const fechaEL = document.querySelectorAll(".fechaGenerada");
+  const annoGeneradoEL = document.querySelector("#annoGenerado");
+
+  annoGeneradoEL.innerHTML = new Date().getFullYear();
 
   fechaEL.forEach((fecha) => {
     fecha.innerHTML = `Septiembre ${unAnnoMas()}, Barquisimeto - Venezuela`;
