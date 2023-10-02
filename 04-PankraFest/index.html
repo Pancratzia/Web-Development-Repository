@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,18 @@
 
     <link rel="preload" href="build/css/app.css" as="style">
     <link rel="stylesheet" href="build/css/app.css">
+
+
+    <script>
+        //Funcion para obtener el dia de la semana de de cierto año
+        function diaSemana(dia, mes, anno) {
+            var dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+            var fecha = new Date(anno, mes - 1, dia);
+            return dias[fecha.getDay()];
+        }
+    </script>
 </head>
+
 <body>
 
     <header class="header">
@@ -31,7 +43,9 @@
         <div class="overlay">
             <div class="contenedor contenido-video">
                 <h2>PankraFEST</h2>
-                <p>Septiembre 2024, Barquisimeto - Venezuela</p>
+                <p>Septiembre
+                    <script>document.write(new Date().getFullYear() + 1)</script>, Barquisimeto - Venezuela
+                </p>
             </div>
         </div>
         <video autoplay muted loop>
@@ -44,16 +58,145 @@
 
     <section class="contenedor sobre-festival">
         <div class="imagen">
-            <img src="src/img/imagen_vocalista.jpg" alt="Imagen del vocalista del festival">
+            <picture>
+                <source srcset="build/img/imagen_vocalista.avif" type="image/avif">
+                <source srcset="build/img/imagen_vocalista.webp" type="image/webp">
+                <img width="200" height="300" loading="lazy" src="build/img/imagen_vocalista.png" alt="Festival">
+            </picture>
         </div>
 
         <div class="contenido-festival">
             <h2>PankraFEST</h2>
-            <p class="fecha">Septiembre 2024, Barquisimeto - Venezuela</p>
-            <p>Possimus modi, iusto illum harum fugit, asperiores distinctio cum earum eveniet, quas animi vitae impedit omnis quod corrupti odio reprehenderit nam quos. Ipsa adipisci autem iure incidunt, repellat, dignissimos nisi sed eius, nihil ea id necessitatibus placeat unde?</p>
+            <p class="fecha">Septiembre
+                <script>document.write(new Date().getFullYear() + 1)</script>, Barquisimeto - Venezuela
+            </p>
+            <p>Possimus modi, iusto illum harum fugit, asperiores distinctio cum earum eveniet, quas animi vitae impedit
+                omnis quod corrupti odio reprehenderit nam quos. Ipsa adipisci autem iure incidunt, repellat,
+                dignissimos nisi sed eius, nihil ea id necessitatibus placeat unde?</p>
         </div>
     </section>
 
+    <section class="lineup">
+        <h3>Line Up</h3>
+
+        <p class="dia">
+            <script>document.write(diaSemana(1, 9, new Date().getFullYear() + 1))</script> 1
+        </p>
+
+        <div class="escenarios-contenedor contenedor">
+            <div class="escenario rock bg-amarillo">
+                <p class="nombre-escenario">PATD!</p>
+
+                <ul class="calendario">
+                    <li>
+                        23:00 | <span>Baby Cries</span>
+                    </li>
+                    <li>
+                        22:30 | <span>Decay</span>
+                    </li>
+                    <li>
+                        22:00 | <span>Taylor Swift</span>
+                    </li>
+                    <li>
+                        21:30 | <span>Band of One</span>
+                    </li>
+                    <li>
+                        21:00 | <span>Band of Two</span>
+                    </li>
+                    <li>
+                        20:30 | <span>A Band</span>
+                    </li>
+
+                </ul>
+            </div><!--.escenario-->
+
+            <div class="escenario edm bg-verde">
+                <p class="nombre-escenario">Red Velvet</p>
+
+                <ul class="calendario">
+                    <li>
+                        24:00 | <span>Red Velvet Forever</span>
+                    </li>
+                    <li>
+                        23:30 | <span>Another Seulgi Solo</span>
+                    </li>
+                    <li>
+                        23:00 | <span>Seulgi Solo</span>
+                    </li>
+                    <li>
+                        22:30 | <span>Wendy Being Gringa</span>
+                    </li>
+                    <li>
+                        22:00 | <span>Irene Yelling </span>
+                    </li>
+                    <li>
+                        21:30 | <span>Cult (Joy&Yeri)</span>
+                    </li>
+                </ul>
+            </div><!--.escenario-->
+        </div><!--.escenarios-contenedor-->
+
+        <p class="dia">
+            <script>document.write(diaSemana(2, 9, new Date().getFullYear() + 1))</script> 2
+        </p>
+
+        <div class="escenarios-contenedor contenedor">
+            <div class="escenario rock bg-verde">
+                <p class="nombre-escenario">Imagine Dragons</p>
+
+                <ul class="calendario">
+                    <li>
+                        20:00 | <span>Arcane</span>
+                    </li>
+                    <li>
+                        19:45 | <span>Radioactive Session</span>
+                    </li>
+                    <li>
+                        19:30 | <span>Soccer?</span>
+                    </li>
+                    <li>
+                        19:15 | <span>My Fault Playing on Loop</span>
+                    </li>
+                    <li>
+                        19:00 | <span>Movies and TV</span>
+                    </li>
+                    <li>
+                        18:45 | <span>Resting (Again)</span>
+                    </li>
+                </ul>
+            </div><!--.escenario-->
+
+            <div class="escenario edm bg-amarillo">
+                <p class="nombre-escenario">Floricienta</p>
+
+                <ul class="calendario">
+                    <li>
+                        20:15 | <span>Flores Amarillas</span>
+                    </li>
+                    <li>
+                        20:10 | <span>Y La Vida</span>
+                    </li>
+                    <li>
+                        20:05 | <span>Un Enorme Dragon</span>
+                    </li>
+                    <li>
+                        20:00 | <span>Vestido Azul</span>
+                    </li>
+                    <li>
+                        19:55 | <span>Será</span>
+                    </li>
+                    <li>
+                        19:50 | <span>Porque</span>
+                    </li>
+                </ul>
+            </div><!--.escenario-->
+        </div><!--.escenarios-contenedor-->
+
+    </section>
+
+
+
 
 </body>
+
 </html>
