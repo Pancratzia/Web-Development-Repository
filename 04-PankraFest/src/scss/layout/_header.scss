@@ -4,11 +4,26 @@
 .header {
   background-color: v.$verde;
 
-  h1{
+  @include m.md {
+    
+    &.fijo {
+      position: fixed;
+      width: 100%;
+      box-shadow: 0.2rem 0.3rem 0.2rem rgba(185, 185, 185, 0.7);
+      top: 0;
+      left: 0;
+      z-index: 101;
+      -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        both;
+      animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+  }
+
+  h1 {
     color: v.$blanco;
     text-align: center;
-    @include m.md{
-        margin: 0;
+    @include m.md {
+      margin: 0;
     }
   }
 
@@ -36,8 +51,8 @@
     text-align: center;
     margin-bottom: 1rem;
 
-    @include m.md{
-        margin: 0;
+    @include m.md {
+      margin: 0;
     }
 
     &:hover {
@@ -47,3 +62,26 @@
     }
   }
 }
+
+@-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(-8.6rem);
+    transform: translateY(-8.6rem);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
