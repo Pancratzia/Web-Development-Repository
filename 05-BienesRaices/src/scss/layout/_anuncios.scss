@@ -1,3 +1,7 @@
+.contenedor-anuncios {
+    @include grid (1, 2rem);
+}
+
 @include tablet {
     .contenedor-anuncios {
         @include grid (2, 2rem);
@@ -20,6 +24,7 @@
 
     h3, p{
         margin: 0;
+        text-align: center;
     }
 
     .precio{
