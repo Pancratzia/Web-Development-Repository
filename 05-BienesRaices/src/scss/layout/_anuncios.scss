@@ -27,18 +27,18 @@
         text-align: center;
     }
 
-    .precio{
-        font-weight: bold;
-        color: $verde;
-        font-size: 3rem;
-    }
 }
 
-
+.precio{
+    font-weight: bold;
+    color: $verde;
+    font-size: 3rem;
+}
 .iconos-caracteristicas{
     display: flex;
     list-style: none;
     padding: 0;
+    max-width: 40rem;
 
     li{
         flex: 1;
