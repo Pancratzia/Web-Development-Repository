@@ -36,7 +36,13 @@
         text-align: left;
         color: $blanco;
         font-weight: bold;
-        line-height: 2;
+        line-height: 1.2;
         max-width: 60rem;
+        transition: line-height .3s ease;
+
+        @include tablet{
+            line-height: 2;
+            transition: line-height .3s ease;
+        }
     }
 }
