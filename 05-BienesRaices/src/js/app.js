@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     fechas();
     eventListeners();
+    darkMode();
 })
 
 function fechas(){
@@ -13,6 +14,12 @@ function fechas(){
 function eventListeners(){
     const mobileMenu = document.querySelector(".mobile-menu");
     mobileMenu.addEventListener("click", navegacionResponsive);
+}
+function darkMode(){
+    const botonDarkMode = document.querySelector(".dark-mode-boton");
+    botonDarkMode.addEventListener("click", function(){
+        document.body.classList.toggle("dark");
+    });
 }
 
 function navegacionResponsive(){

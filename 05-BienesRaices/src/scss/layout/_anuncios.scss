@@ -17,6 +17,7 @@
 .anuncio{
     background-color: lighten($gris, 5);
     border: .1rem solid darken($gris, 10);
+    margin-bottom: 3rem;
 
     .contenido-anuncio{
         padding: 2rem;
