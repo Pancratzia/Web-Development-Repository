@@ -33,6 +33,7 @@
     margin-top: calc($separacion / 2);
     display: $display;
     transition: background-color .3s ease;
+    border: none;
 
     &:hover{
         cursor: pointer;
