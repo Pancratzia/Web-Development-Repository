@@ -38,7 +38,13 @@
 
     .formulario{
         p, legend, label{
+            color: $gris;
+        }
+
+        input:not([type="submit"]), textarea, select{
             color: $blanco;
+            border: 1px solid $grisOscuro;
+            background-color: $grisOscuro;
         }
     }
 
