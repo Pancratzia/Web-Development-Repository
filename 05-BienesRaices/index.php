@@ -13,7 +13,7 @@
     <header class="header inicio">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="/">
+                <a href="index.php">
                     <img loading="lazy" width="50" height="50" src="build/img/logo.svg" alt="Logo de Bienes Raices">
                 </a>
 
@@ -24,10 +24,10 @@
                 <div class="derecha">
                     <img class="dark-mode-boton" src="build/img/dark-mode.svg" alt="Dark mode icon">
                     <nav class="navegacion">
-                        <a href="nosotros.html">Nosotros</a>
-                        <a href="anuncios.html">Anuncios</a>
-                        <a href="blog.html">Blog</a>
-                        <a href="contacto.html">Contacto</a>
+                        <a href="nosotros.php">Nosotros</a>
+                        <a href="anuncios.php">Anuncios</a>
+                        <a href="blog.php">Blog</a>
+                        <a href="contacto.php">Contacto</a>
                     </nav>
                 </div>
             </div><!-- barra -->
@@ -96,7 +96,7 @@
                         </li>
                     </ul>
 
-                    <a href="anuncio.html" class="boton-amarillo-block">
+                    <a href="anuncio.php" class="boton-amarillo-block">
                         Ver Propiedad
                     </a>
                 </div><!-- contenido-anuncio -->
@@ -133,7 +133,7 @@
                         </li>
                     </ul>
 
-                    <a href="anuncio.html" class="boton-amarillo-block">
+                    <a href="anuncio.php" class="boton-amarillo-block">
                         Ver Propiedad
                     </a>
                 </div><!-- contenido-anuncio -->
@@ -170,7 +170,7 @@
                         </li>
                     </ul>
 
-                    <a href="anuncio.html" class="boton-amarillo-block">
+                    <a href="anuncio.php" class="boton-amarillo-block">
                         Ver Propiedad
                     </a>
                 </div><!-- contenido-anuncio -->
@@ -178,7 +178,7 @@
         </div><!-- contenedor-anuncios -->
 
         <div class="alinear-derecha">
-            <a href="anuncios.html" class="boton-verde">
+            <a href="anuncios.php" class="boton-verde">
                 Ver Todos los Anuncios
             </a>
         </div>
@@ -188,7 +188,7 @@
         <h2>Encuentra la Casa de tus Sueños</h2>
         <p>Llena el formulario de contacto y un asesor se pondrá en contacto contigo a la brevedad</p>
 
-        <a href="contacto.html" class="boton-amarillo">Contactános</a>
+        <a href="contacto.php" class="boton-amarillo">Contactános</a>
     </section>
 
     <div class="contenedor seccion seccion-inferior">
@@ -206,7 +206,7 @@
                 </div>
 
                 <div class="texto-entrada">
-                    <a href="entrada.html">
+                    <a href="entrada.php">
                         <h4>Economica Terraza Casera</h4>
                         <p>Escrito el: <span>27/08/2022</span> por: <span>Pancratzia</span></p>
 
@@ -226,7 +226,7 @@
                 </div>
     
                 <div class="texto-entrada">
-                    <a href="entrada.html">
+                    <a href="entrada.php">
                         <h4>Guía para Decorar tu Hogar</h4>
                         <p>Escrito el: <span>30/09/2022</span> por: <span>Pancratzia</span></p>
     
@@ -251,10 +251,10 @@
     <footer class="footer seccion">
         <div class="contenedor contenedor-footer">
             <nav class="navegacion">
-                <a href="nosotros.html">Nosotros</a>
-                <a href="anuncios.html">Anuncios</a>
-                <a href="blog.html">Blog</a>
-                <a href="contacto.html">Contacto</a>
+                <a href="nosotros.php">Nosotros</a>
+                <a href="anuncios.php">Anuncios</a>
+                <a href="blog.php">Blog</a>
+                <a href="contacto.php">Contacto</a>
             </nav>
         </div>
 

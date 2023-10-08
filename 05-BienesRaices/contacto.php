@@ -13,7 +13,7 @@
     <header class="header">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="/">
+                <a href="index.php">
                     <img width="50" height="50" src="build/img/logo.svg" alt="Logo de Bienes Raices">
                 </a>
 
@@ -24,10 +24,10 @@
                   <div class="derecha">
                     <img class="dark-mode-boton" src="build/img/dark-mode.svg" alt="Dark mode icon">
                     <nav class="navegacion">
-                        <a href="nosotros.html">Nosotros</a>
-                        <a href="anuncios.html">Anuncios</a>
-                        <a href="blog.html">Blog</a>
-                        <a href="contacto.html">Contacto</a>
+                        <a href="nosotros.php">Nosotros</a>
+                        <a href="anuncios.php">Anuncios</a>
+                        <a href="blog.php">Blog</a>
+                        <a href="contacto.php">Contacto</a>
                     </nav>
                 </div>
             </div><!-- barra -->
@@ -108,10 +108,10 @@
     <footer class="footer seccion">
         <div class="contenedor contenedor-footer">
             <nav class="navegacion">
-                <a href="nosotros.html">Nosotros</a>
-                <a href="anuncios.html">Anuncios</a>
-                <a href="blog.html">Blog</a>
-                <a href="contacto.html">Contacto</a>
+                <a href="nosotros.php">Nosotros</a>
+                <a href="anuncios.php">Anuncios</a>
+                <a href="blog.php">Blog</a>
+                <a href="contacto.php">Contacto</a>
             </nav>
         </div>
 
