@@ -4,26 +4,57 @@
 require "../../includes/config/database.php";
 $db = contectarDB();
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $titulo = $_POST['titulo'];
-   $precio = $_POST['precio'];
-   $descripcion = $_POST['descripcion'];
-   $habitaciones = $_POST['habitaciones'];
-   $wc = $_POST['wc'];
-   $estacionamiento = $_POST['estacionamiento'];
-   $vendedorId = $_POST['vendedor'];
+$errores = [];
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $titulo = $_POST['titulo'];
+    $precio = $_POST['precio'];
+    $descripcion = $_POST['descripcion'];
+    $habitaciones = $_POST['habitaciones'];
+    $wc = $_POST['wc'];
+    $estacionamiento = $_POST['estacionamiento'];
+    $vendedorId = $_POST['vendedor'];
 
-   $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedorId) VALUES ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, $vendedorId)";
+    if (!$titulo) {
+        $errores[] = "Debes añadir un Titulo";
+    }
 
-   $resultado = mysqli_query($db, $query);
+    if (!$precio || !is_numeric($precio) || $precio <= 0) {
+        $errores[] = "Debes añadir un Precio Válido";
+    }
 
-   if($resultado){
-       echo "Propiedad Creada Con Exito";
-   }
-   else{
-       echo "Error al crear la Propiedad";
-   }
+    if (!$descripcion) {
+        $errores[] = "Debes añadir una Descripción";
+    }
+
+    if (!$habitaciones || !is_numeric($habitaciones) || $habitaciones <= 0) {
+        $errores[] = "Debes añadir una cantidad de Habitaciones Válida";
+    }
+
+    if (!$wc || !is_numeric($wc) || $wc <= 0) {
+        $errores[] = "Debes añadir una cantidad de Baños Válida";
+    }
+
+    if(!$estacionamiento || !is_numeric($estacionamiento) || $estacionamiento < 0) {
+        $errores[] = "Debes añadir una cantidad de Estacionamiento Válida";
+    }
+
+    if (!$vendedorId || !is_numeric($vendedorId) || $vendedorId === '') {
+        echo "Debes seleccionar un vendedor";
+    }
+
+    if (empty($errores)) {
+
+        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedorId) VALUES ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, $vendedorId)";
+
+        $resultado = mysqli_query($db, $query);
+
+        if ($resultado) {
+            echo "Propiedad Creada Con Exito";
+        } else {
+            echo "Error al crear la Propiedad";
+        }
+    }
 }
 
 require "../../includes/funciones.php";
@@ -36,7 +67,13 @@ incluirTemplate("header");
 
     <a href="../" class="boton boton-verde">Volver</a>
 
-    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/crear.php"  class="formulario">
+    <?php foreach ($errores as $error) : ?>
+        <div class="alerta error">
+            <?php echo $error; ?>
+        </div>
+    <?php endforeach; ?>
+
+    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/crear.php" class="formulario">
         <fieldset>
             <legend>Informacion General</legend>
 
@@ -44,10 +81,10 @@ incluirTemplate("header");
             <input type="text" name="titulo" placeholder="Nombre de la Propiedad" id="titulo" required>
 
             <label for="precio">Precio</label>
-            <input type="number" name="precio" placeholder="Precio de la Propiedad" id="precio" required>
+            <input type="number" name="precio" placeholder="Precio de la Propiedad" id="precio" min="0" required>
 
             <label for="imagen">Imagen</label>
-            <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png" >
+            <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png">
 
             <label for="descripcion">Descripción</label>
             <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción de la Propiedad" required></textarea>
@@ -71,6 +108,7 @@ incluirTemplate("header");
             <legend>Vendedor</legend>
 
             <select name="vendedor" id="vendedor" required>
+                <option value="" selected disabled>--Seleccione Un Vendedor--</option>
                 <option value="1">Laura</option>
                 <option value="2">Arthuro</option>
             </select>
