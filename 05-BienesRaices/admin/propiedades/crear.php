@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
-            header('Location: /wdc/05-BienesRaices/admin');
+            header('Location: /wdc/05-BienesRaices/admin?resultado=1');
         } else {
             echo "Error al crear la Propiedad";
         }
