@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
     $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
     $creado = date('Y/m/d');
+    $imagen = $_FILES['imagen'];
 
     if (!$titulo) {
         $errores[] = "Debes añadir un Titulo";
@@ -36,8 +37,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "Debes añadir un Precio Válido";
     }
 
-    if (!$descripcion) {
-        $errores[] = "Debes añadir una Descripción";
+    if (!$descripcion || strlen($descripcion) < 50) {
+        $errores[] = "Debes añadir una Descripción Válida (mínimo 50 caracteres)";
+    }
+
+    $medida = 1000 * 100;
+
+    if (!$imagen['name'] || $imagen['error']) {
+        $errores[] = "Debes subir una imagen";
+    }
+
+    if (!$imagen['type'] === 'image/jpeg' && !$imagen['type'] === 'image/png') {
+        $errores[] = "La imagen debe ser JPG o PNG";
+    }
+
+    if ($imagen['size'] > $medida) {
+        $errores[] = "La imagen es muy pesada";
     }
 
     if (!$habitaciones || !is_numeric($habitaciones) || $habitaciones <= 0) {
@@ -48,17 +63,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "Debes añadir una cantidad de Baños Válida";
     }
 
-    if (!$estacionamiento || !is_numeric($estacionamiento) || $estacionamiento < 0) {
-        $errores[] = "Debes añadir una cantidad de Estacionamiento Válida";
+    if ($estacionamiento === '') {
+        $errores[] = "Debes añadir una cantidad de Estacionamiento Válida";
+    } elseif (!is_numeric($estacionamiento) || $estacionamiento < 0) {
+        $errores[] = "Debes ingresar un valor numérico no negativo para el Estacionamiento";
     }
 
     if (!$vendedorId || !is_numeric($vendedorId) || $vendedorId === '') {
         echo "Debes seleccionar un vendedor";
     }
 
+
     if (empty($errores)) {
 
-        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, '$creado', $vendedorId)";
+
+        $carpetaImagenes = '../../imagenes';
+
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+
+        $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+
+        $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
+
+        move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . '/' . $nombreImagen);
+
+
+        $query = "INSERT INTO propiedades (titulo, precio, imagen,descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$titulo', $precio, '$nombreImagen', '$descripcion', $habitaciones, $wc, $estacionamiento, '$creado', $vendedorId)";
 
         $resultado = mysqli_query($db, $query);
 
@@ -86,7 +118,7 @@ incluirTemplate("header");
         </div>
     <?php endforeach; ?>
 
-    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/crear.php" class="formulario">
+    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/crear.php" class="formulario" enctype="multipart/form-data">
         <fieldset>
             <legend>Informacion General</legend>
 
