@@ -1,15 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fechas();
     eventListeners();
     darkMode();
 })
-
-function fechas(){
-    const annosGeneradosEL = document.querySelectorAll(".annoGenerado");
-    annosGeneradosEL.forEach(annoGenerado => {
-        annoGenerado.innerHTML = new Date().getFullYear()
-    });
-}
 
 function eventListeners(){
     const mobileMenu = document.querySelector(".mobile-menu");
