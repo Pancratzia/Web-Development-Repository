@@ -12,18 +12,28 @@ if (!$id) {
 require "../../includes/config/database.php";
 $db = contectarDB();
 
+$consulta = "SELECT * FROM propiedades WHERE id = $id";
+$resultado = mysqli_query($db, $consulta);
+$propiedad = mysqli_fetch_assoc($resultado);
+
+if(!$propiedad) {
+    header('Location: /wdc/05-BienesRaices/admin');
+    exit;
+}
+
 $consulta = "SELECT * FROM vendedores";
 $resultado = mysqli_query($db, $consulta);
 
 $errores = [];
 
-$titulo = '';
-$precio = '';
-$descripcion = '';
-$habitaciones = '';
-$wc = '';
-$estacionamiento = '';
-$vendedorId = '';
+$titulo = $propiedad['titulo'];
+$precio = $propiedad['precio'];
+$descripcion = $propiedad['descripcion'];
+$habitaciones = $propiedad['habitaciones'];
+$wc = $propiedad['wc'];
+$estacionamiento = $propiedad['estacionamiento'];
+$vendedorId = $propiedad['vendedorId'];
+$imagenPropiedad = $propiedad['imagen'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -126,7 +136,7 @@ incluirTemplate("header");
         </div>
     <?php endforeach; ?>
 
-    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/crear.php" class="formulario" enctype="multipart/form-data">
+    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/actualizar.php" class="formulario" enctype="multipart/form-data">
         <fieldset>
             <legend>Informacion General</legend>
 
@@ -138,6 +148,8 @@ incluirTemplate("header");
 
             <label for="imagen">Imagen</label>
             <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png">
+
+            <img class="imagen-small" src="../../imagenes/<?php echo $imagenPropiedad; ?>" alt="Imagen de la Propiedad" width="100">
 
             <label for="descripcion">Descripción</label>
             <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción de la Propiedad" required><?php echo $descripcion; ?></textarea>
