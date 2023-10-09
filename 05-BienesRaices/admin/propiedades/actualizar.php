@@ -92,21 +92,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errores)) {
 
+        $carpetaImagenes = '../../imagenes';
 
-        //$carpetaImagenes = '../../imagenes';
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
 
-        //if (!is_dir($carpetaImagenes)) {
-        //    mkdir($carpetaImagenes);
-        //}
+        if ($imagen['name']) {
 
-        //$extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+            unlink($carpetaImagenes . '/' . $propiedad['imagen']);
+        
+            $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+    
+            $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
+    
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . '/' . $nombreImagen);
+        }else{
+            $nombreImagen = $propiedad['imagen'];
+        }
 
-        //$nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
-
-        //move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . '/' . $nombreImagen);
-
-
-        $query = "UPDATE propiedades SET titulo= '$titulo', precio= $precio, descripcion= '$descripcion', habitaciones= $habitaciones, wc= $wc, estacionamiento= $estacionamiento, vendedorId= $vendedorId WHERE id = $id";
+        $query = "UPDATE propiedades SET titulo= '$titulo', precio= $precio, descripcion= '$descripcion', imagen= '$nombreImagen', habitaciones= $habitaciones, wc= $wc, estacionamiento= $estacionamiento, vendedorId= $vendedorId WHERE id = $id";
 
         $resultado = mysqli_query($db, $query);
 
