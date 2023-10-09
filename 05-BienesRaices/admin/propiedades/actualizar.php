@@ -61,16 +61,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $medida = 1000 * 100;
 
-    if (!$imagen['name'] || $imagen['error']) {
-        $errores[] = "Debes subir una imagen";
-    }
-
-    if (!$imagen['type'] === 'image/jpeg' && !$imagen['type'] === 'image/png') {
-        $errores[] = "La imagen debe ser JPG o PNG";
-    }
-
-    if ($imagen['size'] > $medida) {
-        $errores[] = "La imagen es muy pesada";
+    if($imagen['name'] && !$imagen['error']) {
+        if (!$imagen['type'] === 'image/jpeg' && !$imagen['type'] === 'image/png') {
+            $errores[] = "La imagen debe ser JPG o PNG";
+        }
+    
+        if ($imagen['size'] > $medida) {
+            $errores[] = "La imagen es muy pesada";
+        }
     }
 
     if (!$habitaciones || !is_numeric($habitaciones) || $habitaciones <= 0) {
@@ -95,25 +93,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errores)) {
 
 
-        $carpetaImagenes = '../../imagenes';
+        //$carpetaImagenes = '../../imagenes';
 
-        if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes);
-        }
+        //if (!is_dir($carpetaImagenes)) {
+        //    mkdir($carpetaImagenes);
+        //}
 
-        $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+        //$extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
 
-        $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
+        //$nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
 
-        move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . '/' . $nombreImagen);
+        //move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . '/' . $nombreImagen);
 
 
-        $query = "INSERT INTO propiedades (titulo, precio, imagen,descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$titulo', $precio, '$nombreImagen', '$descripcion', $habitaciones, $wc, $estacionamiento, '$creado', $vendedorId)";
+        $query = "UPDATE propiedades SET titulo= '$titulo', precio= $precio, descripcion= '$descripcion', habitaciones= $habitaciones, wc= $wc, estacionamiento= $estacionamiento, vendedorId= $vendedorId WHERE id = $id";
 
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
-            header('Location: /wdc/05-BienesRaices/admin?resultado=1');
+            header('Location: /wdc/05-BienesRaices/admin?resultado=2');
         } else {
             echo "Error al crear la Propiedad";
         }
@@ -136,7 +134,7 @@ incluirTemplate("header");
         </div>
     <?php endforeach; ?>
 
-    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/actualizar.php" class="formulario" enctype="multipart/form-data">
+    <form method="POST" class="formulario" enctype="multipart/form-data">
         <fieldset>
             <legend>Informacion General</legend>
 

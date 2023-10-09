@@ -16,8 +16,10 @@
     <main class="contenedor seccion">
         <h1>Administrador de Bienes Raices</h1>
 
-        <?php if ($resultado === "1") {
+        <?php if (intval($resultado) === 1) {
             echo "<p class='alerta exito'>Propiedad Creada Correctamente</p>";
+        }elseif (intval($resultado) === 2) {
+            echo "<p class='alerta exito'>Propiedad Actualizada Correctamente</p>";
         }
         ?>
 
