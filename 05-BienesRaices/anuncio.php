@@ -1,47 +1,72 @@
 <?php
 
-    require "includes/funciones.php";
-    incluirTemplate("header");
+$id = $_GET["id"];
+$id = filter_var($id, FILTER_VALIDATE_INT);
+
+if (!$id) {
+    header('Location: /wdc/05-BienesRaices/');
+    exit;
+}
+
+require "includes/config/database.php";
+$db = conectarDB();
+
+$query = "SELECT * FROM propiedades p, vendedores v WHERE p.id = $id AND p.vendedorId = v.id";
+
+$resultado = mysqli_query($db, $query);
+
+if(mysqli_num_rows($resultado) === 0) {
+    header('Location: /wdc/05-BienesRaices/');
+    exit;
+}
+
+$propiedad = mysqli_fetch_assoc($resultado);
+
+require "includes/funciones.php";
+incluirTemplate("header");
 ?>
 
 
-    <main class="contenedor seccion contenido-centrado">
-        <h1>Casa en Venta Frente Al Bosque</h1>
+<main class="contenedor seccion contenido-centrado">
+    <h1><?php echo $propiedad['titulo']; ?></h1>
 
-        <picture>
-            <source srcset="build/img/destacada.avif" type="image/avif">
-            <source srcset="build/img/destacada.webp" type="image/webp">
-            <source srcset="build/img/destacada.jpg" type="image/jpeg">
-            <img width="200" height="300" loading="lazy" ,src="build/img/destacada.jpg" alt="Cada frente al bosque">
-        </picture>
 
-        <div class="resumen-propiedad">
-            <p class="precio">150000$</p>
+    <img width="200" loading="lazy" src="/wdc/05-BienesRaices/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la Propiedad <?php echo $propiedad['titulo']; ?>">
 
-            <ul class="iconos-caracteristicas">
-                <li>
-                    <img class="icono"  width="20" height="20" loading="lazy" src="build/img/icono_wc.svg" alt="Icono WC">
-                    <p>3</p>
-                </li>
 
-                <li>
-                    <img class="icono" width="20" height="20" loading="lazy" src="build/img/icono_estacionamiento.svg"
-                        alt="Icono estacionamiento">
-                    <p>2</p>
-                </li>
+    <div class="resumen-propiedad">
+        <p class="precio">$<?php echo $propiedad['precio']; ?>$</p>
 
-                <li>
-                    <img class="icono" width="20" height="20" loading="lazy" src="build/img/icono_dormitorio.svg"
-                        alt="Icono Habitaciones">
-                    <p>4</p>
-                </li>
-            </ul>
+        <ul class="iconos-caracteristicas">
 
-            <p>Maxime at dignissimos error nihil sunt, natus, illo, atque dolor sit ipsa accusamus. Porro perspiciatis esse repellendus, necessitatibus cum inventore eveniet vel consequatur accusantium dolores reprehenderit aliquid hic corporis corrupti sequi placeat doloribus consequuntur totam tempora! Repellat!</p>
-            <p>Eligendi ex exercitationem inventore laboriosam reiciendis deleniti reprehenderit sit voluptatum impedit quibusdam repellat laborum ducimus quia, natus quos consequatur amet voluptas ullam.</p>
+            <li>
+                <img class="icono" width="20" height="20" loading="lazy" src="build/img/icono_dormitorio.svg" alt="Icono Habitaciones">
+                <p><?php echo $propiedad['habitaciones']; ?></p>
+            </li>
+            <li>
+                <img class="icono" width="20" height="20" loading="lazy" src="build/img/icono_wc.svg" alt="Icono WC">
+                <p><?php echo $propiedad['wc']; ?></p>
+            </li>
+
+            <li>
+                <img class="icono" width="20" height="20" loading="lazy" src="build/img/icono_estacionamiento.svg" alt="Icono estacionamiento">
+                <p><?php echo $propiedad['estacionamiento']; ?></p>
+            </li>
+
+        </ul>
+
+        <p><?php echo $propiedad['descripcion']; ?></p>
+
+        <div class="texto-vendedor">
+            <p>Vendedor: <span><?php echo $propiedad['nombre'] . " " . $propiedad['apellido']; ?></span> </p>
+            <p>Teléfono: <span><?php echo $propiedad['telefono']; ?></span> </p>
         </div>
-    </main>
+
+    </div>
+</main>
 
 <?php
-    incluirTemplate("footer");
+
+mysqli_close($db);
+incluirTemplate("footer");
 ?>
