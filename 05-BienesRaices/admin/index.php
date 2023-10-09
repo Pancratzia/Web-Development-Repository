@@ -1,7 +1,7 @@
 <?php
 
 require_once "../includes/config/database.php";
-$db = contectarDB();
+$db = conectarDB();
 
 $query = "SELECT * FROM propiedades";
 

@@ -2,7 +2,7 @@
 
 //BD
 require "../../includes/config/database.php";
-$db = contectarDB();
+$db = conectarDB();
 
 $consulta = "SELECT * FROM vendedores";
 $resultado = mysqli_query($db, $consulta);
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errores[] = "Debes añadir una Descripción Válida (mínimo 50 caracteres)";
     }
 
-    $medida = 1000 * 100;
+    $medida = 1000 * 1000;
 
     if (!$imagen['name'] || $imagen['error']) {
         $errores[] = "Debes subir una imagen";
