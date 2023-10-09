@@ -16,7 +16,7 @@ $consulta = "SELECT * FROM propiedades WHERE id = $id";
 $resultado = mysqli_query($db, $consulta);
 $propiedad = mysqli_fetch_assoc($resultado);
 
-if(!$propiedad) {
+if (!$propiedad) {
     header('Location: /wdc/05-BienesRaices/admin');
     exit;
 }
@@ -61,11 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $medida = 1000 * 100;
 
-    if($imagen['name'] && !$imagen['error']) {
+    if ($imagen['name'] && !$imagen['error']) {
         if (!$imagen['type'] === 'image/jpeg' && !$imagen['type'] === 'image/png') {
             $errores[] = "La imagen debe ser JPG o PNG";
         }
-    
+
         if ($imagen['size'] > $medida) {
             $errores[] = "La imagen es muy pesada";
         }
@@ -101,13 +101,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($imagen['name']) {
 
             unlink($carpetaImagenes . '/' . $propiedad['imagen']);
-        
+
             $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
-    
+
             $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
-    
+
             move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . '/' . $nombreImagen);
-        }else{
+        } else {
             $nombreImagen = $propiedad['imagen'];
         }
 
