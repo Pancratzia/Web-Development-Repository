@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
-            header('Location: /wdc/05-BienesRaices/admin?resultado=1');
+            header('Location: ../../admin?resultado=1');
         } else {
             echo "Error al crear la Propiedad";
         }
@@ -118,7 +118,7 @@ incluirTemplate("header");
         </div>
     <?php endforeach; ?>
 
-    <form method="POST" action="/wdc/05-BienesRaices/admin/propiedades/crear.php" class="formulario" enctype="multipart/form-data">
+    <form method="POST" class="formulario" enctype="multipart/form-data">
         <fieldset>
             <legend>Informacion General</legend>
 

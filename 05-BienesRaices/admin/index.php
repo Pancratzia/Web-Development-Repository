@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $query = "DELETE FROM propiedades WHERE id = $id";
         $resultado = mysqli_query($db, $query);
-        header('Location: /wdc/05-BienesRaices/admin?resultado=3');
+        header('Location: ../admin?resultado=3');
     } else {
-        header('Location: /wdc/05-BienesRaices/admin');
+        header('Location: ../admin');
     }
 }
 

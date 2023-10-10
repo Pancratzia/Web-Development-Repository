@@ -4,7 +4,7 @@ $id = $_GET['id'] ?? null;
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
 if (!$id) {
-    header('Location: /wdc/05-BienesRaices/admin');
+    header('Location: ../../admin');
     exit;
 }
 
@@ -17,7 +17,7 @@ $resultado = mysqli_query($db, $consulta);
 $propiedad = mysqli_fetch_assoc($resultado);
 
 if (!$propiedad) {
-    header('Location: /wdc/05-BienesRaices/admin');
+    header('Location: ../../admin');
     exit;
 }
 
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = mysqli_query($db, $query);
 
         if ($resultado) {
-            header('Location: /wdc/05-BienesRaices/admin?resultado=2');
+            header('Location: ../../admin?resultado=2');
         } else {
             echo "Error al crear la Propiedad";
         }

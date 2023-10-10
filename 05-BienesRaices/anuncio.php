@@ -4,7 +4,7 @@ $id = $_GET["id"];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
 if (!$id) {
-    header('Location: /wdc/05-BienesRaices/');
+    header('Location: ./');
     exit;
 }
 
@@ -16,7 +16,7 @@ $query = "SELECT * FROM propiedades p, vendedores v WHERE p.id = $id AND p.vende
 $resultado = mysqli_query($db, $query);
 
 if(mysqli_num_rows($resultado) === 0) {
-    header('Location: /wdc/05-BienesRaices/');
+    header('Location: ./');
     exit;
 }
 
@@ -31,7 +31,7 @@ incluirTemplate("header");
     <h1><?php echo $propiedad['titulo']; ?></h1>
 
 
-    <img width="200" loading="lazy" src="/wdc/05-BienesRaices/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la Propiedad <?php echo $propiedad['titulo']; ?>">
+    <img width="200" loading="lazy" src="./imagenes/<?php echo $propiedad['imagen']; ?>" alt="Imagen de la Propiedad <?php echo $propiedad['titulo']; ?>">
 
 
     <div class="resumen-propiedad">
