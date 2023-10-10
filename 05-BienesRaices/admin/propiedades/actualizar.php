@@ -1,5 +1,13 @@
 <?php
 
+require "../../includes/funciones.php";
+
+$auth = estaAutenticado();
+
+if (!$auth) {
+    header('Location: /05-BienesRaices');
+}
+
 $id = $_GET['id'] ?? null;
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
@@ -123,7 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require "../../includes/funciones.php";
 incluirTemplate("header");
 ?>
 

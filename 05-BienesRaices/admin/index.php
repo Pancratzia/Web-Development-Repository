@@ -1,5 +1,13 @@
 <?php
 
+require "../includes/funciones.php";
+
+$auth = estaAutenticado();
+
+if (!$auth) {
+    header('Location: /05-BienesRaices');
+}
+
 require_once "../includes/config/database.php";
 $db = conectarDB();
 
@@ -29,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require "../includes/funciones.php";
+
 incluirTemplate("header");
 ?>
 
@@ -41,7 +49,7 @@ incluirTemplate("header");
         echo "<p class='alerta exito'>Propiedad Creada Correctamente</p>";
     } elseif (intval($resultado) === 2) {
         echo "<p class='alerta exito'>Propiedad Actualizada Correctamente</p>";
-    }elseif (intval($resultado) === 3) {
+    } elseif (intval($resultado) === 3) {
         echo "<p class='alerta exito'>Propiedad Eliminada Correctamente</p>";
     }
     ?>

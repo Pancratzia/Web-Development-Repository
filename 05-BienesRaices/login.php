@@ -30,10 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             if($auth){
 
+                session_start();
+
+                $_SESSION["usuario"] = $usuario["email"];
+                $_SESSION["login"] = true;
+
+                header("Location: admin/index.php");
+
             }else{
                 $errores[] = "El password es incorrecto";
             }
-            
+
         }else{
             $errores[] = "El usuario no existe";
         }
