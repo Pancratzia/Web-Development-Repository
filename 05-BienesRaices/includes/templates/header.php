@@ -1,3 +1,12 @@
+<?php
+
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+
+    $auth = $_SESSION['login'] ?? null;
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -31,6 +40,13 @@
                         <a href="/05-BienesRaices/anuncios.php">Anuncios</a>
                         <a href="/05-BienesRaices/blog.php">Blog</a>
                         <a href="/05-BienesRaices/contacto.php">Contacto</a>
+                        <?php if($auth): ?>
+                            <a href="/05-BienesRaices/admin/">Admin</a>
+                            <a href="/05-BienesRaices/cerrar-sesion.php">Cerrar Sesión</a>
+                        <?php endif; ?>
+                        <?php if(!$auth): ?>
+                            <a href="/05-BienesRaices/login.php">Login</a>
+                        <?php endif; ?>
                     </nav>
                 </div>
             </div><!-- barra -->
