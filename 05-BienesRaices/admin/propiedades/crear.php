@@ -29,8 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if (empty($errores)) {
-        
+
         $propiedad->guardar();
+        exit;
 
         $imagen = $_FILES['imagen'];
 

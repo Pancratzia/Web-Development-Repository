@@ -25,7 +25,7 @@ class Propiedad{
         $this->id = $args['id'] ?? null;
         $this->titulo = $args['titulo'] ?? '';
         $this->precio = $args['precio'] ?? '';
-        $this->imagen = $args['imagen'] ?? 'imagen.jpg';
+        $this->imagen = $args['imagen'] ?? '';
         $this->descripcion = $args['descripcion'] ?? '';
         $this->habitaciones = $args['habitaciones'] ?? '';
         $this->wc = $args['wc'] ?? '';
@@ -95,16 +95,15 @@ class Propiedad{
     
         $medida = 1000 * 1000;
     
-        if (!$this->imagen['name'] || $this->imagen['error']) {
-            self::$errores[] = "Debes subir una imagen";
-        }
-    
-        if (!$this->imagen['type'] === 'image/jpeg' && !$this->imagen['type'] === 'image/png') {
-            self::$errores[] = "La imagen debe ser JPG o PNG";
-        }
-    
-        if ($this->imagen['size'] > $medida) {
-            self::$errores[] = "La imagen es muy pesada";
+        if (!is_array($this->imagen) || !isset($this->imagen['name']) || $this->imagen['error']) {
+            self::$errores[] = "Debes subir una imagen válida";
+        } else {
+            if (!in_array($this->imagen['type'], ['image/jpeg', 'image/png'])) {
+                self::$errores[] = "La imagen debe ser JPG o PNG";
+            }
+            if ($this->imagen['size'] > $medida) {
+                self::$errores[] = "La imagen es muy pesada";
+            }
         }
     
         if (!$this->habitaciones || !is_numeric($this->habitaciones) || $this->habitaciones <= 0) {
