@@ -125,7 +125,7 @@ class Propiedad
         }
 
         if (!$this->vendedorId || !is_numeric($this->vendedorId) || $this->vendedorId === '') {
-            echo "Debes seleccionar un vendedor";
+            self::$errores[] = "Debes seleccionar un Vendedor";
         }
 
         return self::$errores;
