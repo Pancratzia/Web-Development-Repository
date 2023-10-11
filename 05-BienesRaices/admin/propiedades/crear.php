@@ -11,7 +11,7 @@ $db = conectarDB();
 $consulta = "SELECT * FROM vendedores";
 $resultado = mysqli_query($db, $consulta);
 
-$errores = [];
+$errores = Propiedad::getErrores();
 
 $titulo = '';
 $precio = '';
@@ -25,65 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $propiedad = new Propiedad($_POST);
 
-    $propiedad->guardar();
-    exit;
-
-    $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
-    $precio = mysqli_real_escape_string($db, $_POST['precio']);
-    $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
-    $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
-    $wc = mysqli_real_escape_string($db, $_POST['wc']);
-    $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
-    $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
-    $creado = date('Y/m/d');
-    $imagen = $_FILES['imagen'];
-
-    if (!$titulo) {
-        $errores[] = "Debes añadir un Titulo";
-    }
-
-    if (!$precio || !is_numeric($precio) || $precio <= 0) {
-        $errores[] = "Debes añadir un Precio Válido";
-    }
-
-    if (!$descripcion || strlen($descripcion) < 50) {
-        $errores[] = "Debes añadir una Descripción Válida (mínimo 50 caracteres)";
-    }
-
-    $medida = 1000 * 1000;
-
-    if (!$imagen['name'] || $imagen['error']) {
-        $errores[] = "Debes subir una imagen";
-    }
-
-    if (!$imagen['type'] === 'image/jpeg' && !$imagen['type'] === 'image/png') {
-        $errores[] = "La imagen debe ser JPG o PNG";
-    }
-
-    if ($imagen['size'] > $medida) {
-        $errores[] = "La imagen es muy pesada";
-    }
-
-    if (!$habitaciones || !is_numeric($habitaciones) || $habitaciones <= 0) {
-        $errores[] = "Debes añadir una cantidad de Habitaciones Válida";
-    }
-
-    if (!$wc || !is_numeric($wc) || $wc <= 0) {
-        $errores[] = "Debes añadir una cantidad de Baños Válida";
-    }
-
-    if ($estacionamiento === '') {
-        $errores[] = "Debes añadir una cantidad de Estacionamiento Válida";
-    } elseif (!is_numeric($estacionamiento) || $estacionamiento < 0) {
-        $errores[] = "Debes ingresar un valor numérico no negativo para el Estacionamiento";
-    }
-
-    if (!$vendedorId || !is_numeric($vendedorId) || $vendedorId === '') {
-        echo "Debes seleccionar un vendedor";
-    }
+    $errores = $propiedad->validar();
 
 
     if (empty($errores)) {
+        
+        $propiedad->guardar();
+
+        $imagen = $_FILES['imagen'];
 
 
         $carpetaImagenes = '../../imagenes';
