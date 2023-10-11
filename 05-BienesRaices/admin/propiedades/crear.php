@@ -1,15 +1,13 @@
 <?php
 
-require "../../includes/funciones.php";
+require "../../includes/app.php";
 
-$auth = estaAutenticado();
+use App\Propiedad;
 
-if (!$auth) {
-    header('Location: /05-BienesRaices');
-}
+$propiedad = new Propiedad();
 
-//BD
-require "../../includes/config/database.php";
+estaAutenticado();
+
 $db = conectarDB();
 
 $consulta = "SELECT * FROM vendedores";
