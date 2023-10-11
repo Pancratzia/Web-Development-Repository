@@ -2,7 +2,8 @@
 
 namespace App;
 
-class Propiedad{
+class Propiedad
+{
     protected static $db;
 
     protected static $columnasDB = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'estacionamiento', 'vendedorId'];
@@ -34,29 +35,31 @@ class Propiedad{
         $this->vendedorId = $args['vendedorId'] ?? '';
     }
 
-    public static function setDB($database){
+    public static function setDB($database)
+    {
         self::$db = $database;
     }
 
-    public function guardar(){
+    public function guardar()
+    {
 
         $atributos = $this->sanitizarAtributos();
 
         $string = join(', ', array_keys($atributos));
 
-        $query = "INSERT INTO propiedades ($string) VALUES ('".join("', '", array_values($atributos))."')";
+        $query = "INSERT INTO propiedades ($string) VALUES ('" . join("', '", array_values($atributos)) . "')";
 
         $resultado = self::$db->query($query);
 
-        debuggear($resultado);
-
+        return $resultado;
     }
 
-    public function atributos(){
+    public function atributos()
+    {
         $atributos = [];
 
-        foreach(self::$columnasDB as $columna){
-            if($columna === 'id'){
+        foreach (self::$columnasDB as $columna) {
+            if ($columna === 'id') {
                 continue;
             }
             $atributos[$columna] = $this->$columna;
@@ -65,67 +68,66 @@ class Propiedad{
         return $atributos;
     }
 
-    public function sanitizarAtributos(){
+    public function sanitizarAtributos()
+    {
         $atributos = $this->atributos();
         $sanitizado = [];
 
-        foreach($atributos as $key => $value){
+        foreach ($atributos as $key => $value) {
             $sanitizado[$key] = self::$db->escape_string($value);
         }
 
         return $sanitizado;
     }
 
-    public static function getErrores(){
+    public function setImagen($imagen)
+    {
+        if ($imagen) {
+            $this->imagen = $imagen;
+        }
+    }
+
+    public static function getErrores()
+    {
         return self::$errores;
     }
 
-    public function validar(){
+    public function validar()
+    {
         if (!$this->titulo) {
             self::$errores[] = "Debes añadir un Titulo";
         }
-    
+
         if (!$this->precio || !is_numeric($this->precio) || $this->precio <= 0) {
             self::$errores[] = "Debes añadir un Precio Válido";
         }
-    
+
         if (!$this->descripcion || strlen($this->descripcion) < 50) {
             self::$errores[] = "Debes añadir una Descripción Válida (mínimo 50 caracteres)";
         }
-    
-        $medida = 1000 * 1000;
-    
-        if (!is_array($this->imagen) || !isset($this->imagen['name']) || $this->imagen['error']) {
-            self::$errores[] = "Debes subir una imagen válida";
-        } else {
-            if (!in_array($this->imagen['type'], ['image/jpeg', 'image/png'])) {
-                self::$errores[] = "La imagen debe ser JPG o PNG";
-            }
-            if ($this->imagen['size'] > $medida) {
-                self::$errores[] = "La imagen es muy pesada";
-            }
+
+        if(!$this->imagen){
+            self::$errores[] = "Debes añadir una Imagen";
         }
-    
+
         if (!$this->habitaciones || !is_numeric($this->habitaciones) || $this->habitaciones <= 0) {
             self::$errores[] = "Debes añadir una cantidad de Habitaciones Válida";
         }
-    
+
         if (!$this->wc || !is_numeric($this->wc) || $this->wc <= 0) {
             self::$errores[] = "Debes añadir una cantidad de Baños Válida";
         }
-    
+
         if ($this->estacionamiento === '') {
             self::$errores[] = "Debes añadir una cantidad de Estacionamiento Válida";
         } elseif (!is_numeric($this->estacionamiento) || $this->estacionamiento < 0) {
             self::$errores[] = "Debes ingresar un valor numérico no negativo para el Estacionamiento";
         }
-    
+
         if (!$this->vendedorId || !is_numeric($this->vendedorId) || $this->vendedorId === '') {
             echo "Debes seleccionar un vendedor";
         }
 
         return self::$errores;
     }
-
-   
 }
