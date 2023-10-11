@@ -40,9 +40,13 @@ class Propiedad{
 
         $atributos = $this->sanitizarAtributos();
 
-        $query = "INSERT INTO propiedades (titulo, precio, imagen,descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$this->titulo', $this->precio, '$this->imagen', '$this->descripcion', $this->habitaciones, $this->wc, $this->estacionamiento, '$this->creado', $this->vendedorId)";
+        $string = join(', ', array_keys($atributos));
+
+        $query = "INSERT INTO propiedades ($string) VALUES ('".join("', '", array_values($atributos))."')";
 
         $resultado = self::$db->query($query);
+
+        debuggear($resultado);
 
     }
 
