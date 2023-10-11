@@ -1,0 +1,17 @@
+{
+    "name": "laura/05-bienes-raices",
+    "description": "PHP Project with POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Laura Ortega",
+            "email": "54899954+Pancratzia@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "./classes"
+        }
+    }
+}

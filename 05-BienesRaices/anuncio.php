@@ -7,8 +7,8 @@ if (!$id) {
     header('Location: ./');
     exit;
 }
+require "includes/app.php";
 
-require "includes/config/database.php";
 $db = conectarDB();
 
 $query = "SELECT * FROM propiedades p, vendedores v WHERE p.id = $id AND p.vendedorId = v.id";
@@ -22,7 +22,6 @@ if(mysqli_num_rows($resultado) === 0) {
 
 $propiedad = mysqli_fetch_assoc($resultado);
 
-require "includes/funciones.php";
 incluirTemplate("header");
 ?>
 
