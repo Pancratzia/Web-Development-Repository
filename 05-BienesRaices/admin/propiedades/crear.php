@@ -4,8 +4,6 @@ require "../../includes/app.php";
 
 use App\Propiedad;
 
-$propiedad = new Propiedad();
-
 estaAutenticado();
 
 $db = conectarDB();
@@ -24,6 +22,11 @@ $estacionamiento = '';
 $vendedorId = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $propiedad = new Propiedad($_POST);
+
+    $propiedad->guardar();
+    exit;
 
     $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
     $precio = mysqli_real_escape_string($db, $_POST['precio']);
@@ -157,7 +160,7 @@ incluirTemplate("header");
         <fieldset>
             <legend>Vendedor</legend>
 
-            <select name="vendedor" id="vendedor" required>
+            <select name="vendedorId" id="vendedorId" required>
                 <option value="" <?php echo $vendedorId === '' ? 'selected' : ''; ?> disabled>--Seleccione Un Vendedor--</option>
                 <?php while ($vendedor = mysqli_fetch_assoc($resultado)) : ?>
                     <option <?php echo $vendedorId === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?></option>
