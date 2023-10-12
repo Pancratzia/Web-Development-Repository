@@ -43,7 +43,7 @@ class Propiedad
     public function guardar()
     {
 
-        if (isset($this->id)) {
+        if (!is_null($this->id)) {
             $this->actualizar();
         } else {
             $this->crear();
@@ -129,7 +129,7 @@ class Propiedad
     public function setImagen($imagen)
     {
 
-        if ($this->id) {
+        if (!is_null($this->id)) {
             $this->borrarImagen();
         }
         if ($imagen) {
