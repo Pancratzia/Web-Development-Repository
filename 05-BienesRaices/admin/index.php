@@ -5,8 +5,10 @@ require "../includes/app.php";
 estaAutenticado();
 
 use App\Propiedad;
+use App\Vendedor;
 
 $propiedades = Propiedad::all() ?? [];
+$vendedor = Vendedor::all() ?? [];
 
 $resultado = $_GET['resultado'] ?? null;
 
