@@ -43,6 +43,15 @@ class Propiedad
     public function guardar()
     {
 
+        if (isset($this->id)) {
+            $this->actualizar();
+        } else {
+            $this->crear();
+        }
+    }
+
+    public function crear()
+    {
         $atributos = $this->sanitizarAtributos();
 
         $string = join(', ', array_keys($atributos));
@@ -52,6 +61,27 @@ class Propiedad
         $resultado = self::$db->query($query);
 
         return $resultado;
+    }
+
+    public function actualizar()
+    {
+        $atributos = $this->sanitizarAtributos();
+
+        $valores = [];
+
+        foreach ($atributos as $key => $value) {
+            $valores[] = "{$key} = '{$value}'";
+        }
+
+        $query = "UPDATE propiedades SET " . join(', ', $valores) . " WHERE id ='" . self::$db->escape_string($this->id) . "' LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if ($resultado) {
+            header('Location: ../../admin?resultado=2');
+        } else {
+            echo "Error al crear la Propiedad";
+        }
     }
 
     public function atributos()
@@ -82,6 +112,14 @@ class Propiedad
 
     public function setImagen($imagen)
     {
+
+        if ($this->id) {
+            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+
+            if ($existeArchivo) {
+                unlink(CARPETA_IMAGENES . $this->imagen);
+            }
+        }
         if ($imagen) {
             $this->imagen = $imagen;
         }
@@ -106,7 +144,7 @@ class Propiedad
             self::$errores[] = "Debes añadir una Descripción Válida (mínimo 50 caracteres)";
         }
 
-        if(!$this->imagen){
+        if (!$this->imagen) {
             self::$errores[] = "Debes añadir una Imagen";
         }
 
@@ -131,7 +169,8 @@ class Propiedad
         return self::$errores;
     }
 
-    public static function all(){
+    public static function all()
+    {
         $query = "SELECT * FROM propiedades";
 
         $resultado = self::consultarSQL($query);
@@ -139,41 +178,45 @@ class Propiedad
         return $resultado;
     }
 
-    public static function find($id){
+    public static function find($id)
+    {
         $query = "SELECT * FROM propiedades WHERE id = $id";
-        
+
         $resultado = self::consultarSQL($query);
 
         return array_shift($resultado);
     }
 
-    public static function consultarSQL($query){
+    public static function consultarSQL($query)
+    {
         $resultado = self::$db->query($query);
 
         $array = [];
 
-        while($registro = $resultado->fetch_assoc()){
+        while ($registro = $resultado->fetch_assoc()) {
             $array[] = self::crearObjeto($registro);
         }
 
-        $resultado ->free();
+        $resultado->free();
 
         return $array;
     }
 
-    protected static function crearObjeto($registro){
+    protected static function crearObjeto($registro)
+    {
         $objeto = new self;
 
         foreach ($registro as $key => $value) {
             if (property_exists($objeto, $key)) {
-                $objeto ->$key = $value;
+                $objeto->$key = $value;
             }
         }
 
         return $objeto;
     }
 
-    public function sincronizar($args = []){
+    public function sincronizar($args = [])
+    {
         foreach ($args as $key => $value) {
             if (property_exists($this, $key) && !is_null($value)) {
                 $this->$key = $value;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
 
 require "../../includes/app.php";
 
@@ -34,36 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errores = $propiedad->validar();
 
+    $extension = pathinfo($_FILES['propiedad']['name']['imagen'], PATHINFO_EXTENSION);
+    $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
+
+    if ($_FILES['propiedad']['tmp_name']['imagen']) {
+        $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+        $propiedad->setImagen($nombreImagen);
+    }
+
     if (empty($errores)) {
 
-        $carpetaImagenes = '../../imagenes';
+        $image->save(CARPETA_IMAGENES . $nombreImagen);
 
-        if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes);
-        }
-
-        if ($imagen['name']) {
-
-            unlink($carpetaImagenes . '/' . $propiedad['imagen']);
-
-            $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
-
-            $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
-
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . '/' . $nombreImagen);
-        } else {
-            $nombreImagen = $propiedad['imagen'];
-        }
-
-        $query = "UPDATE propiedades SET titulo= '$titulo', precio= $precio, descripcion= '$descripcion', imagen= '$nombreImagen', habitaciones= $habitaciones, wc= $wc, estacionamiento= $estacionamiento, vendedorId= $vendedorId WHERE id = $id";
-
-        $resultado = mysqli_query($db, $query);
-
-        if ($resultado) {
-            header('Location: ../../admin?resultado=2');
-        } else {
-            echo "Error al crear la Propiedad";
-        }
+        $propiedad->guardar();
     }
 }
 
