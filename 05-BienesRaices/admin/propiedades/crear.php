@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $image->save(CARPETA_IMAGENES . $nombreImagen);
 
-        $resultado = $propiedad->guardar();
+        $propiedad->guardar();
     }
 }
 

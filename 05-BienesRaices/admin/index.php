@@ -48,11 +48,11 @@ incluirTemplate("header");
     <h1>Administrador de Bienes Raices</h1>
 
     <?php if (intval($resultado) === 1) {
-        echo "<p class='alerta exito'>Propiedad Creada Correctamente</p>";
+        echo "<p class='alerta exito'>Registro Creado Correctamente</p>";
     } elseif (intval($resultado) === 2) {
-        echo "<p class='alerta exito'>Propiedad Actualizada Correctamente</p>";
+        echo "<p class='alerta exito'>Registro Actualizado Correctamente</p>";
     } elseif (intval($resultado) === 3) {
-        echo "<p class='alerta exito'>Propiedad Eliminada Correctamente</p>";
+        echo "<p class='alerta exito'>Registro Eliminado Correctamente</p>";
     }
     ?>
 
