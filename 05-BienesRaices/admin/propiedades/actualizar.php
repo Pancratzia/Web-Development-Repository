@@ -1,12 +1,10 @@
 <?php
 
-require "../../includes/funciones.php";
+use App\Propiedad;
 
-$auth = estaAutenticado();
+require "../../includes/app.php";
 
-if (!$auth) {
-    header('Location: /05-BienesRaices');
-}
+estaAutenticado();
 
 $id = $_GET['id'] ?? null;
 $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -16,13 +14,7 @@ if (!$id) {
     exit;
 }
 
-//BD
-require "../../includes/config/database.php";
-$db = conectarDB();
-
-$consulta = "SELECT * FROM propiedades WHERE id = $id";
-$resultado = mysqli_query($db, $consulta);
-$propiedad = mysqli_fetch_assoc($resultado);
+$propiedad = Propiedad::find($id);
 
 if (!$propiedad) {
     header('Location: ../../admin');
@@ -34,14 +26,14 @@ $resultado = mysqli_query($db, $consulta);
 
 $errores = [];
 
-$titulo = $propiedad['titulo'];
-$precio = $propiedad['precio'];
-$descripcion = $propiedad['descripcion'];
-$habitaciones = $propiedad['habitaciones'];
-$wc = $propiedad['wc'];
-$estacionamiento = $propiedad['estacionamiento'];
-$vendedorId = $propiedad['vendedorId'];
-$imagenPropiedad = $propiedad['imagen'];
+$titulo = $propiedad->titulo;
+$precio = $propiedad->precio;
+$descripcion = $propiedad->descripcion;
+$habitaciones = $propiedad->habitaciones;
+$wc = $propiedad->wc;
+$estacionamiento = $propiedad->estacionamiento;
+$vendedorId = $propiedad->vendedorId;
+$imagenPropiedad = $propiedad->imagen;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -147,48 +139,10 @@ incluirTemplate("header");
     <?php endforeach; ?>
 
     <form method="POST" class="formulario" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Informacion General</legend>
 
-            <label for="titulo">Titulo</label>
-            <input type="text" name="titulo" placeholder="Nombre de la Propiedad" id="titulo" maxlength="45" value="<?php echo $titulo; ?>" required>
-
-            <label for="precio">Precio</label>
-            <input type="number" name="precio" placeholder="Precio de la Propiedad" min="1" id="precio" value="<?php echo $precio; ?>" required>
-
-            <label for="imagen">Imagen</label>
-            <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png">
-
-            <img class="imagen-small" src="../../imagenes/<?php echo $imagenPropiedad; ?>" alt="Imagen de la Propiedad" width="100">
-
-            <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción de la Propiedad" required><?php echo $descripcion; ?></textarea>
-        </fieldset>
-
-        <fieldset>
-            <legend>Información del Inmueble</legend>
-
-            <label for="habitaciones">Habitaciones</label>
-            <input type="number" name="habitaciones" placeholder="Ej: 3" id="habitaciones" min="1" max="99" value="<?php echo $habitaciones; ?>" required>
-
-            <label for="wc">Baños</label>
-            <input type="number" name="wc" placeholder="Ej: 2" id="wc" min="1" max="99" value="<?php echo $wc; ?>" required>
-
-            <label for="estacionamiento">Estacionamiento</label>
-            <input type="number" name="estacionamiento" placeholder="Ej: 1" id="estacionamiento" min="0" max="99" value="<?php echo $estacionamiento; ?>" required>
-
-        </fieldset>
-
-        <fieldset>
-            <legend>Vendedor</legend>
-
-            <select name="vendedor" id="vendedor" required>
-                <option value="" <?php echo $vendedorId === '' ? 'selected' : ''; ?> disabled>--Seleccione Un Vendedor--</option>
-                <?php while ($vendedor = mysqli_fetch_assoc($resultado)) : ?>
-                    <option <?php echo $vendedorId === $vendedor['id'] ? 'selected' : ''; ?> value="<?php echo $vendedor['id']; ?>"><?php echo $vendedor['nombre'] . " " . $vendedor['apellido']; ?></option>
-                <?php endwhile; ?>
-            </select>
-        </fieldset>
+        <?php
+        include '../../includes/templates/formulario_propiedades.php';
+        ?>
 
         <input type="submit" value="Actualizar Propiedad" class="boton boton-verde">
     </form>
