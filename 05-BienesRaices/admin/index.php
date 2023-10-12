@@ -8,7 +8,8 @@ use App\Propiedad;
 use App\Vendedor;
 
 $propiedades = Propiedad::all() ?? [];
-$vendedor = Vendedor::all() ?? [];
+$vendedores = Vendedor::all() ?? [];
+
 
 $resultado = $_GET['resultado'] ?? null;
 
