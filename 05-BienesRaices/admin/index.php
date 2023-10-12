@@ -47,13 +47,11 @@ incluirTemplate("header");
 <main class="contenedor seccion">
     <h1>Administrador de Bienes Raices</h1>
 
-    <?php if (intval($resultado) === 1) {
-        echo "<p class='alerta exito'>Registro Creado Correctamente</p>";
-    } elseif (intval($resultado) === 2) {
-        echo "<p class='alerta exito'>Registro Actualizado Correctamente</p>";
-    } elseif (intval($resultado) === 3) {
-        echo "<p class='alerta exito'>Registro Eliminado Correctamente</p>";
-    }
+    <?php 
+        $mensaje = mostrarNotificacion(intval($resultado));
+        if ($mensaje) {
+            echo "<p class='alerta exito'>" . s($mensaje) . "</p>";
+        }
     ?>
 
     <a href="propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
