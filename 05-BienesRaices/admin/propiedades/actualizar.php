@@ -1,6 +1,7 @@
 <?php
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic as Image;
 
 require "../../includes/app.php";
@@ -22,8 +23,7 @@ if (!$propiedad) {
     exit;
 }
 
-$consulta = "SELECT * FROM vendedores";
-$resultado = mysqli_query($db, $consulta);
+$vendedores = Vendedor::all();
 
 $errores = Propiedad::getErrores();
 

@@ -11,7 +11,7 @@ class ActiveRecord
     protected static $tabla = '';
 
     protected static $errores = [];
-
+  
     public static function setDB($database)
     {
         self::$db = $database;
@@ -72,7 +72,9 @@ class ActiveRecord
         $resultado = self::$db->query($query);
 
         if ($resultado) {
+
             $this->borrarImagen();
+
             header('Location: ../admin?resultado=3');
         }
     }
@@ -81,7 +83,7 @@ class ActiveRecord
     {
         $atributos = [];
 
-        foreach (self::$columnasDB as $columna) {
+        foreach (static::$columnasDB as $columna) {
             if ($columna === 'id') {
                 continue;
             }
@@ -116,10 +118,13 @@ class ActiveRecord
     
     public function borrarImagen()
     {
-        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-
-        if ($existeArchivo) {
+        if ($this->imagen) {
             unlink(CARPETA_IMAGENES . $this->imagen);
+            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+    
+            if ($existeArchivo) {
+                unlink(CARPETA_IMAGENES . $this->imagen);
+            }
         }
     }
 
@@ -159,7 +164,7 @@ class ActiveRecord
         $array = [];
 
         while ($registro = $resultado->fetch_assoc()) {
-            $array[] = self::crearObjeto($registro);
+            $array[] = static::crearObjeto($registro);
         }
 
         $resultado->free();
