@@ -57,6 +57,7 @@ incluirTemplate("header");
     ?>
 
     <a href="propiedades/crear.php" class="boton boton-verde">Nueva Propiedad</a>
+    <a href="vendedores/crear.php" class="boton boton-verde">Nuevo Vendedor</a>
 
     <h2>Propiedades</h2>
 
