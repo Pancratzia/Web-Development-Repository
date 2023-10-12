@@ -60,7 +60,11 @@ class Propiedad
 
         $resultado = self::$db->query($query);
 
-        return $resultado;
+        if ($resultado) {
+            header('Location: ../../admin?resultado=1');
+        } else {
+            echo "Error al crear la Propiedad";
+        }
     }
 
     public function actualizar()
@@ -81,6 +85,18 @@ class Propiedad
             header('Location: ../../admin?resultado=2');
         } else {
             echo "Error al crear la Propiedad";
+        }
+    }
+
+    public function eliminar()
+    {
+
+        $query = "DELETE FROM propiedades WHERE id ='" . self::$db->escape_string($this->id) . "' LIMIT 1";
+        $resultado = self::$db->query($query);
+
+        if ($resultado) {
+            $this->borrarImagen();
+            header('Location: ../admin?resultado=3');
         }
     }
 
@@ -114,14 +130,19 @@ class Propiedad
     {
 
         if ($this->id) {
-            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-
-            if ($existeArchivo) {
-                unlink(CARPETA_IMAGENES . $this->imagen);
-            }
+            $this->borrarImagen();
         }
         if ($imagen) {
             $this->imagen = $imagen;
+        }
+    }
+    
+    public function borrarImagen()
+    {
+        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+
+        if ($existeArchivo) {
+            unlink(CARPETA_IMAGENES . $this->imagen);
         }
     }
 

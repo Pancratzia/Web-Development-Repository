@@ -43,12 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image->save(CARPETA_IMAGENES . $nombreImagen);
 
         $resultado = $propiedad->guardar();
-
-        if ($resultado) {
-            header('Location: ../../admin?resultado=1');
-        } else {
-            echo "Error al crear la Propiedad";
-        }
     }
 }
 

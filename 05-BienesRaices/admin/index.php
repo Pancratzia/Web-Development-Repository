@@ -17,14 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($id) {
 
-        $query = "SELECT * FROM propiedades WHERE id = $id";
-        $resultado = mysqli_query($db, $query);
-        $propiedad = mysqli_fetch_assoc($resultado);
-        unlink('../imagenes/' . $propiedad['imagen']);
-
-        $query = "DELETE FROM propiedades WHERE id = $id";
-        $resultado = mysqli_query($db, $query);
-        header('Location: ../admin?resultado=3');
+        $propiedad = Propiedad::find($id);
+        $propiedad->eliminar();
     } else {
         header('Location: ../admin');
     }
