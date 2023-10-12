@@ -20,14 +20,14 @@ $errores = Propiedad::getErrores();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $propiedad = new Propiedad($_POST);
-
-    $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+    $propiedad = new Propiedad($_POST['propiedad']);
+   
+    $extension = pathinfo($_FILES['propiedad']['name']['imagen'], PATHINFO_EXTENSION);
 
     $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
 
-    if ($_FILES['imagen']['tmp_name']) {
-        $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
+    if ($_FILES['propiedad']['tmp_name']['imagen']) {
+        $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
         $propiedad->setImagen($nombreImagen);
     }
 
