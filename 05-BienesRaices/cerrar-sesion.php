@@ -6,4 +6,4 @@ $_SESSION = [];
 
 session_destroy();
 
-header('Location: /05-BienesRaices/');
+header('Location: /');

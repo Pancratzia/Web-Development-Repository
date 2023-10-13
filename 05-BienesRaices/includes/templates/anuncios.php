@@ -2,7 +2,7 @@
 
     use App\Propiedad;
 
-    if($_SERVER['SCRIPT_NAME'] == '/05-BienesRaices/anuncios.php') {
+    if($_SERVER['SCRIPT_NAME'] == '/anuncios.php') {
         $propiedades = Propiedad::all();
     }else{
         $propiedades = Propiedad::get(3);

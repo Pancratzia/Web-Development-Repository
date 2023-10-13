@@ -37,7 +37,7 @@ function javascript() {
       .pipe(terser())
       .pipe(sourcemaps.write('.'))
       .pipe(rename({ suffix: '.min' }))
-      .pipe(dest('/05-BienesRaices/build/js'))
+      .pipe(dest('build/js'))
 }
 
 function imagenes() {

@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienes Raices</title>
 
-    <link rel="preload" href="/05-BienesRaices/build/css/app.css" as="style">
-    <link rel="stylesheet" href="/05-BienesRaices/build/css/app.css">
+    <link rel="preload" href="/build/css/app.css" as="style">
+    <link rel="stylesheet" href="/build/css/app.css">
 
 </head>
 
@@ -25,27 +25,27 @@
     <header class="header <?php echo $inicio ? 'inicio' : '' ?>">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="/05-BienesRaices/">
-                    <img loading="lazy" width="50" height="50" src="/05-BienesRaices/build/img/logo.svg" alt="Logo de Bienes Raices">
+                <a href="/">
+                    <img loading="lazy" width="50" height="50" src="/build/img/logo.svg" alt="Logo de Bienes Raices">
                 </a>
 
                 <div class="mobile-menu">
-                    <img src="/05-BienesRaices/build/img/barras.svg" alt="icono menu responsive">
+                    <img src="/build/img/barras.svg" alt="icono menu responsive">
                 </div>
 
                 <div class="derecha">
-                    <img class="dark-mode-boton" src="/05-BienesRaices/build/img/dark-mode.svg" alt="Dark mode icon">
+                    <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt="Dark mode icon">
                     <nav class="navegacion">
-                        <a href="/05-BienesRaices/nosotros.php">Nosotros</a>
-                        <a href="/05-BienesRaices/anuncios.php">Anuncios</a>
-                        <a href="/05-BienesRaices/blog.php">Blog</a>
-                        <a href="/05-BienesRaices/contacto.php">Contacto</a>
+                        <a href="/nosotros.php">Nosotros</a>
+                        <a href="/anuncios.php">Anuncios</a>
+                        <a href="/blog.php">Blog</a>
+                        <a href="/contacto.php">Contacto</a>
                         <?php if($auth): ?>
-                            <a href="/05-BienesRaices/admin/">Admin</a>
-                            <a href="/05-BienesRaices/cerrar-sesion.php">Cerrar Sesión</a>
+                            <a href="/admin/">Admin</a>
+                            <a href="/cerrar-sesion.php">Cerrar Sesión</a>
                         <?php endif; ?>
                         <?php if(!$auth): ?>
-                            <a href="/05-BienesRaices/login.php">Login</a>
+                            <a href="/login.php">Login</a>
                         <?php endif; ?>
                     </nav>
                 </div>
