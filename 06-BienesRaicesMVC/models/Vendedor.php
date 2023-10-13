@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace Model;
 
-class Vendedor extends ActiveRecord{
+class Vendedor extends ActiveRecord
+{
 
     protected static $tabla = 'vendedores';
     protected static $columnasDB = ['id', 'nombre', 'apellido', 'telefono'];
