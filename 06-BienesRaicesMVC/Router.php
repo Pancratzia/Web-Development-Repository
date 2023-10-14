@@ -18,13 +18,16 @@ class Router{
         if($metodo === 'GET'){
             $fn = $this->rutasGET[$urlActual] ?? null;
         }
-        
 
         if($fn){
             call_user_func($fn, $this);
         }else{
             echo "Página no encontrada";
         }
+    }
+
+    public function render($view){
+        include  __DIR__ . "/views/$view.php";
     }
     
 }
