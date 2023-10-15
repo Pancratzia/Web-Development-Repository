@@ -1,2 +1,4 @@
 <h1>Admin</h1>
-<h2>Desde La Vista</h2>
+<p>Desde la vista</p>
+
+<em>Probando...</em>
