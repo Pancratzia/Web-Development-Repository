@@ -22,10 +22,10 @@
     <legend>Autores</legend>
 
     <label for="autor">Autor</label>
-    <select name="entrada[autores]" id="autor">
-        <?php foreach ($autores as $autor) : ?>
-            <option value="<?php echo $autor->id; ?>" <?php echo $entrada->vendedorId === $autor->id ? 'selected' : ''; ?>>
-                <?php echo $autor->nombre . ' ' . $autor->apellido; ?>
+    <select name="entrada[vendedorId]" id="autor">
+        <?php foreach ($vendedores as $vendedor) : ?>
+            <option value="<?php echo $vendedor->id; ?>" <?php echo $entrada->vendedorId === $vendedor->id ? 'selected' : ''; ?>>
+                <?php echo $vendedor->nombre . ' ' . $vendedor->apellido; ?>
             </option>
         <?php endforeach; ?>
     </select>

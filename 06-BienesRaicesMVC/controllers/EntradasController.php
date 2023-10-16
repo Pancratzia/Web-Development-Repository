@@ -16,11 +16,38 @@ class EntradasController
 
       $errores = Entrada::getErrores();
       $entrada = new Entrada;
-      $autores = Vendedor::all();
+      $vendedores = Vendedor::all();
+
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+         $entrada = new Entrada($_POST['entrada']);
+
+         $extension = pathinfo($_FILES['entrada']['name']['imagen'], PATHINFO_EXTENSION);
+
+         $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
+
+         if ($_FILES['entrada']['tmp_name']['imagen']) {
+             $image = Image::make($_FILES['entrada']['tmp_name']['imagen'])->fit(800, 600);
+             $entrada->setImagen($nombreImagen);
+         }       
+         $errores = $entrada->validar();
+
+         if (empty($errores)) {
+
+             if (!is_dir(CARPETA_IMAGENES)) {
+                 mkdir(CARPETA_IMAGENES);
+             }
+
+             $image->save(CARPETA_IMAGENES . $nombreImagen);
+
+             $entrada->guardar();
+         }
+     }
+
       $router->render("entradas/crear", [
         "errores" => $errores,
         "entrada" => $entrada,
-        "autores" => $autores
+        "vendedores" => $vendedores
       ]);
     }
 
