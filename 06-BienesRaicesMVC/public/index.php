@@ -29,7 +29,7 @@ $router->get("/", [PaginasCrontroller::class, 'index']);
 $router->get("/nosotros", [PaginasCrontroller::class, 'nosotros']);
 $router->get("/propiedades", [PaginasCrontroller::class, 'propiedades']);
 $router->get("/propiedad", [PaginasCrontroller::class, 'propiedad']);
-$router->get("/blog", [PaginasCrontroller::class, 'vendedores']);
+$router->get("/blog", [PaginasCrontroller::class, 'blog']);
 $router->get("/entrada", [PaginasCrontroller::class, 'entrada']);
 $router->get("/contacto", [PaginasCrontroller::class, 'contacto']);
 $router->post("/contacto", [PaginasCrontroller::class, 'contacto']);
