@@ -94,7 +94,22 @@
         </thead>
 
         <tbody>
-            
+            <?php foreach ($entradas as $entrada) : ?>
+                <tr>
+                    <td><?php echo $entrada->id; ?></td>
+                    <td><?php echo $entrada->titulo; ?></td>
+                    <td><img src="../imagenes/<?php echo $entrada->imagen; ?>" alt="Imagen de la Entrada" class="imagen-tabla"></td>
+                    <td><?php echo $entrada->fecha; ?></td>
+                    <td>
+                        <a href="entradas/actualizar?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">Actualizar</a>
+                        <form method="POST" class="w-100" action="entradas/eliminar">
+                            <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">
+                            <input type="hidden" name="tipo" value="propiedad">
+                            <input type="submit" value="Eliminar" class="boton-rojo-block" />
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </main>
