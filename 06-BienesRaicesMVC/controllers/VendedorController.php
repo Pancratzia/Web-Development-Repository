@@ -24,15 +24,36 @@ class VendedorController{
             }
         
         }
-        
+
         $router->render('vendedores/crear',[
             'errores' => $errores,
             'vendedor' => $vendedor
         ]);
     }
 
-    public static function actualizar(){
-        echo 'Actualizar vendedor';
+    public static function actualizar(Router $router){
+
+        $id = validarORedireccionar('/admin');
+        
+        $vendedor = Vendedor::find($id);
+        $errores = Vendedor::getErrores();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $args = $_POST['vendedor'];
+            $vendedor->sincronizar($args);
+            $errores = $vendedor->validar();
+        
+            if (empty($errores)) {
+                $vendedor->guardar();
+            }
+        
+        }
+
+        $router-> render('vendedores/actualizar', [
+            'vendedor' => Vendedor::find($_GET['id']),
+            'errores' => Vendedor::getErrores()
+        ]);
     }
 
     public static function eliminar(){
