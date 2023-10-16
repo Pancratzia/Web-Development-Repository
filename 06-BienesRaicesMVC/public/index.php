@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controllers\PropiedadController;
 use Controllers\VendedorController;
+use Controllers\PaginasCrontroller;
 
 $router = new Router();
 
@@ -20,5 +21,18 @@ $router->post('/vendedores/crear', [VendedorController::class, 'crear']);
 $router->get('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
 $router->post('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
 $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
+
+
+//PUBLICO
+
+$router->get("/", [PaginasCrontroller::class, 'index']);
+$router->get("/nosotros", [PaginasCrontroller::class, 'nosotros']);
+$router->get("/propiedades", [PaginasCrontroller::class, 'propiedades']);
+$router->get("/propiedad", [PaginasCrontroller::class, 'propiedad']);
+$router->get("/blog", [PaginasCrontroller::class, 'vendedores']);
+$router->get("/entrada", [PaginasCrontroller::class, 'entrada']);
+$router->get("/contacto", [PaginasCrontroller::class, 'contacto']);
+$router->post("/contacto", [PaginasCrontroller::class, 'contacto']);
+
 
 $router->comprobarRutas();
