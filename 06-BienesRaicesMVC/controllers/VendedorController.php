@@ -5,10 +5,12 @@ namespace Controllers;
 use MVC\Router;
 use Model\Vendedor;
 
-class VendedorController{
+class VendedorController
+{
 
 
-    public static function crear(Router $router){
+    public static function crear(Router $router)
+    {
 
         $errores = Vendedor::getErrores();
         $vendedor = new Vendedor;
@@ -18,23 +20,23 @@ class VendedorController{
 
             $vendedor = new Vendedor($_POST['vendedor']);
             $errores = $vendedor->validar();
-        
+
             if (empty($errores)) {
                 $vendedor->guardar();
             }
-        
         }
 
-        $router->render('vendedores/crear',[
+        $router->render('vendedores/crear', [
             'errores' => $errores,
             'vendedor' => $vendedor
         ]);
     }
 
-    public static function actualizar(Router $router){
+    public static function actualizar(Router $router)
+    {
 
         $id = validarORedireccionar('/admin');
-        
+
         $vendedor = Vendedor::find($id);
         $errores = Vendedor::getErrores();
 
@@ -43,21 +45,36 @@ class VendedorController{
             $args = $_POST['vendedor'];
             $vendedor->sincronizar($args);
             $errores = $vendedor->validar();
-        
+
             if (empty($errores)) {
                 $vendedor->guardar();
             }
-        
         }
 
-        $router-> render('vendedores/actualizar', [
+        $router->render('vendedores/actualizar', [
             'vendedor' => Vendedor::find($_GET['id']),
             'errores' => Vendedor::getErrores()
         ]);
     }
 
-    public static function eliminar(){
-        echo 'Eliminar vendedor';
-    }
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+                $tipo = $_POST['tipo'];
+
+                if (validarTipoContenido($tipo)) {
+                    $vendedor = Vendedor::find($id);
+
+                    if ($vendedor) {
+                        $vendedor->eliminar();
+                    }
+                }
+            }
+        }
+    }
 }
