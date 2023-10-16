@@ -6,6 +6,7 @@ use MVC\Router;
 use Controllers\PropiedadController;
 use Controllers\VendedorController;
 use Controllers\PaginasCrontroller;
+use Controllers\EntradasController;
 
 $router = new Router();
 
@@ -22,6 +23,11 @@ $router->get('/vendedores/actualizar', [VendedorController::class, 'actualizar']
 $router->post('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
 $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
 
+$router->get('/entradas/crear', [EntradasController::class, 'crear']);
+$router->post('/entradas/crear', [EntradasController::class, 'crear']);
+$router->get('/entradas/actualizar', [EntradasController::class, 'actualizar']);
+$router->post('/entradas/actualizar', [EntradasController::class, 'actualizar']);
+$router->post('/entradas/eliminar', [EntradasController::class, 'eliminar']);
 
 //PUBLICO
 

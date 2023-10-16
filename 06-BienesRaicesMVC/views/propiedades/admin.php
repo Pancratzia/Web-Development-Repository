@@ -13,6 +13,7 @@
 
     <a href="propiedades/crear" class="boton boton-verde">Nueva Propiedad</a>
     <a href="vendedores/crear" class="boton boton-verde">Nuevo Vendedor</a>
+    <a href="entradas/crear" class="boton boton-verde">Nueva Entrada de Blog</a>
 
     <h2>Propiedades</h2>
 
@@ -75,6 +76,25 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
+        </tbody>
+    </table>
+
+
+    <h2>Entradas de Blog</h2>
+
+    <table class="propiedades">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Imagen</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
         </tbody>
     </table>
 </main>
