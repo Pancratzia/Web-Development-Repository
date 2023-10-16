@@ -5,7 +5,7 @@
     <input type="text" name="entrada[titulo]" placeholder="Título de la Entrada" id="titulo" maxlength="45" value="<?php echo s($entrada->titulo); ?>" required>
 
     <label for="subtitulo">Subtitulo</label>
-    <input type="text" name="entrada[subtitulo]" placeholder="Subtitulo de la Entrada" id="subtitulo" maxlength="45 value="<?php echo s($entrada->subtitulo); ?>" required>
+    <input type="text" name="entrada[subtitulo]" placeholder="Subtitulo de la Entrada" id="subtitulo" maxlength="45" value="<?php echo s($entrada->subtitulo); ?>">
 
     <label for="imagen">Imagen</label>
     <input type="file" name="entrada[imagen]" id="imagen" accept="image/jpeg, image/png">

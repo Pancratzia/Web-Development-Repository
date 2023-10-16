@@ -5,7 +5,6 @@ namespace Controllers;
 use MVC\Router;
 use Model\Entrada;
 use Model\Vendedor;
-use Model\Propiedad;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class EntradasController
@@ -53,7 +52,44 @@ class EntradasController
 
     public static function actualizar(Router $router)
     {
-       echo "<h1>Actualizar Entrada</h1>";
+        $id = validarORedireccionar('/admin');
+
+        $entrada = Entrada::find($id);
+        $vendedores = Vendedor::all();
+
+        $errores = Entrada::getErrores();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $args = $_POST['entrada'];
+
+            $entrada->sincronizar($args);
+
+            $errores = $entrada->validar();
+
+            $extension = pathinfo($_FILES['entrada']['name']['imagen'], PATHINFO_EXTENSION);
+            $nombreImagen = md5(uniqid(rand(), true)) . '.' . $extension;
+
+            if ($_FILES['entrada']['tmp_name']['imagen']) {
+                $image = Image::make($_FILES['entrada']['tmp_name']['imagen'])->fit(800, 600);
+                $entrada->setImagen($nombreImagen);
+            }
+
+            if (empty($errores)) {
+
+                if ($_FILES['entrada']['tmp_name']['imagen']) {
+                    $image->save(CARPETA_IMAGENES . $nombreImagen);
+                }
+
+                $entrada->guardar();
+            }
+        }
+
+        $router->render('entradas/actualizar', [
+            'entrada' => $entrada,
+            'errores' => $errores,
+            'vendedores' => $vendedores
+        ]);
     }
 
     public static function eliminar()
