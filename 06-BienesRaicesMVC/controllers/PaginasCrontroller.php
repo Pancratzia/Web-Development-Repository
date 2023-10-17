@@ -75,7 +75,14 @@ class PaginasCrontroller{
         
     }
 
-    public static function contacto(){
-        echo 'Contacto';
+    public static function contacto(Router $router){
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            debuggear($_POST);
+        }
+
+        $router->render('paginas/contacto', [
+            
+        ]);
     }
 }
