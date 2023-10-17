@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Entrada;
 use MVC\Router;
 use Model\Propiedad;
 use Model\Vendedor;
@@ -48,12 +49,25 @@ class PaginasCrontroller{
 
     public static function blog(Router $router){
         
-        $router->render('paginas/blog');
+        $entradas = Entrada::all();
+        $vendedores = Vendedor::all();
+
+        $router->render('paginas/blog', [
+            'entradas' => $entradas,
+            'vendedores' => $vendedores
+        ]);
     }
 
     public static function entrada(Router $router){
+
+        $id = validarORedireccionar('/blog');
+        $entrada = Entrada::find($id);
+        $vendedor = Vendedor::find($entrada->vendedorId);
         
-        $router->render('paginas/entrada');
+        $router->render('paginas/entrada', [
+            'entrada' => $entrada,
+            'vendedor' => $vendedor
+        ]);
         
     }
 
