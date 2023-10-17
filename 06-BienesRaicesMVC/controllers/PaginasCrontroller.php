@@ -12,11 +12,15 @@ class PaginasCrontroller{
 
     public static function index(Router $router){
        $propiedades = Propiedad::get(3);
+       $entradas = Entrada::get(2);
+       $vendedores = Vendedor::all();
        $inicio = true;
 
         $router->render('paginas/index',[
             'propiedades' => $propiedades,
-            'inicio' => $inicio
+            'inicio' => $inicio,
+            'entradas' => $entradas,
+            'vendedores' => $vendedores
         ]);
     }
 
