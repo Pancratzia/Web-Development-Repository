@@ -87,6 +87,8 @@ class PaginasCrontroller
     public static function contacto(Router $router)
     {
 
+        $mensaje = null;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $respuestas = $_POST['contacto'];
@@ -113,26 +115,34 @@ class PaginasCrontroller
             $contenido = '<html>';
             $contenido .= '<p>Tienes un nuevo mensaje</p>';
             $contenido .= '<p>Nombre: ' . $respuestas['nombre'] . '</p>';
-            $contenido .= '<p>Email: ' . $respuestas['email'] . '</p>';
-            $contenido .= '<p>Telefono: ' . $respuestas['telefono'] . '</p>';
+
+            if ($respuestas['contacto'] === 'telefono') {
+                $contenido .= '<p>Eligió ser contactado vía Telefono</p>';
+                $contenido .= '<p>Telefono: ' . $respuestas['telefono'] . '</p>';
+                $contenido .= '<p>Fecha para el contacto: ' . $respuestas['fecha'] . '</p>';
+                $contenido .= '<p>Hora para el contacto: ' . $respuestas['hora'] . '</p>';
+            } else {
+                $contenido .= '<p>Eligió ser contactado vía Email</p>';
+                $contenido .= '<p>Email: ' . $respuestas['email'] . '</p>';
+            }
+
             $contenido .= '<p>Mensaje: ' . $respuestas['mensaje'] . '</p>';
             $contenido .= '<p>Vende o Compra: ' . $respuestas['tipo'] . '</p>';
             $contenido .= '<p>Precio: ' . $respuestas['presupuesto'] . '$</p>';
-            $contenido .= '<p>Prefiere ser contactado vía: ' . $respuestas['contacto'] . '</p>';
-            $contenido .= '<p>Fecha para el contacto: ' . $respuestas['fecha'] . '</p>';
-            $contenido .= '<p>Hora para el contacto: ' . $respuestas['hora'] . '</p>';
             $contenido .= '</html>';
 
             $mail->Body = $contenido;
-            $mail->AltBody = 'Tienes un nuevo mensaje sin HTML';
+            $mail->AltBody = $respuestas['mensaje'];
 
             if ($mail->send()) {
-                echo 'El mensaje se envio correctamente';
+                $mensaje = "Mensaje enviado correctamente";
             } else {
-                echo 'El mensaje no se envio';
+                $mensaje = "Hubo un error al enviar el mensaje";
             }
         }
 
-        $router->render('paginas/contacto', []);
+        $router->render('paginas/contacto', [
+            'mensaje' => $mensaje
+        ]);
     }
 }
