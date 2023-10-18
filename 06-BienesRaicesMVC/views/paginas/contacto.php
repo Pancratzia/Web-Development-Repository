@@ -30,8 +30,8 @@
             <fieldset>
                 <legend>Información Sobre la Propiedad</legend>
 
-                <label for="opciones">Vender o Comprar</label>
-                <select name="contacto[opciones]" id="opciones" required>
+                <label for="tipo">Vender o Comprar</label>
+                <select name="contacto[tipo]" id="tipo" required>
                     <option value="" disabled selected>-- Seleccione --</option>
                     <option value="Compra">Compra</option>
                     <option value="Venta">Venta</option>
