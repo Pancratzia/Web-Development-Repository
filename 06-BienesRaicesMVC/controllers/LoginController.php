@@ -2,7 +2,7 @@
 
 namespace Controllers;
 use MVC\Router;
-use Models\Admin;
+use Model\Admin;
 
 class LoginController{
 
@@ -12,7 +12,20 @@ class LoginController{
         $errores = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            echo "Autenticando";
+            
+            $auth = new Admin($_POST);
+            $errores = $auth->validar();
+
+            if(empty($errores)){
+                $resultado = $auth->existeUsuario();
+
+                if(!$resultado){
+                    $errores = Admin::getErrores();
+                }else{
+                    
+                }
+
+            }
         }
 
         $router->render("auth/login", [
