@@ -33,10 +33,20 @@ class Admin extends ActiveRecord{
         if(!$resultado->num_rows){
             self::$errores[] = 'El usuario no existe';
             return;
-        } else {
-            $usuario = $resultado->fetch_object();
         }
 
         return $resultado;
+    }
+
+    public function comprobarPassword($resultado){
+        $usuario = $resultado->fetch_object();
+
+        $autenticado = password_verify($this->password, $usuario->password);
+
+        if(!$autenticado){
+            self::$errores[] = 'Contraseña incorrecta';
+        }
+
+        return $autenticado;
     }
 }
