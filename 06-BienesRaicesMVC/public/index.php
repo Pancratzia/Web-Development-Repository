@@ -7,6 +7,7 @@ use Controllers\PropiedadController;
 use Controllers\VendedorController;
 use Controllers\PaginasCrontroller;
 use Controllers\EntradasController;
+use Controllers\LoginController;
 
 $router = new Router();
 
@@ -40,5 +41,10 @@ $router->get("/entrada", [PaginasCrontroller::class, 'entrada']);
 $router->get("/contacto", [PaginasCrontroller::class, 'contacto']);
 $router->post("/contacto", [PaginasCrontroller::class, 'contacto']);
 
+//Autenticacion
+
+$router->get("/login", [LoginController::class, 'login']);
+$router->post("/login", [LoginController::class, 'login']);
+$router->get("/logout", [LoginController::class, 'logout']);
 
 $router->comprobarRutas();
