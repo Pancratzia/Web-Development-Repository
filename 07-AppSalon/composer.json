@@ -1,0 +1,19 @@
+{
+    "name": "laura/07-app-salon",
+    "description": "PHP8, HTML, CSS, SASS, GULP, SQL",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "./",
+            "Controllers\\": "./controllers/",
+            "Model\\": "./models/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Laura Ortega",
+            "email": "54899954+Pancratzia@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
