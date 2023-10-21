@@ -13,11 +13,11 @@
         <input type="password" name="password" id="password" placeholder="Tu Password">
     </div>
 
-    <input type="submit" value="Iniciar Sesión">
+    <input type="submit" class="boton" value="Iniciar Sesión">
 
 </form>
 
 <div class="acciones">
     <a href="/crear-cuenta">Registrarse</a>
-    <a href="/olvide">Recuperar Contraseña</a>
+    <a href="/olvide">Recuperar Password</a>
 </div>
