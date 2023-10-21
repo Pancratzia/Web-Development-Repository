@@ -29,4 +29,27 @@ class Usuario extends ActiveRecord
         $this->confirmado = $args['confirmado'] ?? '0';
         $this->token = $args['token'] ?? '';
     }
+
+    public function validarNuevaCuenta(){
+        if($this->nombre === ''){
+            self::$alertas['error'][] = 'El nombre es obligatorio';
+        }
+        if($this->apellido === ''){
+            self::$alertas['error'][] = 'El apellido es obligatorio';
+        }
+        if($this->telefono === ''){
+            self::$alertas['error'][] = 'El teléfono es obligatorio';
+        }
+        if($this->email === ''){
+            self::$alertas['error'][] = 'El email es obligatorio';
+        }
+        if($this->password === ''){
+            self::$alertas['error'][] = 'El password es obligatorio';
+        }
+        if(strlen($this->password) < 6){
+            self::$alertas['error'][] = 'El password debe contener al menos 6 carácteres';
+        }
+
+        return self::$alertas;
+    }
 }
