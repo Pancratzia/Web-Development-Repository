@@ -32,5 +32,5 @@
 
 <div class="acciones">
     <a href="/">Iniciar Sesión</a>
-    <a href="/olvide">¿Olvidaste tu Password?</a>
+    <a href="/olvide">Recuperar Password</a>
 </div>
