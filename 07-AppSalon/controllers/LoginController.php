@@ -47,6 +47,8 @@ class LoginController {
                     $alertas = Usuario::getAlertas();
                 } else {
 
+                    $usuario->hashPassword();
+
                 }
                 
             }
