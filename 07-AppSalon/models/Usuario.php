@@ -56,7 +56,6 @@ class Usuario extends ActiveRecord
     public function existeUsuario(){
         $query = "SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
         $resultado = self::$db->query($query);
-        debuggear($resultado);
 
         if($resultado->num_rows){
             self::$alertas['error'][] = 'El usuario ya existe';
@@ -67,5 +66,9 @@ class Usuario extends ActiveRecord
 
     public function hashPassword(){
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+
+    public function crearToken(){
+        $this->token = uniqid();
     }
 }

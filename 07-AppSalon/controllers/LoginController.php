@@ -49,6 +49,10 @@ class LoginController {
 
                     $usuario->hashPassword();
 
+                    $usuario->crearToken();
+
+                    debuggear($usuario);
+
                 }
                 
             }
