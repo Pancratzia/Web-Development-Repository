@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function iniciarApp() {
   mostrarSeccion();
   tabs();
+  botonesPaginador();
 }
 
 function tabs() {
@@ -16,6 +17,7 @@ function tabs() {
     boton.addEventListener("click", (e) => {
       paso = parseInt(e.target.dataset.paso);
       mostrarSeccion();
+      botonesPaginador();
     });
   });
 }
@@ -36,4 +38,21 @@ function mostrarSeccion() {
 
   const tab = document.querySelector(`[data-paso="${paso}"]`);
   tab.classList.add("actual");
+}
+
+function botonesPaginador() {
+  const paginaSiguiente = document.querySelector("#siguiente");
+  const paginaAnterior = document.querySelector("#anterior");
+
+  if(paso === 1) {
+    paginaAnterior.classList.add("ocultar");
+    paginaSiguiente.classList.remove("ocultar");
+  } else if(paso === 3) {
+    paginaSiguiente.classList.add("ocultar");
+    paginaAnterior.classList.remove("ocultar");
+  } else {
+    paginaSiguiente.classList.remove("ocultar");
+    paginaAnterior.classList.remove("ocultar");
+  }
+
 }
