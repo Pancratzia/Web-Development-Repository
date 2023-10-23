@@ -16,7 +16,23 @@ class LoginController {
             $auth = new Usuario($_POST);
 
             $alertas = $auth->validarLogin();
+
+            if(empty($alertas)) {
+                $usuario = Usuario::where('email', $auth->email);
+
+                if($usuario) {
+
+                    if($usuario->comprobarPasswordAndVerificado($auth->password)){
+
+                    }
+                    
+                }else{
+                    Usuario::setAlerta('error', 'El usuario no existe o no esta confirmado');
+                }
+            }
         }
+
+        $alertas = Usuario::getAlertas();
         
         $router->render('auth/login', [
             'alertas' => $alertas
