@@ -98,15 +98,15 @@ class PaginasCrontroller
 
             $mail = new PHPMailer();
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Port = 2525;
+            $mail->Port = 465;
             $mail->Username = $_ENV['USERNAME'];
             $mail->Password = $_ENV['PASSWORD'];
-            $mail->SMTPSecure = 'tls';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
             $mail->setFrom('admin@bienesraices.com');
-            $mail->addAddress('admin@bienesraices.com', 'BienesRaices.com');
+            $mail->addAddress($_ENV['EMAIL'], 'BienesRaices.com');
             $mail->Subject = 'Tienes un nuevo mensaje';
 
             $mail->isHTML(true);
