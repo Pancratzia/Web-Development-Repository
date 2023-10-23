@@ -52,9 +52,10 @@ class LoginController {
 
                     $usuario->crearToken();
 
-                    $email = new Email($usuario->nombre, $usuario->email, $usuario->token);
+                    $email = new Email( $usuario->email, $usuario->nombre, $usuario->token);
 
-                    debuggear($email);
+                    $email->enviarConfirmacion();
+
 
                 }
                 
@@ -66,6 +67,10 @@ class LoginController {
             'usuario' => $usuario,
             'alertas' => $alertas
         ]);
+    }
+
+    public static function confirmarCuenta(Router $router) {
+        echo "Desde Confirmar Cuenta";
     }
 
 }
