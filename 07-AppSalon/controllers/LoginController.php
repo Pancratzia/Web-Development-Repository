@@ -6,69 +6,85 @@ use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
-class LoginController {
-    
-    public static function login(Router $router) {
+class LoginController
+{
+
+    public static function login(Router $router)
+    {
 
         $alertas = [];
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $auth = new Usuario($_POST);
 
             $alertas = $auth->validarLogin();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 $usuario = Usuario::where('email', $auth->email);
 
-                if($usuario) {
+                if ($usuario) {
 
-                    if($usuario->comprobarPasswordAndVerificado($auth->password)){
+                    if ($usuario->comprobarPasswordAndVerificado($auth->password)) {
 
+                        session_start();
+
+                        $_SESSION['id'] = $usuario->id;
+                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
+                        $_SESSION['email'] = $usuario->email;
+                        $_SESSION['login'] = true;
+
+                        if ($usuario->admin === '1') {
+                            $_SESSION['admin'] = $usuario->admin ?? null;
+                            header('Location: /admin');
+                        } else {
+                            header('Location: /cita');
+                        }
                     }
-                    
-                }else{
+                } else {
                     Usuario::setAlerta('error', 'El usuario no existe o no esta confirmado');
                 }
             }
         }
 
         $alertas = Usuario::getAlertas();
-        
+
         $router->render('auth/login', [
             'alertas' => $alertas
         ]);
     }
 
-    public static function logout() {
+    public static function logout()
+    {
         echo "Desde Logout";
     }
 
-    public static function olvide(Router $router) {
-        $router->render('auth/olvide-password', [
-            
-        ]);
+    public static function olvide(Router $router)
+    {
+        $router->render('auth/olvide-password', []);
     }
 
-    public static function recuperar() {
+    public static function recuperar()
+    {
         echo "Desde Recuperar";
     }
 
-    public static function crear(Router $router) {
+    public static function crear(Router $router)
+    {
 
         $usuario = new Usuario();
 
         $alertas = [];
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $usuario->sincronizar($_POST);
             $alertas = $usuario->validarNuevaCuenta();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
 
                 $resultado = $usuario->existeUsuario();
 
-                if($resultado->num_rows) {
+                if ($resultado->num_rows) {
                     $alertas = Usuario::getAlertas();
                 } else {
 
@@ -76,20 +92,17 @@ class LoginController {
 
                     $usuario->crearToken();
 
-                    $email = new Email( $usuario->email, $usuario->nombre, $usuario->token);
+                    $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
 
                     $email->enviarConfirmacion();
 
                     $resultado = $usuario->guardar();
 
-                    if($resultado) {
+                    if ($resultado) {
                         header('Location: /mensaje');
                     }
-
                 }
-                
             }
-
         }
 
         $router->render('auth/crear-cuenta', [
@@ -98,13 +111,14 @@ class LoginController {
         ]);
     }
 
-    public static function confirmar(Router $router) {
+    public static function confirmar(Router $router)
+    {
 
         $alertas = [];
         $token = s($_GET['token']);
         $usuario = Usuario::where('token', $token);
 
-        if(empty($usuario)) {
+        if (empty($usuario)) {
             Usuario::setAlerta('error', 'Token No Válido');
         } else {
             $usuario->confirmado = '1';
@@ -120,11 +134,8 @@ class LoginController {
         ]);
     }
 
-    public static function mensaje(Router $router) {
-        $router->render('auth/mensaje', [
-            
-        ]);
+    public static function mensaje(Router $router)
+    {
+        $router->render('auth/mensaje', []);
     }
-
 }
-
