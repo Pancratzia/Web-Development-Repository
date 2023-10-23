@@ -44,4 +44,17 @@
         <h2>Resumen</h2>
         <p class="text-center">Verifica que tu información sea correcta antes de confirmar</p>
     </div>
+
+    <div class="paginacion">
+        <button class="boton" id="anterior">&laquo; Anterior</button>
+        <button class="boton" id="siguiente">Siguiente &raquo;</button>
+    </div>
 </div>
+
+<?php
+
+    $script = "
+        <script src='build/js/app.js'></script>
+    ";
+
+?>
