@@ -1,4 +1,6 @@
 let paso = 1;
+const pasoInicial = 1;
+const pasoFinal = 3;
 
 document.addEventListener("DOMContentLoaded", () => {
   iniciarApp();
@@ -8,6 +10,8 @@ function iniciarApp() {
   mostrarSeccion();
   tabs();
   botonesPaginador();
+  paginaSiguiente();
+  paginaAnterior();
 }
 
 function tabs() {
@@ -55,4 +59,29 @@ function botonesPaginador() {
     paginaAnterior.classList.remove("ocultar");
   }
 
+}
+
+
+function paginaAnterior(){
+    const paginaAnterior = document.querySelector("#anterior");
+    paginaAnterior.addEventListener("click", () => {
+        if(paso <= pasoInicial) return;
+
+        paso--;
+        mostrarSeccion();
+        botonesPaginador();
+
+
+    });
+}
+
+function paginaSiguiente(){
+    const paginaSiguiente = document.querySelector("#siguiente");
+    paginaSiguiente.addEventListener("click", () => {
+        if(paso >= pasoFinal) return;
+
+        paso++;
+        mostrarSeccion();
+        botonesPaginador();
+    });
 }
