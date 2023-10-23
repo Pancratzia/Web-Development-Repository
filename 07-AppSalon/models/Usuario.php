@@ -93,4 +93,12 @@ class Usuario extends ActiveRecord
             return true;
         }
     }
+
+    public function validarEmail(){
+        if($this->email === ''){
+            self::$alertas['error'][] = 'El email es obligatorio';
+        }
+
+        return self::$alertas;
+    }
 }
