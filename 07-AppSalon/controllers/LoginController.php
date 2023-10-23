@@ -56,6 +56,11 @@ class LoginController {
 
                     $email->enviarConfirmacion();
 
+                    $resultado = $usuario->guardar();
+
+                    if($resultado) {
+                        header('Location: /mensaje');
+                    }
 
                 }
                 
@@ -71,6 +76,12 @@ class LoginController {
 
     public static function confirmarCuenta(Router $router) {
         echo "Desde Confirmar Cuenta";
+    }
+
+    public static function mensaje(Router $router) {
+        $router->render('auth/mensaje', [
+            
+        ]);
     }
 
 }
