@@ -17,6 +17,13 @@
         transition: transform 300ms ease;
         text-align: center;
 
+        &.seleccionado{
+            background-color: v.$azul;
+            p{
+                color: v.$blanco;
+            }
+        }
+
         &:hover{
             cursor: pointer;
             transform: scale(1.05);
