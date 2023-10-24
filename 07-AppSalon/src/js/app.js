@@ -3,6 +3,7 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
+  id: "",
   nombre: "",
   fecha: "",
   hora: "",
@@ -22,6 +23,7 @@ function iniciarApp() {
 
   consultarAPI();
 
+  idCliente();
   nombreCliente();
   seleccionarFecha();
   seleccionarHora();
@@ -150,6 +152,10 @@ function seleccionarServicio(servicio) {
   }
 }
 
+function idCliente() {
+  cita.id = document.querySelector("#id").value;
+}
+
 function nombreCliente() {
   cita.nombre = document.querySelector("#nombre").value;
 }
@@ -249,7 +255,7 @@ function mostrarResumen() {
     textoServicio.textContent = nombre;
 
     const precioServicio = document.createElement("P");
-    precioServicio.innerHTML = `<span>Precio:</span> ${precio}`;
+    precioServicio.innerHTML = `<span>Precio:</span> ${precio}$`;
 
     contenedorServicio.appendChild(textoServicio);
     contenedorServicio.appendChild(precioServicio);
@@ -285,7 +291,60 @@ function mostrarResumen() {
   const horaCita = document.createElement("P");
   horaCita.innerHTML = `<span>Hora:</span> ${hora} hrs.`;
 
+  const botonReservar = document.createElement("BUTTON");
+  botonReservar.classList.add("boton");
+  botonReservar.textContent = "Reservar Cita";
+  botonReservar.onclick = reservarCita;
+
   resumen.appendChild(nombreCliente);
   resumen.appendChild(fechaCita);
   resumen.appendChild(horaCita);
+
+  resumen.appendChild(botonReservar);
+}
+
+async function reservarCita() {
+
+  const { fecha, hora, servicios, id } = cita;
+  const idServicios = servicios.map(servicio => servicio.id);
+
+  const datos = new FormData();
+
+  datos.append("usuarioId", id);
+  datos.append("hora", hora);
+  datos.append("fecha", fecha);
+  datos.append("servicios", idServicios);
+
+  try{
+
+    const url = "http://localhost:3000/api/citas";
+    const respuesta = await fetch(url, {
+      method: "POST",
+      body: datos,
+    });
+  
+    const resultado = await respuesta.json();
+  
+    if (resultado.resultado) {
+      Swal.fire({
+        icon: "success",
+        title: "Cita Creada",
+        text: "La cita se ha creado correctamente",
+        button: "OK",
+      }).then(() => {
+          window.location.reload();
+      })
+    }
+
+  }catch(error){
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Hubo un error al crear la cita",
+      button: "OK",
+    })
+  }
+
+ 
+
 }
