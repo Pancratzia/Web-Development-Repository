@@ -25,6 +25,8 @@ function iniciarApp() {
   nombreCliente();
   seleccionarFecha();
   seleccionarHora();
+
+  mostrarResumen();
 }
 
 function tabs() {
@@ -67,6 +69,7 @@ function botonesPaginador() {
   } else if (paso === 3) {
     paginaSiguiente.classList.add("ocultar");
     paginaAnterior.classList.remove("ocultar");
+    mostrarResumen();
   } else {
     paginaSiguiente.classList.remove("ocultar");
     paginaAnterior.classList.remove("ocultar");
@@ -184,7 +187,7 @@ function seleccionarHora() {
   });
 }
 
-function mostrarAlerta(mensaje, tipo) {
+function mostrarAlerta(mensaje, tipo, elemento = ".formulario", desaparece = true) {
 
   const alertaPrevia = document.querySelector(".alerta");
   if (alertaPrevia) return;
@@ -194,10 +197,24 @@ function mostrarAlerta(mensaje, tipo) {
   alerta.classList.add("alerta");
   alerta.classList.add(tipo);
 
-  const formulario = document.querySelector(".formulario");
-  formulario.appendChild(alerta);
+  const referencia = document.querySelector(`${elemento}`);
+  referencia.appendChild(alerta);
 
-  setTimeout(() => {
-    alerta.remove();
-  }, 3000);
+  if (desaparece) {
+    setTimeout(() => {
+      alerta.remove();
+    }, 3000);
+  }
+}
+
+function mostrarResumen(){
+  const resumen = document.querySelector(".contenido-resumen");
+
+  resumen.innerHTML = "";
+
+  if(Object.values(cita).includes("") || cita.servicios.length === 0){
+    mostrarAlerta("Necesitas incluir datos de Servicios, Fecha y Hora", "error", ".contenido-resumen", false);
+  }else{
+
+  }
 }
