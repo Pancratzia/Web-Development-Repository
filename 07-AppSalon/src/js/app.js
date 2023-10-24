@@ -159,7 +159,6 @@ function seleccionarFecha() {
   inputFecha.addEventListener("input", (e) => {
     const dia = new Date(e.target.value).getUTCDay();
 
-
     if ([6, 0].includes(dia)) {
       e.target.value = "";
       mostrarAlerta("No trabajamos los días sábados y domingos", "error");
@@ -180,18 +179,27 @@ function seleccionarHora() {
 
     if (hora < 10 || hora > 18 || (hora === 18 && minutos > 0)) {
       e.target.value = "";
-      mostrarAlerta("Hora no válida. Trabajamos de 10:00 am a 6:00 pm", "error");
-    } else{
+      mostrarAlerta(
+        "Hora no válida. Trabajamos de 10:00 am a 6:00 pm",
+        "error"
+      );
+    } else {
       cita.hora = e.target.value;
     }
   });
 }
 
-function mostrarAlerta(mensaje, tipo, elemento = ".formulario", desaparece = true) {
-
+function mostrarAlerta(
+  mensaje,
+  tipo,
+  elemento = ".formulario",
+  desaparece = true
+) {
   const alertaPrevia = document.querySelector(".alerta");
-  if (alertaPrevia) return;
-  
+  if (alertaPrevia) {
+    alertaPrevia.remove();
+  }
+
   const alerta = document.createElement("DIV");
   alerta.textContent = mensaje;
   alerta.classList.add("alerta");
@@ -207,14 +215,77 @@ function mostrarAlerta(mensaje, tipo, elemento = ".formulario", desaparece = tru
   }
 }
 
-function mostrarResumen(){
+function mostrarResumen() {
   const resumen = document.querySelector(".contenido-resumen");
 
-  resumen.innerHTML = "";
-
-  if(Object.values(cita).includes("") || cita.servicios.length === 0){
-    mostrarAlerta("Necesitas incluir datos de Servicios, Fecha y Hora", "error", ".contenido-resumen", false);
-  }else{
-
+  while (resumen.firstChild) {
+    resumen.removeChild(resumen.firstChild);
   }
+
+  if (Object.values(cita).includes("") || cita.servicios.length === 0) {
+    mostrarAlerta(
+      "Necesitas incluir datos de Servicios, Fecha y Hora",
+      "error",
+      ".contenido-resumen",
+      false
+    );
+
+    return;
+  }
+
+  const { nombre, fecha, hora, servicios } = cita;
+
+  const headingServicios = document.createElement("H3");
+  headingServicios.textContent = "Resumen de Servicios:";
+  resumen.appendChild(headingServicios);
+
+  servicios.forEach((servicio) => {
+    const { id, nombre, precio } = servicio;
+    const contenedorServicio = document.createElement("DIV");
+    contenedorServicio.classList.add("contenedor-servicio");
+    contenedorServicio.dataset.idServicio = id;
+
+    const textoServicio = document.createElement("P");
+    textoServicio.textContent = nombre;
+
+    const precioServicio = document.createElement("P");
+    precioServicio.innerHTML = `<span>Precio:</span> ${precio}`;
+
+    contenedorServicio.appendChild(textoServicio);
+    contenedorServicio.appendChild(precioServicio);
+
+    resumen.appendChild(contenedorServicio);
+  });
+
+  const headingCita = document.createElement("H3");
+  headingCita.textContent = "Resumen de la Cita:";
+  resumen.appendChild(headingCita);
+
+  const nombreCliente = document.createElement("P");
+  nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+  const fechaObj = new Date(fecha);
+  const mes = fechaObj.getMonth();
+  const dia = fechaObj.getDate() + 2;
+  const anio = fechaObj.getFullYear();
+
+  const fechaUTC = new Date(Date.UTC(anio, mes, dia));
+
+  const opciones = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const fechaFormateada = fechaUTC.toLocaleDateString("es-MX", opciones);
+
+  const fechaCita = document.createElement("P");
+  fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
+
+  const horaCita = document.createElement("P");
+  horaCita.innerHTML = `<span>Hora:</span> ${hora} hrs.`;
+
+  resumen.appendChild(nombreCliente);
+  resumen.appendChild(fechaCita);
+  resumen.appendChild(horaCita);
 }
