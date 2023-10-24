@@ -23,6 +23,7 @@ function iniciarApp() {
   consultarAPI();
 
   nombreCliente();
+  seleccionarFecha();
 }
 
 function tabs() {
@@ -148,4 +149,19 @@ function seleccionarServicio(servicio){
 
 function nombreCliente() {
   cita.nombre = document.querySelector("#nombre").value;
+}
+
+function seleccionarFecha() {
+  const inputFecha = document.querySelector("#fecha");
+  inputFecha.addEventListener("input", (e) => {
+    
+    const dia = new Date(e.target.value).getUTCDay();
+
+    if ([6, 0].includes(dia)) {
+      e.target.value = "";
+    }else{
+      cita.fecha = e.target.value;
+    }
+
+  })
 }
