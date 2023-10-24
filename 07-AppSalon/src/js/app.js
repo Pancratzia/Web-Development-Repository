@@ -7,7 +7,7 @@ const cita = {
   fecha: "",
   hora: "",
   servicios: [],
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   iniciarApp();
@@ -24,6 +24,7 @@ function iniciarApp() {
 
   nombreCliente();
   seleccionarFecha();
+  seleccionarHora();
 }
 
 function tabs() {
@@ -128,23 +129,22 @@ function mostrarServicios(servicios) {
     servicioDiv.appendChild(precioServicio);
 
     document.querySelector("#servicios").appendChild(servicioDiv);
-
   });
 }
 
-function seleccionarServicio(servicio){
+function seleccionarServicio(servicio) {
   const { id } = servicio;
   const { servicios } = cita;
 
   const divServicio = document.querySelector(`[data-id-servicio="${id}"]`);
 
-  if(servicios.some( agregado => agregado.id === id )){
-    cita.servicios = servicios.filter(servicio => servicio.id !== id);
+  if (servicios.some((agregado) => agregado.id === id)) {
+    cita.servicios = servicios.filter((servicio) => servicio.id !== id);
     divServicio.classList.remove("seleccionado");
-  }else{
+  } else {
     cita.servicios = [...servicios, servicio];
     divServicio.classList.add("seleccionado");
-  }  
+  }
 }
 
 function nombreCliente() {
@@ -154,14 +154,50 @@ function nombreCliente() {
 function seleccionarFecha() {
   const inputFecha = document.querySelector("#fecha");
   inputFecha.addEventListener("input", (e) => {
-    
     const dia = new Date(e.target.value).getUTCDay();
+
 
     if ([6, 0].includes(dia)) {
       e.target.value = "";
-    }else{
+      mostrarAlerta("No trabajamos los días sábados y domingos", "error");
+    } else {
       cita.fecha = e.target.value;
     }
+  });
+}
 
-  })
+function seleccionarHora() {
+  const inputHora = document.querySelector("#hora");
+  inputHora.addEventListener("input", (e) => {
+    const horaCita = e.target.value;
+
+    const h = horaCita.split(":");
+    const hora = Number(h[0]);
+    const minutos = Number(h[1]);
+
+    if (hora < 10 || hora > 18 || (hora === 18 && minutos > 0)) {
+      e.target.value = "";
+      mostrarAlerta("Hora no válida. Trabajamos de 10:00 am a 6:00 pm", "error");
+    } else{
+      cita.hora = e.target.value;
+    }
+  });
+}
+
+function mostrarAlerta(mensaje, tipo) {
+
+  const alertaPrevia = document.querySelector(".alerta");
+  if (alertaPrevia) return;
+  
+  const alerta = document.createElement("DIV");
+  alerta.textContent = mensaje;
+  alerta.classList.add("alerta");
+  alerta.classList.add(tipo);
+
+  const formulario = document.querySelector(".formulario");
+  formulario.appendChild(alerta);
+
+  setTimeout(() => {
+    alerta.remove();
+  }, 3000);
 }
