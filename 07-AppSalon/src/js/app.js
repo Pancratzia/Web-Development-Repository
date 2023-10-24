@@ -21,6 +21,8 @@ function iniciarApp() {
   paginaAnterior();
 
   consultarAPI();
+
+  nombreCliente();
 }
 
 function tabs() {
@@ -142,4 +144,8 @@ function seleccionarServicio(servicio){
     cita.servicios = [...servicios, servicio];
     divServicio.classList.add("seleccionado");
   }  
+}
+
+function nombreCliente() {
+  cita.nombre = document.querySelector("#nombre").value;
 }
