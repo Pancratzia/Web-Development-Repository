@@ -291,6 +291,18 @@ function mostrarResumen() {
   const horaCita = document.createElement("P");
   horaCita.innerHTML = `<span>Hora:</span> ${hora} hrs.`;
 
+  const subtotalCita = document.createElement("P");
+  const subtotal = calcularSubtotal().toFixed(2);
+  subtotalCita.innerHTML = `<span>Subtotal:</span> ${subtotal}$`;
+
+  const ivaCita = document.createElement("P");
+  const iva = (subtotal * 0.16).toFixed(2);
+  ivaCita.innerHTML = `<span>IVA (16%):</span> ${iva}$`;
+
+  const totalCita = document.createElement("P");
+  const total = (parseFloat(subtotal) + parseFloat(iva));
+  totalCita.innerHTML = `<span>Total:</span> ${total.toFixed(2)}$`;
+
   const botonReservar = document.createElement("BUTTON");
   botonReservar.classList.add("boton");
   botonReservar.textContent = "Reservar Cita";
@@ -299,9 +311,18 @@ function mostrarResumen() {
   resumen.appendChild(nombreCliente);
   resumen.appendChild(fechaCita);
   resumen.appendChild(horaCita);
+  resumen.appendChild(subtotalCita);
+  resumen.appendChild(ivaCita);
+  resumen.appendChild(totalCita);
 
   resumen.appendChild(botonReservar);
 }
+
+function calcularSubtotal() {
+  const { servicios } = cita;
+  return servicios.reduce((acc, servicio) => acc + parseFloat(servicio.precio), 0);
+}
+
 
 async function reservarCita() {
 
