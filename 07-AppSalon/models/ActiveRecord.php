@@ -178,4 +178,9 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public static function SQL($query) {
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
 }
