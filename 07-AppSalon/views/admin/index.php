@@ -58,6 +58,11 @@
                         <p class="total">IVA(16%): <span><?php echo $total * 0.16; ?>$</span></p>
                         <p class="total">Total: <span><?php echo $total * 1.16; ?>$</span></p>
                     </div>
+
+                    <form action="/api/eliminar" method="POST">
+                        <input type="hidden" name="citaId" value="<?php echo $cita->id; ?>">
+                        <input type="submit" class="boton-eliminar" value="Eliminar">
+                    </form>
                 <?php }
 
                 ?>
