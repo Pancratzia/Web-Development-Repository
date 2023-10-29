@@ -15,6 +15,8 @@ class ServicioController
             session_start();
         }
 
+        isAdmin();
+
         $servicios = Servicio::all();
 
 
@@ -29,6 +31,10 @@ class ServicioController
         if (!isset($_SESSION)) {
             session_start();
         }
+
+        
+        isAdmin();
+
 
         $servicio = new Servicio;
         $alertas = [];
@@ -57,6 +63,9 @@ class ServicioController
         if (!isset($_SESSION)) {
             session_start();
         }
+        
+        isAdmin();
+
 
         if (!is_numeric($_GET['id'])) {
             header('Location: /servicios');
@@ -86,6 +95,11 @@ class ServicioController
 
     public static function eliminar()
     {
+        if(!isset($_SESSION)) {
+            session_start();
+        }
+        
+        isAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
