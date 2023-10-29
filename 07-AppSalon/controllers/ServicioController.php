@@ -58,8 +58,7 @@ class ServicioController
             session_start();
         }
 
-        $id = is_numeric($_GET['id']);
-        if (!$id) {
+        if (!is_numeric($_GET['id'])) {
             header('Location: /servicios');
         }
 
@@ -68,6 +67,14 @@ class ServicioController
 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $servicio->sincronizar($_POST);
+            $alertas = $servicio->validar();
+
+            if (empty($alertas)) {
+                $servicio->guardar();
+                header('Location: /servicios');
+            }
         }
 
         $router->render('servicios/actualizar', [
@@ -77,11 +84,14 @@ class ServicioController
         ]);
     }
 
-    public static function eliminar(Router $router)
+    public static function eliminar()
     {
-        echo "Desde Eliminar Servicios";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $servicio = Servicio::find($id);
+            $servicio->eliminar();
+            header('Location: /servicios');
         }
     }
 }
