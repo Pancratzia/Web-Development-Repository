@@ -21,7 +21,7 @@
 
         <div class="acciones">
             <a href="/crear">Crear Cuenta en UpTask</a>
-            <a href="/olvide">¿Olvidaste tu Password"></a>
+            <a href="/olvide">¿Olvidaste tu Password?</a>
         </div>
     </div>
 </div>
