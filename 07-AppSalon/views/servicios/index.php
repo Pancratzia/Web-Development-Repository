@@ -15,5 +15,14 @@ include_once __DIR__ . '/../templates/barra.php';
             <p>Precio: <span><?php echo $servicio->precio; ?>$</span></p>
         </li>
 
+        <div class="acciones">
+            <a href="/servicios/actualizar?id=<?php echo $servicio->id; ?>" class="boton">Actualizar</a>
+
+            <form action="/servicios/eliminar" method="POST">
+                <input type="hidden" name="id" value="<?php echo $servicio->id; ?>">
+                <input type="submit" class="boton-eliminar" value="Eliminar">
+            </form>
+        </div>
+
     <?php } ?>
 </ul>
