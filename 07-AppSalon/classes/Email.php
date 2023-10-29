@@ -26,13 +26,13 @@ class Email
         $dotenv->load();
 
         $mail = new PHPMailer();
-        $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = $_ENV['MAILTRAP_USERNAME'];
-        $mail->Password = $_ENV['MAILTRAP_PASSWORD'];
+        $mail->Port = 465;
+        $mail->Username = $_ENV['USERNAME'];
+        $mail->Password = $_ENV['PASSWORD'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         $mail->setFrom('cuentas@appsalon.com');
         $mail->addAddress($this->email, $this->nombre);
@@ -52,18 +52,19 @@ class Email
         $mail->send();
     }
 
-    public function enviarInstrucciones(){
+    public function enviarInstrucciones()
+    {
         $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
         $dotenv->load();
 
         $mail = new PHPMailer();
-        $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = $_ENV['MAILTRAP_USERNAME'];
-        $mail->Password = $_ENV['MAILTRAP_PASSWORD'];
+        $mail->Port = 465;
+        $mail->Username = $_ENV['USERNAME'];
+        $mail->Password = $_ENV['PASSWORD'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         $mail->setFrom('cuentas@appsalon.com');
         $mail->addAddress($this->email, $this->nombre);
