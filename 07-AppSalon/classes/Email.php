@@ -30,8 +30,8 @@ class Email
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Port = 465;
-        $mail->Username = $_ENV['USERNAME'];
-        $mail->Password = $_ENV['PASSWORD'];
+        $mail->Username = $_ENV['GMAIL_USERNAME'];
+        $mail->Password = $_ENV['GMAIL_PASSWORD'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         $mail->setFrom('cuentas@appsalon.com');
@@ -62,8 +62,8 @@ class Email
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Port = 465;
-        $mail->Username = $_ENV['USERNAME'];
-        $mail->Password = $_ENV['PASSWORD'];
+        $mail->Username = $_ENV['GMAIL_USERNAME'];
+        $mail->Password = $_ENV['GMAIL_PASSWORD'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         $mail->setFrom('cuentas@appsalon.com');
