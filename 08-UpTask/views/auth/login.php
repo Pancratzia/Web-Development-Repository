@@ -1,5 +1,5 @@
-<div class="contendor">
-    <h1>UpTask</h1>
+<div class="contendor crear">
+    <h1 class="uptask">UpTask</h1>
     <p class="tagline">Crea y Administra tus Proyectos</p>
 
     <div class="contenedor-sm">
