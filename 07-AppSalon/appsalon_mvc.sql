@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-10-2023 a las 04:58:52
+-- Tiempo de generación: 29-10-2023 a las 17:24:05
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -63,17 +63,17 @@ CREATE TABLE `servicios` (
 --
 
 INSERT INTO `servicios` (`id`, `nombre`, `precio`) VALUES
-(1, 'Corte de Cabello Mujer', 90.00),
-(2, 'Corte de Cabello Hombre', 80.00),
-(3, 'Corte de Cabello Niño', 60.00),
-(4, 'Peinado Mujer', 80.00),
-(5, 'Peinado Hombre', 60.00),
-(6, 'Peinado Niño', 60.00),
-(7, 'Corte de Barba', 60.00),
-(8, 'Tinte Mujer', 300.00),
-(9, 'Uñas', 400.00),
-(10, 'Lavado de Cabello', 50.00),
-(11, 'Tratamiento Capilar', 150.00);
+(1, 'Corte Para Mujer', 15.00),
+(2, 'Corte Para Hombre', 5.00),
+(3, 'Corte Para Niño', 5.00),
+(4, 'Peinado Para Mujer', 20.00),
+(5, 'Peinado Para Hombre', 10.00),
+(6, 'Peinado Para Niño', 10.00),
+(7, 'Corte de Barba', 2.00),
+(8, 'Pintado de Cabello', 20.00),
+(9, 'Uñas', 4.00),
+(10, 'Lavado de Cabello', 2.00),
+(11, 'Tratamiento Capilar', 20.00);
 
 -- --------------------------------------------------------
 
@@ -87,11 +87,20 @@ CREATE TABLE `usuarios` (
   `apellido` varchar(60) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
-  `telefono` varchar(10) DEFAULT NULL,
+  `telefono` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   `confirmado` tinyint(1) DEFAULT NULL,
   `token` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
+(1, 'Admin', 'AppSalon', 'admin@appsalon.com', '$2y$10$qcLtyjV4AsxTFecNp4VP2.ZsDNkLQXo7zWXPXkikVx38AO4pLk42G', '04240000000', 1, 1, ''),
+(2, ' Tiffany', 'Ortega', 'tiffany@appsalon.com', '$2y$10$aY3jQpJOLSwFTXJyIrPC3enR/Q.5/Zx7A0IAm9rwfoTGV29t8PUuK', '04240000000', 0, 1, ''),
+(3, ' Teresa', 'Ortega', 'teresa@appsalon.com', '$2y$10$tS.6cYgQ/CZo0DJehThAkOsjItGybimGtY53x97eR6MnrUNk0y4Fi', '04240000000', 0, 1, '');
 
 --
 -- Índices para tablas volcadas
@@ -132,25 +141,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `citasservicios`
 --
 ALTER TABLE `citasservicios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
