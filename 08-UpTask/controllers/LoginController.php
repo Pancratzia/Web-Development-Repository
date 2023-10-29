@@ -7,14 +7,13 @@ use MVC\Router;
 class LoginController{
 
     public static function login(Router $router){
-        echo "Desde login";
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         }
 
         $router->render('auth/login', [
-
+            'titulo' => 'Iniciar Sesión'
         ]);
     }
 
@@ -23,14 +22,13 @@ class LoginController{
     }
 
     public static function crear(Router $router){
-        echo "Desde crear";
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             
         }
 
         $router->render('auth/crear', [
-
+            'titulo' => 'Crea tu Cuenta en UpTask'
         ]);
     }
 
