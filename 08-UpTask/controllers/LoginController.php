@@ -31,6 +31,10 @@ class LoginController{
 
             $usuario = new Usuario($_POST);
             $alertas = $usuario->validarNuevaCuenta();
+
+            if(empty($alertas)){
+
+            }
             
         }
 
