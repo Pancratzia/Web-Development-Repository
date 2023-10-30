@@ -10,12 +10,12 @@
 
             <div class="campo">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre">
+                <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre" value=<?php echo s($usuario->nombre) ?>>
             </div>
 
             <div class="campo">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Tu Email">
+                <input type="email" id="email" name="email" placeholder="Tu Email" value=<?php echo s($usuario->email) ?>>
             </div>
 
             <div class="campo">
