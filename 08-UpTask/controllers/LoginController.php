@@ -62,9 +62,10 @@ class LoginController{
     }
 
     public static function confirmar(Router $router){
-        echo "Desde confirmar";
 
-        $router->render('auth/confirmar', []);
+        $router->render('auth/confirmar', [
+            'titulo' => 'Cuenta Confirmada'
+        ]);
     }
 
 }
