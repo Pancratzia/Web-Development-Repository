@@ -34,6 +34,17 @@ class LoginController{
 
             if(empty($alertas)){
 
+                $existeUsuario = Usuario::where('email', $usuario->email);
+
+                if($existeUsuario){
+                    Usuario::setAlerta('error', 'El Usuario ya esta registrado');
+                    $alertas = $usuario->getAlertas();
+                }else{
+
+                    
+
+                }
+
             }
             
         }
