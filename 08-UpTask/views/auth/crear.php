@@ -3,7 +3,7 @@
     <?php include_once __DIR__ . '/../templates/nombre-sitio.php'; ?>
 
     <div class="contenedor-sm">
-        <div class="descripcion-pagina">Iniciar Sesión</div>
+        <div class="descripcion-pagina">Crea tu Cuenta en UpTask</div>
 
         <form class="formulario" action="/" method="POST">
 
