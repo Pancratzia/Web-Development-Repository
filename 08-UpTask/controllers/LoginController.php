@@ -94,10 +94,7 @@ class LoginController{
                 }else{
                     Usuario::setAlerta('error', 'El Usuario no existe o no está confirmado');
                 }
-
-
             }
-        
         }
 
         $alertas = Usuario::getAlertas();
@@ -110,12 +107,49 @@ class LoginController{
 
     public static function reestablecer(Router $router){
 
+        $token = s($_GET['token']);
+        $alertas = [];
+        $mostrar = true;
+
+        if(!$token){
+            header('Location: /');
+        }
+
+        $usuario = Usuario::where('token', $token);
+
+        if(empty($usuario)){
+            Usuario::setAlerta('error', 'Token No Válido');
+            $mostrar = false;
+        }
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $usuario->sincronizar($_POST);
+
+            $alertas = $usuario->validarPassword();
+
+            if(empty($alertas)){
+                
+                $usuario->hashPassword();
+                unset($usuario->password2);
+                $usuario->token = '';
+
+                $resultado = $usuario->guardar();
+
+                if($resultado){
+                    header('Location: /');
+                }
+
+            }
             
         }
 
+        $alertas = Usuario::getAlertas();
+
         $router->render('auth/reestablecer', [
-            'titulo' => 'Reestablece tu Password'
+            'titulo' => 'Reestablece tu Password',
+            'alertas' => $alertas,
+            'mostrar' => $mostrar
         ]);
     }
 
