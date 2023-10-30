@@ -5,6 +5,8 @@
     <div class="contenedor-sm">
         <div class="descripcion-pagina">Crea tu Cuenta en UpTask</div>
 
+        <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+
         <form class="formulario" action="/crear" method="POST">
 
 
