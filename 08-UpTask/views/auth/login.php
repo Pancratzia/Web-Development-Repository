@@ -1,11 +1,12 @@
-<div class="contendor login">
-    <h1 class="uptask">UpTask</h1>
-    <p class="tagline">Crea y Administra tus Proyectos</p>
+<div class="contenedor login">
+
+    <?php include_once __DIR__ . '/../templates/nombre-sitio.php'; ?>
 
     <div class="contenedor-sm">
-        <div class="descripcion-pagina">Iniciar Sesión</div>
+        <div class="descripcion-pagina">Crea tu Cuenta en UpTask</div>
 
         <form class="formulario" action="/" method="POST">
+
             <div class="campo">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Tu Email">

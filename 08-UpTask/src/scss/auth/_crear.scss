@@ -1,27 +1,30 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.login{
+
+.crear{
 
     padding-top: 5rem;
 
-    .uptask{
-        @include m.textoDegradado(v.$cyan);
+    .uptask{ 
+        @include m.textoDegradado(v.$morado);
     }
 
     input[type="submit"]{
-        @include m.boton(v.$cyan, v.$blanco);
+        @include m.boton(v.$morado, v.$blanco);
     }
 
     .acciones{
         a{
-            color: v.$cyan;
+            color: v.$morado;
             transition: color .3s ease;
 
             &:hover{
-                color: darken(v.$cyan, 10%);
+                color: darken(v.$morado, 10%);
                 transition: color .3s ease;
             }
         }
     }
+
+
 }

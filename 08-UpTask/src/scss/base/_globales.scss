@@ -14,8 +14,7 @@ body {
     min-height: 100%;
 }
 .contenedor {
-    width: 95%;
-    max-width: 1200px;
+    width: min(90%, 120rem);
     margin: 0 auto;
 }
 .contenedor-sm {
