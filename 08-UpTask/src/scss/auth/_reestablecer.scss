@@ -2,8 +2,8 @@
 @use 'base/mixins' as m;
 
 
-.crear{
+.reestablecer{
 
-    @include m.authStyles(v.$morado);
+    @include m.authStyles(v.$azul);
 
 }

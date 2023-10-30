@@ -56,3 +56,29 @@
     font-size: 10rem;
   }
 }
+
+@mixin authStyles($color) {
+
+  padding-top: 5rem;
+
+    .uptask{ 
+        @include textoDegradado($color);
+    }
+
+    input[type="submit"]{
+        @include boton($color, v.$blanco);
+    }
+
+    .acciones{
+        a{
+            color: $color;
+            transition: color .3s ease;
+
+            &:hover{
+                color: darken($color, 10%);
+                transition: color .3s ease;
+            }
+        }
+    }
+
+}
