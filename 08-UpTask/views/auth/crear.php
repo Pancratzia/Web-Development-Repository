@@ -5,7 +5,7 @@
     <div class="contenedor-sm">
         <div class="descripcion-pagina">Crea tu Cuenta en UpTask</div>
 
-        <form class="formulario" action="/" method="POST">
+        <form class="formulario" action="/crear" method="POST">
 
 
             <div class="campo">

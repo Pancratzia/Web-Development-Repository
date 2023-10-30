@@ -3,16 +3,16 @@
     <?php include_once __DIR__ . '/../templates/nombre-sitio.php'; ?>
 
     <div class="contenedor-sm">
-        <div class="descripcion-pagina">Reestablece tu Password</div>
+        <div class="descripcion-pagina">Recupera tu Acceso a UpTask</div>
 
-        <form class="formulario" action="/" method="POST">
+        <form class="formulario" action="/olvide" method="POST">
 
             <div class="campo">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Tu Email">
             </div>
 
-            <input type="submit" class="boton" value="Reestablecer Cuenta">
+            <input type="submit" class="boton" value="Enviar Instrucciones">
         </form>
 
         <div class="acciones">
