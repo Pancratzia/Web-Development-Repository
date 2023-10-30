@@ -69,13 +69,42 @@ class LoginController{
     }
 
     public static function olvide(Router $router){
+        $alertas = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $usuario = new Usuario($_POST);
+
+            $alertas = $usuario->validarEmail();
+
+            if(empty($alertas)){
+
+                $usuario = Usuario::where('email', $usuario->email);
+
+                if($usuario && $usuario->confirmado){
+
+                    $usuario->crearToken();
+                    unset($usuario->password2);
+                    $usuario->guardar();
+
+                    $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
+                    $email->enviarInstrucciones();
+
+                    Usuario::setAlerta('exito', 'Hemos enviado instrucciones a tu email');
+
+                }else{
+                    Usuario::setAlerta('error', 'El Usuario no existe o no está confirmado');
+                }
+
+
+            }
         
         }
 
+        $alertas = Usuario::getAlertas();
+
         $router->render('auth/olvide', [
-            'titulo' => 'Reestablece tu Password'
+            'titulo' => 'Reestablece tu Password',
+            'alertas' => $alertas
         ]);
     }
 
