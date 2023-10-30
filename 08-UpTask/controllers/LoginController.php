@@ -99,8 +99,31 @@ class LoginController{
 
     public static function confirmar(Router $router){
 
+        $token = s($_GET['token']);
+        $alertas = [];
+
+        if(!$token){
+            header('Location: /');
+        }
+
+        $usuario = Usuario::where('token', $token);
+
+        if(empty($usuario)){
+            Usuario::setAlerta('error', 'Token No Válido');
+        }else{
+            $usuario->confirmado = 1;
+            $usuario->token = '';
+            unset($usuario->password2);
+            $usuario->guardar();
+
+            Usuario::setAlerta('exito', '¡Tu cuenta ha sido confirmada!');
+        }
+
+        $alertas = Usuario::getAlertas();
+
         $router->render('auth/confirmar', [
-            'titulo' => 'Cuenta Confirmada'
+            'titulo' => 'Confirmación de tu Cuenta en UpTask',
+            'alertas' => $alertas
         ]);
     }
 
