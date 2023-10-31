@@ -40,8 +40,27 @@
           modal.remove();
         }, 500);
       }
+
+      if (e.target.classList.contains("submit-nueva-tarea")) {
+          submitFormularioNuevaTarea();
+      }
     });
 
     document.querySelector("body").appendChild(modal);
+  }
+
+  function submitFormularioNuevaTarea() {
+    const tarea = document.querySelector("#tarea").value.trim();
+
+    if(tarea === ""){
+      
+      mostrarAlerta("El nombre de la tarea es obligatorio", "error", "nueva-tarea");
+      return;
+    }
+
+  }
+
+  function mostrarAlerta(mensaje, tipo, referencia){
+    
   }
 })();
