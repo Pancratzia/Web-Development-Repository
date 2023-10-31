@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 31-10-2023 a las 16:56:27
+-- Tiempo de generación: 31-10-2023 a las 16:57:11
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -34,16 +34,6 @@ CREATE TABLE `proyectos` (
   `propietarioid` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
---
--- Volcado de datos para la tabla `proyectos`
---
-
-INSERT INTO `proyectos` (`id`, `proyecto`, `url`, `propietarioid`) VALUES
-(1, ' Tienda Virtual Para Camisetas', '56a55b3487305480cb9028361c308191', 1),
-(2, ' Blog de Perros', 'a7deca2510e5d0dd51375510eb7b0153', 1),
-(3, ' Tienda Virtual', 'd98d36496551f4821df093585f2289b5', 2),
-(4, ' Visitar a Tiffany', '233c09488a673b493a85bc1bdaaeeb9f', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -71,14 +61,6 @@ CREATE TABLE `usuarios` (
   `token` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `confirmado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `token`, `confirmado`) VALUES
-(1, ' User Admin', 'test@admin.com', '$2y$10$gckZetYSjUWNH5V/0Ukca.xHbzIYCYoXNTpN9eArdRxNXK7a9FAVK', '', 1),
-(2, ' Pancratzia', 'correo@correo.com', '$2y$10$dN5emssE/L8yRzqxYVuuauhZDJv9GzqNBrSrexTQZ4VdeXPB20kdy', '', 1);
 
 --
 -- Índices para tablas volcadas
@@ -112,7 +94,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
@@ -124,7 +106,7 @@ ALTER TABLE `tareas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
