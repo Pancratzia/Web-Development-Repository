@@ -15,11 +15,27 @@
     padding: 2rem;
     margin: 0 auto;
     transform: translateY(-30rem);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
 
     &.animar {
       position: relative;
       top: 50%;
       transform: translateY(-50%);
+      opacity: 1;
+      transition: all 0.5s ease-in-out;
+    }
+
+    &.cerrar {
+      transform: translateY(-200%);
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .cerrar-modal {
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
