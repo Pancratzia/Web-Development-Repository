@@ -20,6 +20,11 @@
     transition: all 0.5s ease-in-out;
     border-radius: 1rem;
 
+    input[type="text"]{
+      border: .1rem solid v.$gris;
+      border-radius: .5rem;
+    }
+
     legend{
         font-size: 2rem;
         text-align: center;
