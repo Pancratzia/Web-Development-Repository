@@ -32,7 +32,7 @@ class LoginController{
                         $_SESSION['login'] = true;
                         
                         
-                        header('Location: /proyectos');
+                        header('Location: /dashboard');
 
                     }else{
                         Usuario::setAlerta('error', 'Password Incorrecto');
