@@ -97,16 +97,25 @@
       });
 
       const resultado = await respuesta.json();
-      mostrarAlerta(resultado.mensaje, resultado.tipo, document.querySelector(".formulario legend"));
+
+      mostrarAlerta(
+        resultado.mensaje,
+        resultado.tipo,
+        document.querySelector(".formulario legend")
+      );
+
+      if(resultado.tipo === "exito"){
+        document.querySelector("#tarea").value = "";
+      }
+      
     } catch (error) {
       console.log(error);
     }
   }
 
-  function obtenerProyecto(){
+  function obtenerProyecto() {
     const proyectoParams = new URLSearchParams(window.location.search);
     const proyecto = Object.fromEntries(proyectoParams.entries());
     return proyecto.url;
   }
-
 })();
