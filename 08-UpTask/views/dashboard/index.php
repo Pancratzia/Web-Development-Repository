@@ -4,7 +4,7 @@
 
 if (count($proyectos) === 0) { ?>
 
-    <p class="no-proyectos">No Tienes Proyectos Creados. <a href="/crear-proyecto">¡Crea Tu Primer Proyecto Ahora!</a> </p>
+    <p class="no-proyectos">No Tienes Proyectos Creados... <a href="/crear-proyecto">¡Crea Tu Primer Proyecto Ahora!</a> </p>
 
 <?php }else{ ?>
 
