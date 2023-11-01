@@ -108,9 +108,15 @@
           document.querySelector(`.contenedor-nueva-tarea`)
         );
 
+        const modal = document.querySelector(".modal");
+        if(modal) {
+          modal.remove();
+        }
+
         tareas = tareas.map((tareaMemoria) => {
           if (tareaMemoria.id === id) {
             tareaMemoria.estado = estado;
+            tareaMemoria.nombre = nombre;
           }
           return tareaMemoria;
         });
