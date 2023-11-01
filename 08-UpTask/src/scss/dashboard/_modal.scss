@@ -41,10 +41,12 @@
 
     .submit-nueva-tarea{
         @include m.boton(v.$indigo, v.$blanco);
+        padding: 1rem;
     }
 
     .cerrar-modal{
         @include m.boton(v.$naranja, v.$blanco);
+        padding: 1rem;
     }
 
     &.animar {
