@@ -42,6 +42,9 @@
   function mostrarTareas() {
     limpiarTareas();
 
+    totalPendientes();
+    totalCompletas();
+
     const arrayTareas = filtradas.length ? filtradas : tareas;
 
     const contenedorTareas = document.querySelector("#listado-tareas");
@@ -59,7 +62,7 @@
       0: "Pendiente",
       1: "Completa",
     };
-    
+
     arrayTareas.forEach((tarea) => {
       const contenedorTarea = document.createElement("LI");
       contenedorTarea.dataset.tareaId = tarea.id;
@@ -99,6 +102,34 @@
 
       contenedorTareas.appendChild(contenedorTarea);
     });
+  }
+
+  function totalPendientes() {
+    const totalPendientes = tareas.filter((tarea) => {
+      return tarea.estado === "0";
+    });
+
+    const pendientesRadio = document.querySelector("#pendientes");
+
+    if (totalPendientes.length === 0) {
+      pendientesRadio.disabled = true;
+    } else {
+      pendientesRadio.disabled = false;
+    }
+  }
+
+  function totalCompletas() {
+    const totalCompletas = tareas.filter((tarea) => {
+      return tarea.estado === "1";
+    });
+
+    const completasRadio = document.querySelector("#completadas");
+
+    if (totalCompletas.length === 0) {
+      completasRadio.disabled = true;
+    } else {
+      completasRadio.disabled = false;
+    }
   }
 
   function cambiarEstadoTarea(tarea) {
