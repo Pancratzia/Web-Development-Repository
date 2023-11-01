@@ -22,7 +22,6 @@
   }
 
   function mostrarTareas() {
-
     limpiarTareas();
     const contenedorTareas = document.querySelector("#listado-tareas");
 
@@ -38,7 +37,7 @@
     const estados = {
       0: "Pendiente",
       1: "Completa",
-    }
+    };
     tareas.forEach((tarea) => {
       const contenedorTarea = document.createElement("LI");
       contenedorTarea.dataset.tareaId = tarea.id;
@@ -47,9 +46,9 @@
       const nombreTarea = document.createElement("P");
       nombreTarea.textContent = tarea.nombre;
       nombreTarea.ondblclick = () => {
-        mostrarFormulario(editar = true, tarea);
-      }
-      
+        mostrarFormulario((editar = true), { ...tarea });
+      };
+
       const opcionesDiv = document.createElement("DIV");
       opcionesDiv.classList.add("opciones");
 
@@ -59,16 +58,15 @@
       btnEstadoTarea.textContent = estados[tarea.estado];
       btnEstadoTarea.dataset.estadoTarea = tarea.estado;
       btnEstadoTarea.ondblclick = () => {
-        cambiarEstadoTarea({...tarea});
+        cambiarEstadoTarea({ ...tarea });
       };
-      
 
       const btnEliminarTarea = document.createElement("BUTTON");
       btnEliminarTarea.classList.add("eliminar-tarea");
       btnEliminarTarea.dataset.idTarea = tarea.id;
       btnEliminarTarea.textContent = "Eliminar";
       btnEliminarTarea.ondblclick = () => {
-        confirmarEliminarTarea({...tarea});
+        confirmarEliminarTarea({ ...tarea });
       };
 
       opcionesDiv.appendChild(btnEstadoTarea);
@@ -81,17 +79,13 @@
     });
   }
 
-
   function cambiarEstadoTarea(tarea) {
-    
     const nuevoEstado = tarea.estado === "1" ? "0" : "1";
     tarea.estado = nuevoEstado;
     actualizarTarea(tarea);
-
   }
 
   async function actualizarTarea(tarea) {
-    
     const { estado, id, nombre, proyectoid } = tarea;
     const datos = new FormData();
     datos.append("id", id);
@@ -99,16 +93,15 @@
     datos.append("estado", estado);
     datos.append("proyectoid", obtenerProyecto());
 
-    try{
-
+    try {
       const url = `http://localhost:3000/api/tarea/actualizar`;
       const respuesta = await fetch(url, {
         method: "POST",
-        body: datos
+        body: datos,
       });
       const resultado = await respuesta.json();
 
-      if(resultado.respuesta.tipo === "exito"){
+      if (resultado.respuesta.tipo === "exito") {
         mostrarAlerta(
           resultado.respuesta.mensaje,
           resultado.respuesta.tipo,
@@ -124,31 +117,25 @@
 
         mostrarTareas();
       }
-
-
-    } catch(error){
+    } catch (error) {
       console.log(error);
-    }   
-
+    }
   }
 
   function confirmarEliminarTarea(tarea) {
-    
     Swal.fire({
-      title: '¿Desea eliminar esta tarea?',
+      title: "¿Desea eliminar esta tarea?",
       showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'No',
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
         btnEliminarTarea(tarea);
       }
-    })
-
+    });
   }
 
   async function btnEliminarTarea(tarea) {
-
     const { estado, id, nombre, proyectoid } = tarea;
     const datos = new FormData();
     datos.append("id", id);
@@ -160,7 +147,7 @@
       const url = `http://localhost:3000/api/tarea/eliminar`;
       const respuesta = await fetch(url, {
         method: "POST",
-        body: datos
+        body: datos,
       });
       const resultado = await respuesta.json();
 
@@ -177,7 +164,6 @@
 
         mostrarTareas();
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -189,15 +175,23 @@
 
     modal.innerHTML = `
             <form class="formulario nueva-tarea">
-                <legend>${editar ? "Editar Tarea" : "Añade una nueva Tarea"}</legend>
+                <legend>${
+                  editar ? "Editar Tarea" : "Añade una nueva Tarea"
+                }</legend>
 
                 <div class="campo">
                     <label for="tarea">Nombre de la Tarea</label>
-                    <input type="text" id="tarea" name="tarea" placeholder=${tarea.nombre ? "Editar la tarea" : "Añadir una nueva tarea"} value="${tarea.nombre ? tarea.nombre : ""}">
+                    <input type="text" id="tarea" name="tarea" placeholder=${
+                      tarea.nombre
+                        ? "Editar la tarea"
+                        : "Añadir una nueva tarea"
+                    } value="${tarea.nombre ? tarea.nombre : ""}">
                 </div>
 
                 <div class="opciones">
-                    <input type="submit" class="submit-nueva-tarea" value="${editar ? "Guardar Cambios" : "Añadir Tarea"}" />
+                    <input type="submit" class="submit-nueva-tarea" value="${
+                      editar ? "Guardar Cambios" : "Añadir Tarea"
+                    }" />
                     <button type="button" class="cerrar-modal">Cancelar</button>
                 </div>
             </form>
@@ -221,26 +215,27 @@
       }
 
       if (e.target.classList.contains("submit-nueva-tarea")) {
-        submitFormularioNuevaTarea();
+        const nombreTarea = document.querySelector("#tarea").value.trim();
+
+        if (nombreTarea === "") {
+          mostrarAlerta(
+            "El nombre de la tarea es obligatorio",
+            "error",
+            document.querySelector(".formulario legend")
+          );
+          return;
+        }
+
+        if (editar) {
+          tarea.nombre = nombreTarea;
+          actualizarTarea(tarea);
+        }else{
+          agregarTarea(nombreTarea);
+        }
       }
     });
 
     document.querySelector(".dashboard").appendChild(modal);
-  }
-
-  function submitFormularioNuevaTarea() {
-    const tarea = document.querySelector("#tarea").value.trim();
-
-    if (tarea === "") {
-      mostrarAlerta(
-        "El nombre de la tarea es obligatorio",
-        "error",
-        document.querySelector(".formulario legend")
-      );
-      return;
-    }
-
-    agregarTarea(tarea);
   }
 
   function mostrarAlerta(mensaje, tipo, referencia) {
@@ -292,7 +287,7 @@
           nombre: tarea,
           estado: 0,
           proyectoid: resultado.proyectoid,
-        }
+        };
 
         tareas = [...tareas, tareaObj];
 
