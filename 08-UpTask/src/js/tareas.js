@@ -143,8 +143,35 @@
   }
 
   async function btnEliminarTarea(tarea) {
+
+    const { estado, id, nombre, proyectoid } = tarea;
     const datos = new FormData();
+    datos.append("id", id);
+    datos.append("nombre", nombre);
+    datos.append("estado", estado);
+    datos.append("proyectoid", obtenerProyecto());
+
     try {
+      const url = `http://localhost:3000/api/tarea/eliminar`;
+      const respuesta = await fetch(url, {
+        method: "POST",
+        body: datos
+      });
+      const resultado = await respuesta.json();
+
+      if (resultado.resultado) {
+        mostrarAlerta(
+          resultado.mensaje,
+          resultado.tipo,
+          document.querySelector(`.contenedor-nueva-tarea`)
+        );
+
+        tareas = tareas.filter((tareaMemoria) => {
+          return tareaMemoria.id !== id;
+        });
+
+        mostrarTareas();
+      }
       
     } catch (error) {
       console.log(error);
