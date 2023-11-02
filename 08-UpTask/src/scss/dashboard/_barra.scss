@@ -20,6 +20,10 @@
   .menu {
     img {
       width: 0.8rem;
+
+      &:hover{
+        cursor: pointer;
+      }
     }
   }
 }
