@@ -6,15 +6,15 @@
 
     <a href="/perfil" class="enlace">Volver a Perfil</a>
 
-    <form action="/perfil" method="POST" class="formulario">
+    <form action="/cambiar-password" method="POST" class="formulario">
         <div class="campo">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre">
+            <label for="password_actual">Password Actual</label>
+            <input type="password" id="password_actual" name="password_actual" placeholder="Tu Password">
         </div>
 
         <div class="campo">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Tu Email">
+            <label for="password_nuevo">Password Nuevo</label>
+            <input type="password" id="password_nuevo" name="password_nuevo" placeholder="Tu Nuevo Password">
         </div>
 
         <input type="submit" value="Guardar cambios">
