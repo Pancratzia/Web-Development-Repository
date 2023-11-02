@@ -21,11 +21,12 @@ class Email{
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'd6a1e42100fc07';
-        $mail->Password = 'dfcb1b77988591';
+        $mail->Port = 465;
+        $mail->Username = $_ENV['GMAIL_USERNAME'];
+        $mail->Password = $_ENV['GMAIL_PASSWORD'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         $mail->setFrom('cuentas@uptask.com');
         $mail->addAddress($this->email, $this->nombre);
@@ -36,7 +37,7 @@ class Email{
 
         $contenido = '<html>';
         $contenido .= '<p>¡Hola, ' . $this->nombre . '. Parece que has solicitado reestablecer tu password de UpTask! </p>';
-        $contenido .= '<p>Presiona este <a href="http://localhost:3000/reestablecer?token=' . $this->token . '">enlace</a> para cambiar tu password</p>';
+        $contenido .= '<p>Presiona este <a href="'. $_ENV['APP_URL'] .'/reestablecer?token=' . $this->token . '">enlace</a> para cambiar tu password</p>';
         $contenido .= '<p>Si tu no solicitaste este cambio, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
 
@@ -49,11 +50,12 @@ class Email{
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'd6a1e42100fc07';
-        $mail->Password = 'dfcb1b77988591';
+        $mail->Port = 465;
+        $mail->Username = $_ENV['GMAIL_USERNAME'];
+        $mail->Password = $_ENV['GMAIL_PASSWORD'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
         $mail->setFrom('cuentas@uptask.com');
         $mail->addAddress($this->email, $this->nombre);
@@ -64,7 +66,7 @@ class Email{
 
         $contenido = '<html>';
         $contenido .= '<p>¡Hola, ' . $this->nombre . ' Has creado tu cuenta en UpTask! </p>';
-        $contenido .= '<p>Presiona este <a href="http://localhost:3000/confirmar?token=' . $this->token . '">enlace</a> para confirmar tu cuenta</p>';
+        $contenido .= '<p>Presiona este <a href="'. $_ENV['APP_URL'] . '/confirmar?token=' . $this->token . '">enlace</a> para confirmar tu cuenta</p>';
         $contenido .= '<p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>';
         $contenido .= '</html>';
 

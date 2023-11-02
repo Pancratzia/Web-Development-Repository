@@ -28,7 +28,7 @@
   async function obtenerTareas() {
     try {
       const id = obtenerProyecto();
-      const url = `http://localhost:3000/api/tareas?url=${id}`;
+      const url = `${location.origin}/api/tareas?url=${id}`;
       const respuesta = await fetch(url);
       const resultado = await respuesta.json();
       tareas = resultado.tareas;
@@ -147,7 +147,7 @@
     datos.append("proyectoid", obtenerProyecto());
 
     try {
-      const url = `http://localhost:3000/api/tarea/actualizar`;
+      const url = `${location.origin}/api/tarea/actualizar`;
       const respuesta = await fetch(url, {
         method: "POST",
         body: datos,
@@ -203,7 +203,7 @@
     datos.append("proyectoid", obtenerProyecto());
 
     try {
-      const url = `http://localhost:3000/api/tarea/eliminar`;
+      const url = `${location.origin}/api/tarea/eliminar`;
       const respuesta = await fetch(url, {
         method: "POST",
         body: datos,
@@ -324,7 +324,7 @@
     datos.append("proyectoid", obtenerProyecto());
 
     try {
-      const url = "http://localhost:3000/api/tarea";
+      const url = `${location.origin}/api/tarea`;
       const respuesta = await fetch(url, {
         method: "POST",
         body: datos,
