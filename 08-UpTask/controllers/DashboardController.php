@@ -44,7 +44,7 @@ class DashboardController
         }
 
         $proyecto = Proyecto::where('url', $token);
-        if($proyecto->propietarioid !== $_SESSION['id']) {
+        if ($proyecto->propietarioid !== $_SESSION['id']) {
             header('Location: /dashboard');
         }
 
@@ -98,19 +98,23 @@ class DashboardController
         $usuario = Usuario::find($_SESSION['id']);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $usuario->sincronizar($_POST);
             $alertas = $usuario->validar_perfil();
 
             if (empty($alertas)) {
-                $usuario->guardar();
 
-                Usuario::setAlerta('exito', 'Guardado Correctamente');
+                $existeUsuario = Usuario::where('email', $usuario->email);
 
-                $alertas = Usuario::getAlertas();
-
-                $_SESSION['nombre'] = $usuario->nombre;
-
+                if ($existeUsuario && $existeUsuario->id !== $usuario->id) {
+                    Usuario::setAlerta('error', 'El Email ya esta registrado');
+                    $alertas = Usuario::getAlertas();
+                } else {
+                    $usuario->guardar();
+                    Usuario::setAlerta('exito', 'Guardado Correctamente');
+                    $alertas = Usuario::getAlertas();
+                    $_SESSION['nombre'] = $usuario->nombre;
+                }
             }
         }
 
