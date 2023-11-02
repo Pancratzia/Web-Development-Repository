@@ -13,3 +13,12 @@ if(cerrarMenuBtn) {
         sidebar.classList.remove("mostrar");
     });
 }
+
+window.addEventListener("resize", () => {
+
+    const anchoPantalla = document.body.clientWidth;
+
+    if(anchoPantalla >= 768) {
+        sidebar.classList.remove("mostrar");
+    }
+})
