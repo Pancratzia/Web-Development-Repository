@@ -7,11 +7,11 @@
     padding: 0;
     height: 0;
     overflow: hidden;
-    transition: opacity .5s ease;
+    transition: opacity .5s ease, height .5s ease, padding .5s ease;
 
     &.mostrar{
         opacity: 1;
-        transition: opacity .5s ease;
+        transition: opacity .5s ease, height .5s ease, padding .5s ease;
         padding: 3rem;
         height: 100%;
         position: absolute;
@@ -33,11 +33,33 @@
         background-color: v.$indigo;
     }
 
-    h2{
-        color: v.$blanco;
-        text-align: center;
-        margin: 0;
+    .contenedor-sidebar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2{
+            color: v.$blanco;
+            text-align: center;
+            margin: 0;
+        }
+
+        .cerrar-menu{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2rem;
+            height: 2rem;
+            
+            img{
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
     }
+
+    
 
     .sidebar-nav{
         margin-top: 5rem;
