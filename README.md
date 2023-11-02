@@ -9,3 +9,4 @@ A Repository for " Desarrollo Web Completo con HTML5, CSS3, JS AJAX PHP y MySQL"
 - [PankraFEST](https://github.com/Pancratzia/Web-Development-Repository/tree/main/04-PankraFest) made with HTML5, SASS & Gulp using Node.JS v18.8.0. Watch the results visiting the [Live Demo](https://pancratzia-pankrafest.netlify.app/)
 - [Bienes Raices](https://github.com/Pancratzia/Web-Development-Repository/tree/main/06-BienesRaicesMVC) made with HTML5, SASS, Gulp & PHP (MVC). Watch the results visiting the [Live Demo](https://pancratzia-bienesraices.000webhostapp.com/)
 - [App Salon](https://github.com/Pancratzia/Web-Development-Repository/tree/main/07-AppSalon) made with HTML5, SASS, Gulp & PHP (MVC). Watch the results visiting the [Live Demo](https://desqate.domcloud.io/)
+- [upTask](https://github.com/Pancratzia/Web-Development-Repository/tree/main/08-UpTask) made with HTML5, SASS, Gulp & PHP (MVC). Watch the results visiting the [Live Demo](https://dobloye.domcloud.io/)
