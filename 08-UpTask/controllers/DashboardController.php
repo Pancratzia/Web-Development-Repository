@@ -97,6 +97,23 @@ class DashboardController
         $alertas = [];
         $usuario = Usuario::find($_SESSION['id']);
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+            $usuario->sincronizar($_POST);
+            $alertas = $usuario->validar_perfil();
+
+            if (empty($alertas)) {
+                $usuario->guardar();
+
+                Usuario::setAlerta('exito', 'Guardado Correctamente');
+
+                $alertas = Usuario::getAlertas();
+
+                $_SESSION['nombre'] = $usuario->nombre;
+
+            }
+        }
+
         $router->render('dashboard/perfil', [
             'titulo' => 'Perfil',
             'alertas' => $alertas,
