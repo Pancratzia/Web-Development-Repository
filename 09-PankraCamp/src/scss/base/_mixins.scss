@@ -78,3 +78,14 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+@mixin logo{
+    color: v.$blanco;
+    text-align: center;
+    margin-bottom: 2rem;
+
+    @include desktop{
+        text-align: left;
+        margin: 0;
+    }
+}
