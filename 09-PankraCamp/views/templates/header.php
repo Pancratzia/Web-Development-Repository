@@ -11,7 +11,7 @@
             </a>
 
             <p class="header__texto">
-                Septiembre 1-2 del <?php echo date('Y')+1; ?>
+                Septiembre 17-18 del <?php echo date('Y')+1; ?>
             </p>
             <p class="header__texto header__texto--modalidad">En línea - Presencial</p>
 
