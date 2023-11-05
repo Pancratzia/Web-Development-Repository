@@ -30,16 +30,7 @@
   }
 
   &__enlace {
-    color: v.$blanco;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    font-weight: v.$bold;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: v.$azul;
-      transition: color 0.3s ease;
-    }
+    @include m.enlace;
   }
 
   &__contenido {
