@@ -454,7 +454,7 @@ h3 {
   background-color: #0063c1;
   cursor: pointer;
 }
-.formulario__submit--registrar {
+.formulario__submit--enviar-formulario {
   width: 100%;
 }
 
@@ -904,6 +904,7 @@ h3 {
 }
 .table__td--acciones {
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   gap: 2rem;
   align-items: center;

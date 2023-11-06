@@ -28,6 +28,7 @@
         &--acciones{
             @extend .table__td;
             display: flex;
+            flex-direction: column;
             justify-content: flex-end;
             gap: 2rem;
             align-items: center;

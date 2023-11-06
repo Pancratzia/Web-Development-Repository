@@ -11,10 +11,10 @@
     <?php include_once __DIR__ . './../../templates/alertas.php'; ?>
 
 
-    <form action="/admin/ponentes/crear" method="POST" class="formulario" enctype="multipart/form-data">
+    <form method="POST" class="formulario" enctype="multipart/form-data">
 
     <?php include_once __DIR__ . '/formulario.php'; ?>
 
-    <input class="formulario__submit formulario__submit--enviar-formulario" type="submit" value="Registrar Ponente">
+    <input class="formulario__submit formulario__submit--enviar-formulario" type="submit" value="Editar Ponente">
     </form>
 </div>
