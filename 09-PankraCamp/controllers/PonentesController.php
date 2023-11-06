@@ -65,7 +65,8 @@ class PonentesController {
         $router->render('admin/ponentes/crear', [
             'titulo' => 'Registrar Ponente / Conferencista',
             'alertas' => $alertas,
-            'ponente' => $ponente
+            'ponente' => $ponente,
+            'redes' => json_decode($ponente->redes)
         ]);
     }
 
@@ -88,11 +89,13 @@ class PonentesController {
 
         $ponente->imagen_actual = $ponente->imagen;
 
+        $redes = json_decode($ponente->redes);
 
         $router->render('admin/ponentes/editar', [
             'titulo' => 'Actualizar Ponente / Conferencista',
             'alertas' => $alertas,
-            'ponente' => $ponente
+            'ponente' => $ponente,
+            'redes' => $redes
         ]);
 
     }

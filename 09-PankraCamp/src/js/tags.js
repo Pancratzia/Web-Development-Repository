@@ -8,6 +8,11 @@
         const tagsInputHidden = document.querySelector('[name="tags"]');
 
         let tags = [];
+
+        if(tagsInputHidden.value !== ''){
+            tags = tagsInputHidden.value.split(',');
+            mostrarTags();
+        }
         
         tagsInput.addEventListener('keypress', guardarTag);
 
