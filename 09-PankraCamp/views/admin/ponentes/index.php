@@ -7,13 +7,14 @@
     </a>
 </div>
 
-<div class="dashboard__contenedor">
+<div class="dashboard__contenedor--speakers-list">
 
     <?php if (!empty($ponentes)) { ?>
 
         <table class="table">
             <thead class="table__thead">
                 <tr>
+                    <th scope="col" class="table__th">Imagen</th>
                     <th scope="col" class="table__th">Nombre</th>
                     <th scope="col" class="table__th">Ubicación</th>
                     <th scope="col" class="table__th"></th>
@@ -24,6 +25,18 @@
                 <?php foreach ($ponentes as $ponente) { ?>
 
                     <tr class="table__tr">
+
+                        <td class="table__td">
+                            <picture>
+                                <source srcset="/img/speakers/<?php echo $ponente->imagen . '.avif'; ?>" type="image/avif">
+                                <source srcset="/img/speakers/<?php echo $ponente->imagen . '.webp'; ?>" type="image/webp">
+                                <source srcset="/img/speakers/<?php echo $ponente->imagen . '.png'; ?>" type="image/png">
+
+                                <img class="table__imagen" src="/img/speakers/<?php echo $ponente->imagen . '.png'; ?>" alt="Imagen Ponente <?php echo $ponente->nombre . " " . $ponente->apellido; ?>">
+
+                            </picture>
+                        </td>
+
                         <td class="table__td">
                             <?php echo $ponente->nombre . " " . $ponente->apellido; ?>
                         </td>
@@ -40,7 +53,7 @@
                             </a>
 
                             <form method="POST" class="table__formulario">
-                                <button type="submit" class="table__accion table__accion--borrar">
+                                <button type="submit" class="table__accion table__accion--eliminar">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                     Borrar
                                 </button>

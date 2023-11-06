@@ -117,6 +117,11 @@
         background-color: v.$blanco;
         padding: 2rem;
         border-radius: 1rem;
+
+        &--speakers-list{
+            @extend .dashboard__contenedor;
+            overflow-x: auto;
+        }
     }
 
     &__formulario{
