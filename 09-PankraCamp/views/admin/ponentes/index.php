@@ -52,7 +52,8 @@
                                 Editar
                             </a>
 
-                            <form method="POST" class="table__formulario">
+                            <form method="POST" action="/admin/ponentes/eliminar" class="table__formulario">
+                                <input type="hidden" name="id" value="<?php echo $ponente->id; ?>">
                                 <button type="submit" class="table__accion table__accion--eliminar">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                     Borrar

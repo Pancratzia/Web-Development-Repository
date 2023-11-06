@@ -143,4 +143,25 @@ class PonentesController
             'redes' => $redes
         ]);
     }
+
+    public static function eliminar(){
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            $ponente = Ponente::find($id);
+
+            if(!isset($ponente)){
+                header('Location: /admin/ponentes');
+            }
+
+            $resultado = $ponente->eliminar();
+
+            if($resultado){
+                header('Location: /admin/ponentes');
+            }
+            
+        }
+    }
 }
