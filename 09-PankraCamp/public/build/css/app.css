@@ -415,6 +415,26 @@ h3 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+.formulario__listado {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.formulario__listado > li {
+  background-color: #007df4;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.formulario__listado > li:hover {
+  cursor: pointer;
+}
 .formulario__submit {
   background-color: #007df4;
   padding: 1.5rem 4rem;
