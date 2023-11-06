@@ -181,4 +181,12 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
         return $resultado;
     }
+
+    public static function total(){
+        $query = "SELECT COUNT(*) FROM " . static::$tabla;
+        $resultado = self::$db->query($query);
+        $total = $resultado->fetch_array();
+
+        return array_shift($total);
+    }
 }
