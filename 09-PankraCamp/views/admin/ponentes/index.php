@@ -28,11 +28,11 @@
 
                         <td class="table__td">
                             <picture>
-                                <source srcset="/img/speakers/<?php echo $ponente->imagen . '.avif'; ?>" type="image/avif">
-                                <source srcset="/img/speakers/<?php echo $ponente->imagen . '.webp'; ?>" type="image/webp">
-                                <source srcset="/img/speakers/<?php echo $ponente->imagen . '.png'; ?>" type="image/png">
+                                <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen . '.avif'; ?>" type="image/avif">
+                                <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen . '.webp'; ?>" type="image/webp">
+                                <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen . '.jpg'; ?>" type="image/png">
 
-                                <img class="table__imagen" src="/img/speakers/<?php echo $ponente->imagen . '.png'; ?>" alt="Imagen Ponente <?php echo $ponente->nombre . " " . $ponente->apellido; ?>">
+                                <img class="table__imagen" src="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen . '.png'; ?>" alt="Imagen Ponente <?php echo $ponente->nombre . " " . $ponente->apellido; ?>">
 
                             </picture>
                         </td>

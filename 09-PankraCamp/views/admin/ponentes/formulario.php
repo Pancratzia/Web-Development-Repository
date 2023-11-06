@@ -26,6 +26,21 @@
         <input type="file" class="formulario__input formulario__input--file" id="imagen" name="imagen">
     </div>
 
+    <?php if(isset($ponente->imagen_actual)) { ?>
+
+        <p class="formulario__texto">Imagen Actual: </p>
+
+        <picture>
+            <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen_actual . '.avif'; ?>" type="image/avif">
+            <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen_actual . '.webp'; ?>" type="image/webp">
+            <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen_actual . '.jpg'; ?>" type="image/png">
+
+            <img class="formulario__imagen" src="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen_actual; ?>.png" alt="Imagen del Ponente <?php echo $ponente->nombre; ?>">
+            
+        </picture>
+
+    <?php } ?>
+
 </fieldset>
 
 <fieldset class="formulario__fieldset">
