@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Classes\Paginacion;
 use Model\Ponente;
 use MVC\Router;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -16,6 +17,12 @@ class PonentesController
         if(!is_admin()){
             header('Location: /login');
         }
+
+        $pagina_actual = 1;
+        $registros_por_pagina = 10;
+        $total_registros = 100;
+
+        $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total_registros);
 
         $ponentes = Ponente::all();
 
