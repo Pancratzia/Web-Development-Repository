@@ -31,16 +31,25 @@
     async function buscarEventos(){
 
         const {dia, categoria_id} = busqueda;
-        const url = `/api/eventos-horario?dia=${dia}&categoria_id=${categoria_id}`;
+        const url = `/api/eventos-horario?dia_id=${dia}&categoria_id=${categoria_id}`;
         
         const resultado = await fetch(url);
         const eventos = await resultado.json();
 
-        obtenerHorasDisponibles();
+        obtenerHorasDisponibles(eventos);
     }
 
-    function obtenerHorasDisponibles(){
-        const horasDisponibles = document.querySelectorAll('#horas li');
+    function obtenerHorasDisponibles(eventos){
+
+        const horasTomadas = eventos.map(evento => evento.hora_id);
+
+        const listadoHoras = document.querySelectorAll('#horas li');
+        const listadoHorasArray = Array.from(listadoHoras);
+        const resultado = listadoHorasArray.filter(li => !horasTomadas.includes(li.dataset.horaId));
+
+        resultado.forEach(hora => hora.classList.remove('horas__hora--deshabilitada'));
+
+        const horasDisponibles = document.querySelectorAll('#horas li:not(.horas__hora--deshabilitada)');
         horasDisponibles.forEach(hora => hora.addEventListener('click', seleccionarHora));
     }
 
@@ -51,7 +60,7 @@
             horaPrevia.classList.remove('horas__hora--seleccionada');
         }
         e.target.classList.add('horas__hora--seleccionada');
-        inputHiddenDia.value = e.target.dataset.horaId;
+        inputHiddenHora.value = e.target.dataset.horaId;
     }
 
    }

@@ -402,7 +402,7 @@ h3 {
   font-size: 1.8rem;
   color: rgba(26, 27, 21, 0.8);
 }
-.formulario__input, .formulario__input--sociales, .formulario__select--sociales, .formulario__select {
+.formulario__input, .formulario__input--textarea, .formulario__select--textarea, .formulario__input--sociales, .formulario__select--sociales, .formulario__select {
   padding: 1rem;
   border: 0.1rem solid #b1c7dd;
   border-radius: 0.5rem;
@@ -414,6 +414,10 @@ h3 {
   flex: 1;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+.formulario__input--textarea, .formulario__select--textarea {
+  min-height: 20rem;
+  resize: vertical;
 }
 .formulario__listado {
   list-style: none;
@@ -509,19 +513,27 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.horas__hora, .horas__hora--seleccionada {
+.horas__hora, .horas__hora--deshabilitada, .horas__hora--seleccionada {
   color: #007df4;
   border: 0.1rem solid #007df4;
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: center;
 }
-.horas__hora:hover, .horas__hora--seleccionada:hover {
+.horas__hora:hover, .horas__hora--deshabilitada:hover, .horas__hora--seleccionada:hover {
   cursor: pointer;
 }
 .horas__hora--seleccionada {
   background-color: #007df4;
   color: #FFFFFF;
+}
+.horas__hora--deshabilitada {
+  border: 0.1rem solid #64748B;
+  color: #64748B;
+  opacity: 0.5;
+}
+.horas__hora--deshabilitada:hover {
+  cursor: not-allowed;
 }
 
 .header {

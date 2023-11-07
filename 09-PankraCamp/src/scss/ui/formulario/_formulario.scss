@@ -65,6 +65,12 @@
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
+
+        &--textarea{
+            @extend .formulario__input;
+            min-height: 20rem;
+            resize: vertical;
+        }
     }
 
     &__listado{

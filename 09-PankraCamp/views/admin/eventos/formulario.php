@@ -8,7 +8,7 @@
 
     <div class="formulario__campo">
         <label for="descripcion" class="formulario__label">Descripción del Evento</label>
-        <textarea class="formulario__input" id="descripcion" name="descripcion" placeholder="Descripción del Evento" rows="8"><?php echo $evento->descripcion ?? ''; ?></textarea>
+        <textarea class="formulario__input formulario__input--textarea" id="descripcion" name="descripcion" placeholder="Descripción del Evento" rows="8"><?php echo $evento->descripcion ?? ''; ?></textarea>
     </div>
 
     <div class="formulario__campo">
@@ -44,7 +44,7 @@
 
         <ul id="horas" class="horas">
             <?php foreach($horas as $hora): ?>
-                <li data-hora-id="<?php echo $hora->id; ?>" class="horas__hora"><?php echo $hora->hora; ?></li>
+                <li data-hora-id="<?php echo $hora->id; ?>" class="horas__hora horas__hora--deshabilitada""><?php echo $hora->hora; ?></li>
             <?php endforeach; ?>
         </ul>
 
