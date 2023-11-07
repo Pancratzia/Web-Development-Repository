@@ -21,6 +21,15 @@
     function terminoBusqueda(e){
         busqueda[e.target.name] = e.target.value;
 
+        inputHiddenHora.value = '';
+        const horaPrevia = document.querySelector('.horas__hora--seleccionada');
+
+        inputHiddenDia.value = '';
+
+        if(horaPrevia){
+            horaPrevia.classList.remove('horas__hora--seleccionada');
+        }
+
         if(Object.values(busqueda).includes('')){
             return;
         }
@@ -41,9 +50,12 @@
 
     function obtenerHorasDisponibles(eventos){
 
+        const listadoHoras = document.querySelectorAll('#horas li');
+
+        listadoHoras.forEach(li => li.classList.add('horas__hora--deshabilitada'));
+
         const horasTomadas = eventos.map(evento => evento.hora_id);
 
-        const listadoHoras = document.querySelectorAll('#horas li');
         const listadoHorasArray = Array.from(listadoHoras);
         const resultado = listadoHorasArray.filter(li => !horasTomadas.includes(li.dataset.horaId));
 
@@ -61,6 +73,8 @@
         }
         e.target.classList.add('horas__hora--seleccionada');
         inputHiddenHora.value = e.target.dataset.horaId;
+
+        inputHiddenDia.value = document.querySelector('[name="dia"]:checked').value;
     }
 
    }
