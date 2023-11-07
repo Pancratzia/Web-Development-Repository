@@ -59,6 +59,7 @@
                                     Borrar
                                 </button>
                             </form>
+                        </td>
                     </tr>
 
                 <?php } ?>
