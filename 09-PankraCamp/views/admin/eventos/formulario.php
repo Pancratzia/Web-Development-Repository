@@ -13,13 +13,12 @@
 
     <div class="formulario__campo">
         <label for="categoria" class="formulario__label">Categoría o Tipo de Evento</label>
-        <select class="formulario__select" id="categoria" name="categoria">
+        <select class="formulario__select" id="categoria" name="categoria_id">
             <option value="">-- Seleccione --</option>
             <?php foreach($categorias as $categoria): ?>     
-                <option value="<?php echo $categoria->id; ?>">
+                <option <?php echo $evento->categoria_id === $categoria->id ? 'selected' : ''; ?> value="<?php echo $categoria->id; ?>">
                     <?php echo $categoria->nombre; ?>
                 </option>
-
             <?php endforeach; ?>
         </select>
     </div>
@@ -60,6 +59,6 @@
 
     <div class="formulario__campo">
         <label for="disponibles" class="formulario__label">Lugares Disponibles</label>
-        <input type="number" class="formulario__input" id="disponibles" placeholder="Ej. 18" min="1" name="disponibles">
+        <input type="number" class="formulario__input" id="disponibles" placeholder="Ej. 18" min="1" name="disponibles" value="<?php echo $evento->disponibles ?? ''; ?>">
     </div>
 </fieldset>

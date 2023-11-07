@@ -34,6 +34,19 @@ class EventosController {
         $dias = Dia::all("ASC");
         $horas = Hora::all("ASC");
 
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $evento->sincronizar($_POST);
+            $alertas = $evento->validar();
+
+            if(empty($alertas)){
+                $resultado = $evento->guardar();
+                if($resultado){
+                    header('Location: /admin/eventos');
+                }
+            }
+        }
+
         $router->render('admin/eventos/crear', [
             'titulo' => 'Crear Conferencia / Workshop',
             'alertas' => $alertas,
