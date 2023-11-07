@@ -457,6 +457,16 @@ h3 {
 .formulario__submit--enviar-formulario {
   width: 100%;
 }
+.formulario__radio {
+  display: flex;
+  gap: 2rem;
+}
+.formulario__radio div {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 1rem;
+}
 .formulario__texto {
   margin-top: 3rem;
 }
