@@ -13,6 +13,7 @@
 
     const dias = document.querySelectorAll('[name="dia"]');
     const inputHiddenDia = document.querySelector('[name="dia_id"]');
+    const inputHiddenHora = document.querySelector('[name="hora_id"]');
 
     categoria.addEventListener('change', terminoBusqueda);
     dias.forEach(dia => dia.addEventListener('change', terminoBusqueda));
@@ -39,7 +40,12 @@
     }
 
     function obtenerHorasDisponibles(){
-        const {dia} = busqueda;
+        const horasDisponibles = document.querySelectorAll('#horas li');
+        horasDisponibles.forEach(hora => hora.addEventListener('click', seleccionarHora));
+    }
+
+    function seleccionarHora(e){
+        inputHiddenDia.value = e.target.dataset.horaId;
     }
 
    }
