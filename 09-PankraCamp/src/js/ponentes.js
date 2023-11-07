@@ -9,6 +9,8 @@
 
         obtenerPonentes();
 
+        ponentesInput.addEventListener('input', buscarPonentes);
+
         async function obtenerPonentes(){
             const url = `/api/ponentes`;
         
@@ -27,8 +29,21 @@
                 }
             });
 
-            ponentesFiltrados = ponentes;
+            
+        }
 
+        function buscarPonentes(e){
+            const busqueda = e.target.value;
+
+            if(busqueda.length > 3){
+               const expresion = new RegExp(busqueda, 'i');
+                ponentesFiltrados = ponentes.filter(ponente => {
+                    if(ponente.nombre.toLowerCase().match(expresion)){
+                        return ponente;
+                    }
+                });
+
+            }
         }
     }
 
