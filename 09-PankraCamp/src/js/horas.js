@@ -45,6 +45,12 @@
     }
 
     function seleccionarHora(e){
+
+        const horaPrevia = document.querySelector('.horas__hora--seleccionada');
+        if(horaPrevia){
+            horaPrevia.classList.remove('horas__hora--seleccionada');
+        }
+        e.target.classList.add('horas__hora--seleccionada');
         inputHiddenDia.value = e.target.dataset.horaId;
     }
 

@@ -20,5 +20,11 @@
         &:hover{
             cursor: pointer;
         }
+
+        &--seleccionada{
+            @extend .horas__hora;
+            background-color: v.$azul;
+            color: v.$blanco;
+        }
     }
 }
