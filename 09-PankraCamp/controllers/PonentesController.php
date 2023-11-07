@@ -25,7 +25,7 @@ class PonentesController
             header('Location: /admin/ponentes?page=1');
         }
 
-        $registros_por_pagina = 3;
+        $registros_por_pagina = 10;
 
         $total_registros = Ponente::total();
 
