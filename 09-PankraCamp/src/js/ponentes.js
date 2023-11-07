@@ -12,11 +12,24 @@
         async function obtenerPonentes(){
             const url = `/api/ponentes`;
         
-            const resultado = await fetch(url);
-            const ponentes = await resultado.json();
-            console.log(ponentes);
+            const respuesta = await fetch(url);
+            const resultado = await respuesta.json();
+
+            formatearPonentes(resultado);
+            
         }
 
+        function formatearPonentes(arrayPonentes = []){
+            ponentes = arrayPonentes.map(ponente => {
+                return {
+                    nombre: `${ponente.nombre.trim()} ${ponente.apellido.trim()}`,
+                    id: ponente.id
+                }
+            });
+
+            ponentesFiltrados = ponentes;
+
+        }
     }
 
 })();
