@@ -69,7 +69,7 @@
 
     <?php } else { ?>
 
-        <p class="text-center">No Hay Ponentes Registrados</p>
+        <p class="text-center">No Hay Eventos Registrados</p>
 
     <?php } ?>
 

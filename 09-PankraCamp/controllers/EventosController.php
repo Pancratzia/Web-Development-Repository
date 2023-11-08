@@ -24,8 +24,10 @@ class EventosController
         $pagina_actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
 
+
         if (!$pagina_actual || $pagina_actual < 1) {
             header('Location: /admin/eventos?page=1');
+            
         }
 
         $registros_por_pagina = 15;
@@ -34,7 +36,9 @@ class EventosController
 
         $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total_registros);
 
-        if ($paginacion->total_paginas() < $pagina_actual) {
+        if($paginacion->total_paginas() == 0){
+            
+        } else if ($paginacion->total_paginas() < $pagina_actual) {
             header('Location: /admin/eventos?page=1');
         }
 
@@ -143,5 +147,31 @@ class EventosController
             'horas' => $horas,
             'evento' => $evento
         ]);
+    }
+
+    public static function eliminar()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!is_admin()) {
+                header('Location: /login');
+            }
+
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            $evento = Evento::find($id);
+
+            if (!isset($evento)) {
+                header('Location: /admin/eventos');
+            }
+
+            $resultado = $evento->eliminar();
+
+            if ($resultado) {
+                header('Location: /admin/eventos');
+            }
+        }
     }
 }
