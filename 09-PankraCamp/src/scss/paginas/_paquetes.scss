@@ -28,7 +28,20 @@
     
     &__lista{
         @include m.reset-lista;
-        line-height: 2;
+        line-height: 1.4;
+    }
+
+    &__elemento{
+        margin-bottom: 1rem;
+
+        &:last-of-type{
+            margin-bottom: 0;
+        }
+
+        &::before{
+            content: '✓ ';
+            color: v.$azul;
+        }
     }
 
     &__precio{
