@@ -30,6 +30,16 @@
             color: v.$secundario;
         }
 
+        .evento__informacion{
+            background-color: v.$secundario;
+            transition: background-color .3s ease;
+
+            &:hover{
+                background-color: darken(v.$secundario, 10);
+                transition: background-color .3s ease;
+            }
+        }
+
     }
 
     .swiper-button-prev, .swiper-button-next{
