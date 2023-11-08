@@ -135,8 +135,8 @@ class EventosController
             }
         }
 
-        $router->render('admin/eventos/crear', [
-            'titulo' => 'Crear Conferencia / Workshop',
+        $router->render('admin/eventos/editar', [
+            'titulo' => 'Editar Conferencia / Workshop',
             'alertas' => $alertas,
             'categorias' => $categorias,
             'dias' => $dias,
