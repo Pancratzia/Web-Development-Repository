@@ -18,17 +18,15 @@
                     <div class="evento__informacion">
                         <h4 class="evento__nombre"> <?php echo $evento->nombre ?> </h4>
 
-                        <div>
-                            <p class="evento__informacion"><?php echo $evento->descripcion ?></p>
-                        </div>
+                        <p class="evento__introduccion""><?php echo $evento->descripcion ?></p>
 
-                        <div class="evbento__autor-info">
+                        <div class="evento__autor-info">
                             <picture>
                                 <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $evento->ponente->imagen . '.avif'; ?>" type="image/avif">
                                 <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $evento->ponente->imagen . '.webp'; ?>" type="image/webp">
                                 <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $evento->ponente->imagen . '.jpg'; ?>" type="image/png">
 
-                                <img src="<?php echo $_ENV['HOST'] . '/img/speakers/' . $evento->ponente->imagen; ?>.png" alt="Imagen del Ponente <?php echo $evento->ponente->nombre; ?>">
+                                <img loading="lazy" width="200" height="300" class="evento__imagen-autor" src="<?php echo $_ENV['HOST'] . '/img/speakers/' . $evento->ponente->imagen; ?>.png" alt="Imagen del Ponente <?php echo $evento->ponente->nombre; ?>">
 
                             </picture>
 
