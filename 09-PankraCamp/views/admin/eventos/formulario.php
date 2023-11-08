@@ -31,12 +31,12 @@
                 <div>
                     <label for="<?php echo strtolower($dia->nombre); ?>"><?php echo $dia->nombre; ?></label>
 
-                    <input type="radio" id="<?php echo strtolower($dia->nombre); ?>" name="dia" value="<?php echo $dia->id; ?>">
+                    <input <?php echo $evento->dia_id === $dia->id ? 'checked' : ''; ?> type="radio" id="<?php echo strtolower($dia->nombre); ?>" name="dia" value="<?php echo $dia->id; ?>">
                 </div>
             <?php endforeach; ?>
         </div>
 
-        <input type="hidden" name="dia_id" value="">
+        <input type="hidden" name="dia_id" value="<?php echo $evento->dia_id ?? ''; ?>">
     </div>
 
     <div id="horas" class="formulario__campo">
@@ -48,7 +48,7 @@
             <?php endforeach; ?>
         </ul>
 
-        <input type="hidden" name="hora_id" value="">
+        <input type="hidden" name="hora_id" value="<?php echo $evento->hora_id ?? ''; ?>">
     </div>
     
 </fieldset>

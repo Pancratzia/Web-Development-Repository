@@ -15,6 +15,6 @@
 
     <?php include_once __DIR__ . '/formulario.php'; ?>
 
-    <input class="formulario__submit formulario__submit--enviar-formulario" type="submit" value="Editar Ponente">
+    <input class="formulario__submit formulario__submit--enviar-formulario" type="submit" value="Editar Conferencia / Workshop">
     </form>
 </div>

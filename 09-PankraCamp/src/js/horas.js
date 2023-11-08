@@ -1,82 +1,104 @@
-(function(){
+(function () {
+  const horas = document.querySelector("#horas");
 
-   const horas = document.querySelector('#horas'); 
-
-   if(horas){
-
-    let busqueda = {
-        categoria_id: '',
-        dia: ''
-    }
-
+  if (horas) {
     const categoria = document.querySelector('[name="categoria_id"]');
 
     const dias = document.querySelectorAll('[name="dia"]');
     const inputHiddenDia = document.querySelector('[name="dia_id"]');
     const inputHiddenHora = document.querySelector('[name="hora_id"]');
 
-    categoria.addEventListener('change', terminoBusqueda);
-    dias.forEach(dia => dia.addEventListener('change', terminoBusqueda));
+    categoria.addEventListener("change", terminoBusqueda);
+    dias.forEach((dia) => dia.addEventListener("change", terminoBusqueda));
 
-    function terminoBusqueda(e){
-        busqueda[e.target.name] = e.target.value;
+    let busqueda = {
+      categoria_id: +categoria.value || "",
+      dia: +inputHiddenDia.value || "",
+    };
 
-        inputHiddenHora.value = '';
-        const horaPrevia = document.querySelector('.horas__hora--seleccionada');
+    if (!Object.values(busqueda).includes("")) {
+      (async () => {
+        await buscarEventos();
 
-        inputHiddenDia.value = '';
+        const id = inputHiddenHora.value;
 
-        if(horaPrevia){
-            horaPrevia.classList.remove('horas__hora--seleccionada');
-        }
+        const horaSeleccionada = document.querySelector(
+          `[data-hora-id="${id}"]`
+        );
 
-        if(Object.values(busqueda).includes('')){
-            return;
-        }
+        horaSeleccionada.classList.remove("horas__hora--deshabilitada");
+        horaSeleccionada.classList.add("horas__hora--seleccionada");
 
-        buscarEventos();
+        horaSeleccionada.onclick = seleccionarHora;
+      })();
     }
 
-    async function buscarEventos(){
+    function terminoBusqueda(e) {
+      busqueda[e.target.name] = e.target.value;
 
-        const {dia, categoria_id} = busqueda;
-        const url = `/api/eventos-horario?dia_id=${dia}&categoria_id=${categoria_id}`;
-        
-        const resultado = await fetch(url);
-        const eventos = await resultado.json();
+      inputHiddenHora.value = "";
+      const horaPrevia = document.querySelector(".horas__hora--seleccionada");
 
-        obtenerHorasDisponibles(eventos);
+      inputHiddenDia.value = "";
+
+      if (horaPrevia) {
+        horaPrevia.classList.remove("horas__hora--seleccionada");
+      }
+
+      if (Object.values(busqueda).includes("")) {
+        return;
+      }
+
+      buscarEventos();
     }
 
-    function obtenerHorasDisponibles(eventos){
+    async function buscarEventos() {
+      const { dia, categoria_id } = busqueda;
+      const url = `/api/eventos-horario?dia_id=${dia}&categoria_id=${categoria_id}`;
 
-        const listadoHoras = document.querySelectorAll('#horas li');
+      const resultado = await fetch(url);
+      const eventos = await resultado.json();
 
-        listadoHoras.forEach(li => li.classList.add('horas__hora--deshabilitada'));
-
-        const horasTomadas = eventos.map(evento => evento.hora_id);
-
-        const listadoHorasArray = Array.from(listadoHoras);
-        const resultado = listadoHorasArray.filter(li => !horasTomadas.includes(li.dataset.horaId));
-
-        resultado.forEach(hora => hora.classList.remove('horas__hora--deshabilitada'));
-
-        const horasDisponibles = document.querySelectorAll('#horas li:not(.horas__hora--deshabilitada)');
-        horasDisponibles.forEach(hora => hora.addEventListener('click', seleccionarHora));
+      obtenerHorasDisponibles(eventos);
     }
 
-    function seleccionarHora(e){
+    function obtenerHorasDisponibles(eventos) {
+      const listadoHoras = document.querySelectorAll("#horas li");
 
-        const horaPrevia = document.querySelector('.horas__hora--seleccionada');
-        if(horaPrevia){
-            horaPrevia.classList.remove('horas__hora--seleccionada');
-        }
-        e.target.classList.add('horas__hora--seleccionada');
-        inputHiddenHora.value = e.target.dataset.horaId;
+      listadoHoras.forEach((li) =>
+        li.classList.add("horas__hora--deshabilitada")
+      );
 
-        inputHiddenDia.value = document.querySelector('[name="dia"]:checked').value;
+      const horasTomadas = eventos.map((evento) => evento.hora_id);
+
+      const listadoHorasArray = Array.from(listadoHoras);
+      const resultado = listadoHorasArray.filter(
+        (li) => !horasTomadas.includes(li.dataset.horaId)
+      );
+
+      resultado.forEach((hora) =>
+        hora.classList.remove("horas__hora--deshabilitada")
+      );
+
+      const horasDisponibles = document.querySelectorAll(
+        "#horas li:not(.horas__hora--deshabilitada)"
+      );
+      horasDisponibles.forEach((hora) =>
+        hora.addEventListener("click", seleccionarHora)
+      );
     }
 
-   }
+    function seleccionarHora(e) {
+      const horaPrevia = document.querySelector(".horas__hora--seleccionada");
+      if (horaPrevia) {
+        horaPrevia.classList.remove("horas__hora--seleccionada");
+      }
+      e.target.classList.add("horas__hora--seleccionada");
+      inputHiddenHora.value = e.target.dataset.horaId;
 
+      inputHiddenDia.value = document.querySelector(
+        '[name="dia"]:checked'
+      ).value;
+    }
+  }
 })();
