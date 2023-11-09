@@ -574,6 +574,110 @@ h3 {
   font-size: 8rem;
 }
 
+.speakers__grid {
+  width: min(95%, 140rem);
+  margin: 0 auto;
+  display: grid;
+  gap: 5rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 768px) {
+  .speakers__grid {
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .speakers__grid {
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.speaker {
+  border: 0.1rem solid #7f8ea3;
+  padding: 3rem;
+  border-radius: 1rem;
+  transition: border-color 0.3s ease;
+}
+.speaker:hover {
+  cursor: pointer;
+  border-color: #007df4;
+  transition: border-color 0.3s ease;
+}
+.speaker__nombre {
+  font-weight: 900;
+  font-size: 2.6rem;
+  margin: 2rem 0;
+}
+.speaker__ubicacion {
+  color: #64748B;
+  margin: 1rem 0;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+.speaker__listado-skills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.speaker__listado-skills > li {
+  background-color: #007df4;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.speaker__listado-skills > li:hover {
+  cursor: pointer;
+}
+
+.speaker-sociales {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.speaker-sociales__enlace::before {
+  color: #1a1b15;
+  font-size: 3rem;
+  display: inline-block;
+  font-style: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 6 Brands";
+}
+.speaker-sociales__enlace[href*="facebook.com"]::before {
+  content: "\f39e";
+}
+.speaker-sociales__enlace[href*="github.com"]::before {
+  content: "\f09b";
+}
+.speaker-sociales__enlace[href*="tiktok.com"]::before {
+  content: "\e07b";
+}
+.speaker-sociales__enlace[href*="instagram.com"]::before {
+  content: "\f16d";
+}
+.speaker-sociales__enlace[href*="youtube.com"]::before {
+  content: "\f167";
+}
+.speaker-sociales__enlace[href*="twitter.com"]::before {
+  content: "\f099";
+}
+.speaker-sociales__enlace[href*="linkedin.com"]::before {
+  content: "\f0e1";
+}
+.speaker-sociales__ocultar {
+  display: none;
+}
+
 .formulario {
   display: flex;
   flex-direction: column;
