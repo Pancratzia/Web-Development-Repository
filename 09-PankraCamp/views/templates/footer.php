@@ -26,6 +26,9 @@
             <a class="menu-redes__enlace" rel="noopener noreferrer" target="_blank" href="https://tiktok.com">
                 <span class="menu-redes__ocultar">Tiktok</span>
             </a>
+            <a class="menu-redes__enlace" rel="noopener noreferrer" target="_blank" href="https://linkedin.com">
+                <span class="menu-redes__ocultar">LinkedIn</span>
+            </a>
             <a class="menu-redes__enlace" rel="noopener noreferrer" target="_blank" href="https://github.com">
                 <span class="menu-redes__ocultar">GitHub</span>
             </a>

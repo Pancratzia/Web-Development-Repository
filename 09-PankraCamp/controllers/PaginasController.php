@@ -42,17 +42,19 @@ class PaginasController{
 
         }
 
-        $ponentes = Ponente::total();
-        $conferencias = Evento::total('categoria_id', '1');
-        $workshops = Evento::total('categoria_id', '2');
+        $ponentes_total = Ponente::total();
+        $conferencias_total = Evento::total('categoria_id', '1');
+        $workshops_total = Evento::total('categoria_id', '2');
 
+        $ponentes = Ponente::all();
 
         $router->render('paginas/index',[
             'titulo' => 'Inicio', 
             'eventos' => $eventosFormateados,
-            'ponentes' => $ponentes,
-            'conferencias' => $conferencias,
-            'workshops' => $workshops
+            'ponentes_total' => $ponentes_total,
+            'conferencias_total' => $conferencias_total,
+            'workshops_total' => $workshops_total,
+            'ponentes' => $ponentes
         ]);
     
     }
