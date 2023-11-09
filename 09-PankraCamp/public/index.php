@@ -12,6 +12,7 @@ use Controllers\EventosController;
 use Controllers\PaginasController;
 use Controllers\RegistradosController;
 use Controllers\RegalosController;
+use Controllers\RegistroController;
 
 $router = new Router();
 
@@ -60,6 +61,8 @@ $router->get('/api/ponente', [APIPonentes::class, 'ponente']);
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
 
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
+
+$router->get('/finalizar-registro', [RegistroController::class, 'crear']);
 
 
 $router->get('/', [PaginasController::class, 'index']);
