@@ -4,22 +4,22 @@ include_once "conferencias.php";
 
 <section class="resumen">
     <div class="resumen__grid">
-        <div data-aos="fade-up" class="resumen__bloque">
+        <div <?php aos_animacion() ?> class="resumen__bloque">
             <p class="resumen__texto resumen__texto--numero"><?php echo $ponentes_total ?></p>
             <p class="resumen__texto">Speakers</p>
         </div>
 
-        <div data-aos="fade-down" class="resumen__bloque">
+        <div <?php aos_animacion() ?> class="resumen__bloque">
             <p class="resumen__texto resumen__texto--numero"><?php echo $conferencias_total ?></p>
             <p class="resumen__texto">Conferencias</p>
         </div>
 
-        <div data-aos="fade-right" class="resumen__bloque">
+        <div <?php aos_animacion() ?> class="resumen__bloque">
             <p class="resumen__texto resumen__texto--numero"><?php echo $workshops_total ?></p>
             <p class="resumen__texto">Workshops</p>
         </div>
 
-        <div data-aos="fade-left" class="resumen__bloque">
+        <div <?php aos_animacion() ?> class="resumen__bloque">
             <p class="resumen__texto resumen__texto--numero">500</p>
             <p class="resumen__texto">Asistentes</p>
         </div>
@@ -34,7 +34,7 @@ include_once "conferencias.php";
 
         <?php foreach ($ponentes as $ponente) { ?>
 
-            <div class="speaker">
+            <div class="speaker" <?php aos_animacion() ?>>
 
                 <picture>
                     <source srcset="<?php echo $_ENV['HOST'] . '/img/speakers/' . $ponente->imagen . '.avif'; ?>" type="image/avif">
@@ -128,19 +128,19 @@ include_once "conferencias.php";
     <p class="boletos__descripcion">Precios para PankraCamp</p>
 
     <div class="boletos__grid">
-        <div class="boleto boleto--platinum">
+        <div <?php aos_animacion() ?> class="boleto boleto--platinum">
             <h4 class="boleto__logo">&#60;PankraCamp&#62;</h4>
             <p class="boleto__plan">Platinum</p>
             <p class="boleto__precio">100$</p>
         </div>
 
-        <div class="boleto boleto--gold">
+        <div <?php aos_animacion() ?> class="boleto boleto--gold">
             <h4 class="boleto__logo">&#60;PankraCamp&#62;</h4>
             <p class="boleto__plan">Gold</p>
             <p class="boleto__precio">50$</p>
         </div>
 
-        <div class="boleto boleto--starter">
+        <div <?php aos_animacion() ?> class="boleto boleto--starter">
             <h4 class="boleto__logo">&#60;PankraCamp&#62;</h4>
             <p class="boleto__plan">Starter</p>
             <p class="boleto__precio">Gratis - 0$</p>

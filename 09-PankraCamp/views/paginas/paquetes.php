@@ -4,7 +4,7 @@
 
     <div class="paquetes__grid">
 
-        <div class="paquete">
+        <div class="paquete" <?php aos_animacion() ?>>
             <h3 class="paquete__nombre">Starter</h3>
             <ul class="paquete__lista">
                 <li class="paquete__elemento">Acceso Virtual a las Conferencias de PankraCamp</li>
@@ -13,7 +13,7 @@
             <p class="paquete__precio">0$</p>
         </div>
 
-        <div class="paquete">
+        <div class="paquete" <?php aos_animacion() ?>>
             <h3 class="paquete__nombre">Platinum</h3>
             <ul class="paquete__lista">
                 <li class="paquete__elemento">Acceso Presencial a PankraCamp</li>
@@ -27,7 +27,7 @@
             <p class="paquete__precio">100$</p>
         </div>
 
-        <div class="paquete">
+        <div class="paquete" <?php aos_animacion() ?>>
             <h3 class="paquete__nombre">Gold</h3>
             <ul class="paquete__lista">
                 <li class="paquete__elemento">Acceso Virtual a PankraCamp</li>
