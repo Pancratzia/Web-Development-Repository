@@ -120,3 +120,5 @@ include_once "conferencias.php";
     </div>
 
 </section>
+
+<div id="mapa" class="mapa"></div>
