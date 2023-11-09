@@ -122,3 +122,32 @@ include_once "conferencias.php";
 </section>
 
 <div id="mapa" class="mapa"></div>
+
+<section class="boletos">
+    <h2 class="boletos__heading">Boletos & Precios</h2>
+    <p class="boletos__descripcion">Precios para PankraCamp</p>
+
+    <div class="boletos__grid">
+        <div class="boleto boleto--platinum">
+            <h4 class="boleto__logo">&#60;PankraCamp&#62;</h4>
+            <p class="boleto__plan">Platinum</p>
+            <p class="boleto__precio">100$</p>
+        </div>
+
+        <div class="boleto boleto--gold">
+            <h4 class="boleto__logo">&#60;PankraCamp&#62;</h4>
+            <p class="boleto__plan">Gold</p>
+            <p class="boleto__precio">50$</p>
+        </div>
+
+        <div class="boleto boleto--starter">
+            <h4 class="boleto__logo">&#60;PankraCamp&#62;</h4>
+            <p class="boleto__plan">Starter</p>
+            <p class="boleto__precio">Gratis - 0$</p>
+        </div>
+    </div>
+
+    <div class="boleto__enlace-contenedor">
+        <a href="/paquetes" class="boleto__enlace">Ver Paquetes</a>
+    </div>
+</section>
