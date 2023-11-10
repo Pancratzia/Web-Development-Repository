@@ -14,4 +14,17 @@ class RegistroController {
             'titulo' => 'Finaliza tu Registro en PankraCamp',
         ]);
     }
+
+    public static function gratis(){
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!is_auth()){
+                header('Location: /login');
+            }
+
+            $token = substr(md5(uniqid(rand(), true)), 0, 8);
+        }
+
+    }
+
 }
