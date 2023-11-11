@@ -66,6 +66,9 @@ $router->get('/finalizar-registro', [RegistroController::class, 'crear']);
 $router->post('/finalizar-registro/gratis', [RegistroController::class, 'gratis']);
 
 
+$router->get('/boleto', [RegistroController::class, 'boleto']);
+
+
 $router->get('/', [PaginasController::class, 'index']);
 $router->get('/pankracamp', [PaginasController::class, 'evento']);
 $router->get('/paquetes', [PaginasController::class, 'paquetes']);
