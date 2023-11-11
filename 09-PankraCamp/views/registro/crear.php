@@ -29,6 +29,12 @@
             </ul>
 
             <p class="paquete__precio">100$</p>
+
+            <div id="smart-button-container">
+                <div style="text-align: center;">
+                    <div id="paypal-button-container"></div>
+                </div>
+            </div>
         </div>
 
         <div class="paquete" <?php aos_animacion() ?>>
@@ -46,3 +52,47 @@
 
     </div>
 </div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AZdxvHCDd9XTjW9Ctn3g2sORnNtxGm2WGTuS9jyWlDKFFfMOBmRe8SYxxO9h4m-IIHuk0GyoMAbwEiBi&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+
+<script>
+    function initPayPalButton() {
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'blue',
+                layout: 'vertical',
+                label: 'pay',
+            },
+
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        "description": "1",
+                        "amount": {
+                            "currency_code": "USD",
+                            "value": 100
+                        }
+                    }]
+                });
+            },
+
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+                    
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                    const element = document.getElementById('paypal-button-container');
+                    element.innerHTML = '';
+                    element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                        
+                });
+            },
+
+            onError: function(err) {
+                console.log(err);
+            }
+        }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+</script>
