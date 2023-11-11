@@ -7,18 +7,20 @@ use Model\Usuario;
 use Model\Paquete;
 use MVC\Router;
 
-class RegistroController {
-    
+class RegistroController
+{
 
-    public static function crear(Router $router){
 
-        if(!is_auth()){
+    public static function crear(Router $router)
+    {
+
+        if (!is_auth()) {
             header('Location: /');
         }
 
         $registro = Registro::where('usuario_id', $_SESSION['id']);
 
-        if(isset($registro) && $registro->paquete_id === "3") {
+        if (isset($registro) && $registro->paquete_id === "3") {
             header('Location: /boleto?id=' . urlencode($registro->token));
         }
 
@@ -27,15 +29,16 @@ class RegistroController {
         ]);
     }
 
-    public static function gratis(){
+    public static function gratis()
+    {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            if(!is_auth()){
+            if (!is_auth()) {
                 header('Location: /login');
             }
 
-            if(isset($registro) && $registro->paquete_id === "3") {
+            if (isset($registro) && $registro->paquete_id === "3") {
                 header('Location: /boleto?id=' . urlencode($registro->token));
             }
 
@@ -51,25 +54,58 @@ class RegistroController {
             $registro = new Registro($datos);
             $resultado = $registro->guardar();
 
-            if($resultado) {
+            if ($resultado) {
                 header('Location: /boleto?id=' . urlencode($registro->token));
             }
         }
-
     }
 
-    public static function boleto(Router $router){
+    public static function pagar()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!is_auth()) {
+                header('Location: /login');
+            }
+
+            if (empty($_POST)) {
+                echo json_encode([]);
+                return;
+            }
+
+            $datos = $_POST;
+            $datos['token'] = substr(md5(uniqid(rand(), true)), 0, 8);
+            $datos['usuario_id'] = $_SESSION['id'];
+
+
+            try {
+                $registro = new Registro($datos);
+                $resultado = $registro->guardar();
+                echo json_encode([
+                    'resultado' => $resultado,
+                ]);
+            } catch (\Throwable $th) {
+                echo json_encode([
+                    'resultado' => 'error',
+                ]);
+            }
+        }
+    }
+
+    public static function boleto(Router $router)
+    {
 
         $id = $_GET['id'];
 
-        if(!$id || strlen($id) !== 8) {
+        if (!$id || strlen($id) !== 8) {
             header('Location: /404');
             return;
         }
 
         $registro = Registro::where('token', $id);
 
-        if(!$registro) {
+        if (!$registro) {
             header('Location: /');
             return;
         }
@@ -82,5 +118,4 @@ class RegistroController {
             'registro' => $registro
         ]);
     }
-
 }
