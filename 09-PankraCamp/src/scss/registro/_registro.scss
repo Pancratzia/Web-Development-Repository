@@ -26,12 +26,23 @@
 
     &__heading{
 
-        &--conferencias{
-            color: v.$azul;
+        &--conferencias, &--workshops{
             white-space: nowrap;
             @include m.texto-fluido(2rem, 4rem);
         }
 
+        &--conferencias{
+            color: v.$azul;
+        }
+
+        &--workshops{
+            color: v.$secundario;
+        }
+
+    }
+
+    &__fecha{
+        margin: 3rem 0;
     }
 }
 

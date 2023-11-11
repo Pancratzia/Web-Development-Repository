@@ -11,6 +11,29 @@
                 <?php include __DIR__ . '/evento.php'; ?>
             <?php endforeach ?>
         </div>
+
+        <p class="eventos-registro__fecha">Miercoles 18 de Septiembre</p>
+        <div class="eventos-registro__grid">
+            <?php foreach ($eventos['conferencias_2'] as $evento) : ?>
+                <?php include __DIR__ . '/evento.php'; ?>
+            <?php endforeach ?>
+        </div>
+
+        <h3 class="eventos-registro__heading--workshops">&lt; Workshops /&gt;</h3>
+        <p class="eventos-registro__fecha">Martes 17 de Septiembre</p>
+
+        <div class="eventos-registro__grid  eventos--workshops">
+            <?php foreach ($eventos['workshops_1'] as $evento) : ?>
+                <?php include __DIR__ . '/evento.php'; ?>
+            <?php endforeach ?>
+        </div>
+
+        <p class="eventos-registro__fecha">Miercoles 18 de Septiembre</p>
+        <div class="eventos-registro__grid eventos--workshops">
+            <?php foreach ($eventos['workshops_2'] as $evento) : ?>
+                <?php include __DIR__ . '/evento.php'; ?>
+            <?php endforeach ?>
+        </div>
     </main>
 
     <aside class="registro">

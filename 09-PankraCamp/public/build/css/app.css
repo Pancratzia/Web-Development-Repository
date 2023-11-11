@@ -1672,10 +1672,18 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.eventos-registro__heading--conferencias {
-  color: #007df4;
+.eventos-registro__heading--conferencias, .eventos-registro__heading--workshops {
   white-space: nowrap;
   font-size: clamp(2rem, -0.8rem + 10vw, 4rem);
+}
+.eventos-registro__heading--conferencias {
+  color: #007df4;
+}
+.eventos-registro__heading--workshops {
+  color: #00c8c2;
+}
+.eventos-registro__fecha {
+  margin: 3rem 0;
 }
 
 @media (min-width: 768px) {
