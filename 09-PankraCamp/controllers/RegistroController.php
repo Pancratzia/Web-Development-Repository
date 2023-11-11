@@ -12,6 +12,15 @@ class RegistroController {
 
     public static function crear(Router $router){
 
+        if(!is_auth()){
+            header('Location: /');
+        }
+
+        $registro = Registro::where('usuario_id', $_SESSION['id']);
+
+        if(isset($registro) && $registro->paquete_id === "3") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+        }
 
         $router->render('registro/crear', [
             'titulo' => 'Finaliza tu Registro en PankraCamp',
@@ -21,8 +30,13 @@ class RegistroController {
     public static function gratis(){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             if(!is_auth()){
                 header('Location: /login');
+            }
+
+            if(isset($registro) && $registro->paquete_id === "3") {
+                header('Location: /boleto?id=' . urlencode($registro->token));
             }
 
             $token = substr(md5(uniqid(rand(), true)), 0, 8);

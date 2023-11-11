@@ -3,7 +3,7 @@
         <nav class="header__navegacion">
 
             <?php if (is_auth()) { ?>
-                <a href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>" class="header__enlace"><?php echo is_admin() ? 'Admin' : 'Finalizar Registro'; ?></a>
+                <a href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>" class="header__enlace"><?php echo is_admin() ? 'Admin' : 'Registro'; ?></a>
                 <form method="POST" action="/logout" class="header__form">
                     <input type="submit" value="Cerrar Sesión" class="header__submit">
                 </form>
