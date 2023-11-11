@@ -8,6 +8,7 @@
     @include m.tablet {
         display: flex;
         gap: 2rem;
+        align-items: flex-start;
     }
 
     &__listado{
@@ -48,7 +49,18 @@
 
 .registro{
 
+    background-color: v.$gris-claro;
+    border-radius: 1rem;
+    padding: 3rem;
+
     @include m.tablet{
         flex: 0 0 40%;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 3rem;
+    }
+
+    &__heading{
+        margin: 0 0 3rem 0;
     }
 }

@@ -40,5 +40,7 @@
         <h2 class="registro__heading">
             Tu Registro
         </h2>
+
+        <div id="registro-resumen" class="registro__resumen"></div>
     </aside>
 </div>

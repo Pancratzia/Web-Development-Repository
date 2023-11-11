@@ -1653,6 +1653,7 @@ h3 {
   .eventos-registro {
     display: flex;
     gap: 2rem;
+    align-items: flex-start;
   }
 }
 @media (min-width: 768px) {
@@ -1686,9 +1687,19 @@ h3 {
   margin: 3rem 0;
 }
 
+.registro {
+  background-color: #F8FAFC;
+  border-radius: 1rem;
+  padding: 3rem;
+}
 @media (min-width: 768px) {
   .registro {
     flex: 0 0 40%;
+    position: sticky;
+    top: 3rem;
   }
+}
+.registro__heading {
+  margin: 0 0 3rem 0;
 }
 /*# sourceMappingURL=app.css.map */
