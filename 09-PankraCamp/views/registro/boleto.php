@@ -3,7 +3,7 @@
     <p class="pagina__descripcion">Ya tienes tu boleto... ¡También puedes compartirlo en tus redes sociales!</p>
 
     <div class="boleto-virtual">
-        <div class="boleto boleto--<?php echo strtolower($registro->paquete->nombre) ?>">
+        <div class="boleto boleto--<?php echo strtolower($registro->paquete->nombre) ?> boleto--acceso">
             <div class="boleto__contenido">
                 <h4 class="boleto__logo">
                     &#60;PankraCamp/>
