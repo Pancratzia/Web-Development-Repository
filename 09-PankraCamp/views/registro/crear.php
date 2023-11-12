@@ -96,7 +96,7 @@
                 .then(resultado => {
                     console.log(resultado);
                     if(resultado.resultado){
-                        actions.redirect('http://localhost:3000/finalizar-registro/conferencias');
+                        actions.redirect($_ENV['HOST'] + '/finalizar-registro/conferencias');
                     }
                 })
                         
@@ -144,7 +144,7 @@
                 .then(resultado => {
                     console.log(resultado);
                     if(resultado.resultado){
-                        actions.redirect('http://localhost:3000/finalizar-registro/conferencias');
+                        actions.redirect($_ENV['HOST'] + '/finalizar-registro/conferencias');
                     }
                 })
                         
