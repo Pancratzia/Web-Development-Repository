@@ -4,12 +4,13 @@ namespace Classes;
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-class Email {
+class Email
+{
 
     public $email;
     public $nombre;
     public $token;
-    
+
     public function __construct($email, $nombre, $token)
     {
         $this->email = $email;
@@ -17,48 +18,51 @@ class Email {
         $this->token = $token;
     }
 
-    public function enviarConfirmacion() {
-
-         // create a new object
-         $mail = new PHPMailer();
-         $mail->isSMTP();
-         $mail->Host = $_ENV['EMAIL_HOST'];
-         $mail->SMTPAuth = true;
-         $mail->Port = $_ENV['EMAIL_PORT'];
-         $mail->Username = $_ENV['EMAIL_USER'];
-         $mail->Password = $_ENV['EMAIL_PASS'];
-     
-         $mail->setFrom('cuentas@PankraCamp.com');
-         $mail->addAddress($this->email, $this->nombre);
-         $mail->Subject = 'Confirma tu Cuenta';
-
-         // Set HTML
-         $mail->isHTML(TRUE);
-         $mail->CharSet = 'UTF-8';
-
-         $contenido = '<html>';
-         $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong> Has Registrado Correctamente tu cuenta en PankraCamp; pero es necesario confirmarla</p>";
-         $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['HOST'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a>";       
-         $contenido .= "<p>Si tu no creaste esta cuenta; puedes ignorar el mensaje</p>";
-         $contenido .= '</html>';
-         $mail->Body = $contenido;
-
-         //Enviar el mail
-         $mail->send();
-
-    }
-
-    public function enviarInstrucciones() {
+    public function enviarConfirmacion()
+    {
 
         // create a new object
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = $_ENV['EMAIL_HOST'];
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Port = $_ENV['EMAIL_PORT'];
-        $mail->Username = $_ENV['EMAIL_USER'];
-        $mail->Password = $_ENV['EMAIL_PASS'];
-    
+        $mail->Port = 465;
+        $mail->Username = $_ENV['GMAIL_USERNAME'];
+        $mail->Password = $_ENV['GMAIL_PASSWORD'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+
+        $mail->setFrom('cuentas@PankraCamp.com');
+        $mail->addAddress($this->email, $this->nombre);
+        $mail->Subject = 'Confirma tu Cuenta';
+
+        // Set HTML
+        $mail->isHTML(TRUE);
+        $mail->CharSet = 'UTF-8';
+
+        $contenido = '<html>';
+        $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong> Has Registrado Correctamente tu cuenta en PankraCamp; pero es necesario confirmarla</p>";
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['HOST'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a>";
+        $contenido .= "<p>Si tu no creaste esta cuenta; puedes ignorar el mensaje</p>";
+        $contenido .= '</html>';
+        $mail->Body = $contenido;
+
+        //Enviar el mail
+        $mail->send();
+    }
+
+    public function enviarInstrucciones()
+    {
+
+        // create a new object
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Port = 465;
+        $mail->Username = $_ENV['GMAIL_USERNAME'];
+        $mail->Password = $_ENV['GMAIL_PASSWORD'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+
         $mail->setFrom('cuentas@PankraCamp.com');
         $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'Reestablece tu password';
@@ -69,7 +73,7 @@ class Email {
 
         $contenido = '<html>';
         $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace para hacerlo.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['HOST'] . "/reestablecer?token=" . $this->token . "'>Reestablecer Password</a>";        
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['HOST'] . "/reestablecer?token=" . $this->token . "'>Reestablecer Password</a>";
         $contenido .= "<p>Si tu no solicitaste este cambio, puedes ignorar el mensaje</p>";
         $contenido .= '</html>';
         $mail->Body = $contenido;
