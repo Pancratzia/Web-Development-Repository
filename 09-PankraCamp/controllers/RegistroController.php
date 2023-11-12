@@ -5,6 +5,7 @@ namespace Controllers;
 use Model\Categoria;
 use Model\Dia;
 use Model\Evento;
+use Model\EventosRegistros;
 use Model\Hora;
 use Model\Registro;
 use Model\Usuario;
@@ -215,9 +216,31 @@ class RegistroController
             foreach($eventos_array as $evento){
                 $evento->disponibles = $evento->disponibles - 1;
                 $evento->guardar();
+
+                $datos = [
+                  'evento_id' => (int) $evento->id,
+                  'registro_id' => (int) $registro->id
+                ];
+
+                $registro_usuario = new EventosRegistros($datos);
+                $registro_usuario->guardar();
             }
 
+            $registro->sincronizar(['regalo_id' => $_POST['regalo']]);
+            $resultado = $registro->guardar();
 
+            if($resultado){
+                echo json_encode([
+                    'resultado' => $resultado,
+                    'token' => $registro->token
+                ]);
+            }else{
+                echo json_encode([
+                    'resultado' => false
+                ]);
+            }
+
+            return;
         }
 
         $router->render('registro/conferencias', [

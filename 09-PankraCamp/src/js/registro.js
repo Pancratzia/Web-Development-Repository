@@ -115,8 +115,37 @@ import Swal from "sweetalert2";
 
       try {
         const resultado = await respuesta.json();
+
+        if (resultado.resultado) {
+          Swal.fire(
+            {
+              title: "Exito",
+              text: "Tu selección ha sido almacenada correctamente... ¡Te esperamos en PankraCamp!",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }
+          ).then(() => {
+            location.href = `/boleto?id=${resultado.token}`;
+          })
+        }else{
+          Swal.fire({
+            title: "Error",
+            text: "Hubo un error al registrar el evento",
+            icon: "error",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            location.reload();
+          })
+        }
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          title: "Error",
+          text: "Hubo un error al registrar el evento",
+          icon: "error",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          location.reload();
+        })
       }
     }
   }
