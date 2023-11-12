@@ -31,6 +31,10 @@ class RegistroController
             header('Location: /boleto?id=' . urlencode($registro->token));
         }
 
+        if($registro->paquete_id === "1"){
+            header('Location: /finalizar-registro/conferencias');
+        }
+
         $router->render('registro/crear', [
             'titulo' => 'Finaliza tu Registro en PankraCamp',
         ]);
@@ -140,6 +144,11 @@ class RegistroController
 
         if($registro->paquete_id !== "1"){
             header('Location: /');
+            return;
+        }
+
+        if(isset($registro->regalo_id)){
+            header('Location: /boleto?id=' . urlencode($registro->token));
             return;
         }
 
