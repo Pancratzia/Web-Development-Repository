@@ -21,5 +21,28 @@
                 <?php echo $ingresos; ?>$
             </p>
         </div>
+
+        <div class="bloque">
+            <h3 class="bloque__heading">Eventos Con Menos Lugares</h3>
+
+            <?php foreach($menos_disponibles as $evento){ ?>
+                <div class="bloque__contenido">
+                    <p class="bloque__texto">
+                        <?php echo $evento->nombre . ' | ' . $evento->disponibles . ' lugares restantes'; ?>
+                    </p>
+                </div>
+            <?php } ?>
+        </div>
+
+        <div class="bloque">
+            <h3 class="bloque__heading">Eventos Con Mas Lugares</h3>
+
+            <?php foreach($mas_disponibles as $evento){ ?>
+                <div class="bloque__contenido">
+                    <p class="bloque__texto">
+                        <?php echo $evento->nombre . ' | ' . $evento->disponibles . ' lugares restantes'; ?>
+                    </p>
+                </div>
+            <?php } ?>
     </div>
 </main>

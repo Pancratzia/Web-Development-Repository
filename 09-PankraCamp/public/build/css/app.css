@@ -1672,7 +1672,7 @@ h3 {
 }
 
 .bloque {
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 1rem;
   color: #FFFFFF;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -1682,6 +1682,12 @@ h3 {
 }
 .bloque:nth-child(2) {
   background-image: linear-gradient(to left top, #7C3AED, #9b69f1);
+}
+.bloque:nth-child(3) {
+  background-image: linear-gradient(to left top, #10B981, #14e8a2);
+}
+.bloque:nth-child(4) {
+  background-image: linear-gradient(to left top, #17769E, #1d97cb);
 }
 .bloque__heading {
   margin: 1rem 0 2rem 0;
