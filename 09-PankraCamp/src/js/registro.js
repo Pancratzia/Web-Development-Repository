@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 (function () {
   let eventos = [];
   const resumen = document.querySelector("#registro-resumen");
@@ -23,7 +25,12 @@
 
       mostrarEventos();
     }else{
-        alert("Ya no puedes agregar más eventos");
+        Swal.fire({
+            title: "Error",
+            text: "No puedes agregar más de 5 eventos",
+            icon: "error",
+            confirmButtonText: "Ok",
+        });
     }
   }
 
