@@ -36,8 +36,10 @@ class AuthController {
 
                         if($usuario->admin) {
                             header('Location: /admin/dashboard');
+                            return;
                         }else{
                             header('Location: /finalizar-registro');
+                            return;
                         }
                         
                     } else {
@@ -61,6 +63,7 @@ class AuthController {
             session_start();
             $_SESSION = [];
             header('Location: /');
+            return;
         }
        
     }
@@ -101,6 +104,7 @@ class AuthController {
 
                     if($resultado) {
                         header('Location: /mensaje');
+                        return;
                     }
                 }
             }
@@ -165,7 +169,11 @@ class AuthController {
 
         $token_valido = true;
 
-        if(!$token) header('Location: /');
+        if(!$token) {
+            header('Location: /');
+            return;
+        }
+
 
         // Identificar el usuario con este token
         $usuario = Usuario::where('token', $token);
@@ -197,6 +205,7 @@ class AuthController {
                 // Redireccionar
                 if($resultado) {
                     header('Location: /login');
+                    return;
                 }
             }
         }
@@ -222,7 +231,10 @@ class AuthController {
         
         $token = s($_GET['token']);
 
-        if(!$token) header('Location: /');
+        if(!$token) {
+            header('Location: /');
+            return;
+        }
 
         // Encontrar al usuario con este token
         $usuario = Usuario::where('token', $token);

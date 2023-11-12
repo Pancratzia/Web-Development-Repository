@@ -23,16 +23,25 @@ class RegistroController
 
         if (!is_auth()) {
             header('Location: /');
+            return;
         }
 
         $registro = Registro::where('usuario_id', $_SESSION['id']);
 
-        if (isset($registro) && $registro->paquete_id === "3") {
+        if (isset($registro) && $registro->paquete_id === "3" ) {
             header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
         }
 
-        if($registro->paquete_id === "1"){
+        if (isset($registro) && $registro->paquete_id === "2") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
+        }
+            
+
+        if(isset($registro) && $registro->paquete_id === "1" ) {
             header('Location: /finalizar-registro/conferencias');
+            return;
         }
 
         $router->render('registro/crear', [
@@ -47,10 +56,12 @@ class RegistroController
 
             if (!is_auth()) {
                 header('Location: /login');
+                return;
             }
 
             if (isset($registro) && $registro->paquete_id === "3") {
                 header('Location: /boleto?id=' . urlencode($registro->token));
+                return;
             }
 
             $token = substr(md5(uniqid(rand(), true)), 0, 8);
@@ -67,6 +78,7 @@ class RegistroController
 
             if ($resultado) {
                 header('Location: /boleto?id=' . urlencode($registro->token));
+                return;
             }
         }
     }
@@ -78,6 +90,7 @@ class RegistroController
 
             if (!is_auth()) {
                 header('Location: /login');
+                return;
             }
 
             if (empty($_POST)) {
@@ -142,12 +155,17 @@ class RegistroController
         $usuario_id = $_SESSION['id'];
         $registro = Registro::where('usuario_id', $usuario_id);
 
+        if(isset($registro) && $registro->paquete_id === "2"){
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
+        }
+
         if($registro->paquete_id !== "1"){
             header('Location: /');
             return;
         }
 
-        if(isset($registro->regalo_id)){
+        if(isset($registro->regalo_id) && $registro->paquete_id !== "1"){
             header('Location: /boleto?id=' . urlencode($registro->token));
             return;
         }

@@ -16,6 +16,7 @@ class PonentesController
 
         if(!is_admin()){
             header('Location: /login');
+            return;
         }
 
         $pagina_actual = $_GET['page'];
@@ -23,6 +24,7 @@ class PonentesController
 
         if(!$pagina_actual || $pagina_actual < 1){
             header('Location: /admin/ponentes?page=1');
+            return;
         }
 
         $registros_por_pagina = 10;
@@ -35,6 +37,7 @@ class PonentesController
             
         } else if($paginacion->total_paginas() < $pagina_actual){
             header('Location: /admin/ponentes?page=1');
+            return;
         }
 
         $ponentes = Ponente::paginar($registros_por_pagina, $paginacion->offset());
@@ -50,6 +53,7 @@ class PonentesController
     {
         if(!is_admin()){
             header('Location: /login');
+            return;
         }
         $alertas = [];
         $ponente = new Ponente;
@@ -57,6 +61,7 @@ class PonentesController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(!is_admin()){
                 header('Location: /login');
+                return;
             }
 
             if (!empty($_FILES['imagen']['tmp_name'])) {
@@ -89,6 +94,7 @@ class PonentesController
 
                 if ($resultado) {
                     header('Location: /admin/ponentes');
+                    return;
                 }
             }
         }
@@ -105,6 +111,7 @@ class PonentesController
     {
         if(!is_admin()){
             header('Location: /login');
+            return;
         }
 
         $alertas = [];
@@ -114,12 +121,14 @@ class PonentesController
 
         if (!$id) {
             header('Location: /admin/ponentes');
+            return;
         }
 
         $ponente = Ponente::find($id);
 
         if (empty($ponente)) {
             header('Location: /admin/ponentes');
+            return;
         }
 
         $ponente->imagen_actual = $ponente->imagen;
@@ -130,6 +139,7 @@ class PonentesController
 
             if(!is_admin()){
                 header('Location: /login');
+                return;
             }
 
             if (!empty($_FILES['imagen']['tmp_name'])) {
@@ -166,6 +176,7 @@ class PonentesController
 
                 if($resultado) {
                     header('Location: /admin/ponentes');
+                    return;
                 }
             }
         }
@@ -184,6 +195,7 @@ class PonentesController
 
             if(!is_admin()){
                 header('Location: /login');
+                return;
             }
             
             $id = $_POST['id'];
@@ -193,12 +205,14 @@ class PonentesController
 
             if(!isset($ponente)){
                 header('Location: /admin/ponentes');
+                return;
             }
 
             $resultado = $ponente->eliminar();
 
             if($resultado){
                 header('Location: /admin/ponentes');
+                return;
             }
             
         }

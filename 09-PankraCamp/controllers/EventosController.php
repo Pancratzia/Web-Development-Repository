@@ -19,6 +19,7 @@ class EventosController
 
         if (!is_admin()) {
             header('Location: /login');
+            return;
         }
 
         $pagina_actual = $_GET['page'];
@@ -27,7 +28,7 @@ class EventosController
 
         if (!$pagina_actual || $pagina_actual < 1) {
             header('Location: /admin/eventos?page=1');
-            
+            return;
         }
 
         $registros_por_pagina = 15;
@@ -40,6 +41,7 @@ class EventosController
             
         } else if ($paginacion->total_paginas() < $pagina_actual) {
             header('Location: /admin/eventos?page=1');
+            return;
         }
 
         $eventos = Evento::paginar($registros_por_pagina, $paginacion->offset());
@@ -63,6 +65,7 @@ class EventosController
 
         if (!is_admin()) {
             header('Location: /login');
+            return;
         }
 
         $alertas = [];
@@ -75,6 +78,7 @@ class EventosController
 
             if (!is_admin()) {
                 header('Location: /login');
+                return;
             }
 
             $evento->sincronizar($_POST);
@@ -84,6 +88,7 @@ class EventosController
                 $resultado = $evento->guardar();
                 if ($resultado) {
                     header('Location: /admin/eventos');
+                    return;
                 }
             }
         }
@@ -102,6 +107,7 @@ class EventosController
     {
         if (!is_admin()) {
             header('Location: /login');
+            return;
         }
 
         $alertas = [];
@@ -111,6 +117,7 @@ class EventosController
 
         if (!$id) {
             header('Location: /admin/eventos');
+            return;
         }
         $categorias = Categoria::all("ASC");
         $dias = Dia::all("ASC");
@@ -119,6 +126,7 @@ class EventosController
 
         if (empty($evento)) {
             header('Location: /admin/eventos');
+            return;
         }
 
 
@@ -126,6 +134,7 @@ class EventosController
 
             if (!is_admin()) {
                 header('Location: /login');
+                return;
             }
 
             $evento->sincronizar($_POST);
@@ -135,6 +144,7 @@ class EventosController
                 $resultado = $evento->guardar();
                 if ($resultado) {
                     header('Location: /admin/eventos');
+                    return;
                 }
             }
         }
@@ -156,6 +166,7 @@ class EventosController
 
             if (!is_admin()) {
                 header('Location: /login');
+                return;
             }
 
             $id = $_POST['id'];
@@ -165,12 +176,14 @@ class EventosController
 
             if (!isset($evento)) {
                 header('Location: /admin/eventos');
+                return;
             }
 
             $resultado = $evento->eliminar();
 
             if ($resultado) {
                 header('Location: /admin/eventos');
+                return;
             }
         }
     }
