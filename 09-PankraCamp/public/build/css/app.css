@@ -1649,6 +1649,40 @@ h3 {
   color: #FFFFFF;
 }
 
+.bloques {
+  width: min(95%, 140rem);
+  margin: 0 auto;
+}
+.bloques__grid {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 1024px) {
+  .bloques__grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bloque {
+  padding: 2rem;
+  border-radius: 1rem;
+  color: #FFFFFF;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.bloque:nth-child(1) {
+  background-image: linear-gradient(to left top, #F97316, #fa9148);
+}
+.bloque__heading {
+  margin: 1rem 0 2rem 0;
+  font-size: 3.6rem;
+}
+.bloque__texto {
+  margin: 1rem 0;
+}
+
 .eventos-registro {
   width: min(95%, 140rem);
   margin: 0 auto;
