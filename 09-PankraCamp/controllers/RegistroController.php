@@ -198,6 +198,7 @@ class RegistroController
                 return;
             }
 
+            $eventos_array = [];
             foreach ($eventos as $id) {
                 $evento = Evento::find($id);
 
@@ -208,8 +209,12 @@ class RegistroController
                     return;
                 }
 
-                $evento->disponibles = $evento->disponibles - 1;
+                $eventos_array[] = $evento;
+            }
 
+            foreach($eventos_array as $evento){
+                $evento->disponibles = $evento->disponibles - 1;
+                $evento->guardar();
             }
 
 
