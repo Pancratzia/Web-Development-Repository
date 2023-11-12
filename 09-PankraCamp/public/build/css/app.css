@@ -1527,6 +1527,11 @@ h3 {
   margin: 0 auto;
   max-width: 80rem;
 }
+.dashboard__grafica {
+  width: min(95%, 140rem);
+  margin: 0 auto;
+  max-width: 60rem;
+}
 
 .table {
   width: 100%;
