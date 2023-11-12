@@ -14,6 +14,8 @@ import Swal from "sweetalert2";
     const formularioRegistro = document.querySelector("#registro");
     formularioRegistro.addEventListener("submit", submitFormulario);
 
+    mostrarEventos();
+
     function seleccionarEvento({ target }) {
       if (eventos.length < 5) {
         target.disabled = true;
@@ -62,6 +64,11 @@ import Swal from "sweetalert2";
           eventoDOM.appendChild(botonEliminar);
           resumen.appendChild(eventoDOM);
         });
+      }else{
+        const noRegistro = document.createElement("P");
+        noRegistro.textContent = "No hay eventos registrados. Añade hasta 5 eventos del lado izquierdo";
+        noRegistro.classList.add("registro__texto");
+        resumen.appendChild(noRegistro);
       }
     }
 
